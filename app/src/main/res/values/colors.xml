@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#7BC6FB</color>
+    <color name="colorAccent">#7BC6FB</color>
+    <color name="main_status_bar_color">#55000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="mystic">#DFE6EB</color>
+    <color name="main_tab_color">#FFFFFF</color>
+    <color name="dialog_bg_color">#CCFFFFFF</color>
+    <color name="window_bg_color">#F5F5F5</color>
+    <color name="line_color">#EAEAEA</color>
+    <color name="rangoon_green">#C2CCD3</color>
+    <color name="home_checked_color">#19A0B7</color>
+    <color name="ucla_gold">#F2B000</color>
+    <color name="black">#525455</color>
+    <color name="pattens_blue">#E4F3FD</color>
+    <color name="riptide">#8CD5D4</color>
+    <color name="powder_blue">#B1E4E8</color>
+    <color name="gray_shape">#EDEEEF</color>
+    <color name="pacific_blue">#00A2BB</color>
+    <color name="mikado_yellow">#FFBE11</color>
+    <color name="atlantis">#88C833</color>
+    <color name="conifer">#AEDE51</color>
+    <color name="integral_sub">#36D38D</color>
+    <color name="integral_add">#EF732F</color>
+    <color name="iris_blue">#00ADBA</color>
+    <color name="geyser">#C8CFD2</color>
+    <color name="charcoal">#454647</color>
+    <color name="toolbar_color">#000000</color>
+    <color name="pumice">#C4C5C6</color>
+    <color name="deep_carrot_orange">#EF732F</color>
+    <color name="LightGrey">#999999</color>
+    <color name="iron">#CBCCCD</color>
+    <color name="login_text_color">#D7D8D9</color>
+    <color name="karry">#FEDCC7</color>
+    <color name="tuft_bush">#FDDECA</color>
+    <color name="aqua_haze">#EFF3F6</color>
+    <color name="store_pet_kind_bg_color">#66000000</color>
+    <color name="concrete">#D0D0D0</color>
+    <color name="medium_sea_green">#3BBD60</color>
+    <color name="c_999999">#999999</color>
+    <color name="voice_code_text_color">#3792FB</color>
+
+    <color name="full_screen_overlay">#55525455</color>
+
+
+    <color name="partTranslucent">#00000000</color>
+    <color name="curious_blue">#1998DE</color>
+    <color name="white_smoke">#F2F2F2</color>
+    <color name="shadow_color">#88FFFFFF</color>
+
+
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+
+    <color name="text_gray">#888</color>
+    <color name="referral_code_bg">#5A5D64</color>
+    <color name="friend_text_bg">#8ACD8A</color>
+    <color name="earning_text">#0385C1</color>
+    <color name="color_my_pet">#FFE7BF</color>
+    <color name="tips_bg">#FFD4B9</color>
+
+</resources>

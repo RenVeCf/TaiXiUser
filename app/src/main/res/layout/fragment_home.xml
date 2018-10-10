@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/banner_height"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@mipmap/banner" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_constraintTop_toBottomOf="@id/banner">
+
+            <ImageView
+                android:id="@+id/iv_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/headline"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:background="#D8D8D8"
+                app:layout_constraintBottom_toBottomOf="@id/iv_headline"
+                app:layout_constraintLeft_toRightOf="@id/iv_headline"
+                app:layout_constraintTop_toTopOf="@id/iv_headline" />
+
+
+            <TextView
+                android:id="@+id/tv_headline_text"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/small_padding"
+                android:text="泰溪科技app1.0上线啦"
+                app:layout_constraintLeft_toRightOf="@id/view_line" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_info"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/taixi_info"
+            app:layout_constraintTop_toBottomOf="@id/cl_headline">
+
+            <TextView
+                android:id="@+id/tv_info_title"
+                style="@style/BaseTextStyle"
+                android:layout_marginRight="49dp"
+                android:layout_marginTop="13dp"
+                android:text="泰溪介绍"
+                android:textSize="18sp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginTop="5dp"
+                android:text="关于泰溪 泰溪文化"
+                android:textColor="#999999"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@id/tv_info_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_info_title" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_project"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:background="@mipmap/project"
+            app:layout_constraintTop_toBottomOf="@id/cl_info">
+
+            <TextView
+                android:id="@+id/tv_project_title"
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="13dp"
+                android:text="科研项目"
+                android:textSize="18sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginTop="5dp"
+                android:text="青汁科研 青汁科普"
+                android:textColor="#999999"
+                android:textSize="11sp"
+                app:layout_constraintLeft_toLeftOf="@id/tv_project_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_project_title" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/cl_project">
+
+            <TextView
+                style="@style/HomeMenuStyle"
+                android:drawableTop="@mipmap/menu_business_school"
+                android:text="商学院" />
+
+            <TextView
+                style="@style/HomeMenuStyle"
+                android:drawableTop="@mipmap/menu_travel"
+                android:text="悦八方旅游" />
+
+            <TextView
+                style="@style/HomeMenuStyle"
+                android:drawableTop="@mipmap/menu_health_manage"
+                android:text="乐多健康管理" />
+
+            <TextView
+                style="@style/HomeMenuStyle"
+                android:drawableTop="@mipmap/menu_e_commerce"
+                android:text="众悦电子商务" />
+
+
+        </LinearLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:paddingBottom="@dimen/small_padding"
+            android:paddingLeft="@dimen/base_padding"
+            android:paddingRight="@dimen/base_padding"
+            android:paddingTop="@dimen/small_padding"
+            app:layout_constraintTop_toBottomOf="@id/ll_menu">
+
+            <ImageView
+                android:id="@+id/iv_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/home_action"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_marginLeft="@dimen/base_padding"
+                android:text="动态"
+                app:layout_constraintLeft_toRightOf="@id/iv_action" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <View
+            android:id="@+id/action_view_line"
+            style="@style/ViewLine"
+            app:layout_constraintTop_toBottomOf="@id/cl_action" />
+
+        <com.ipd.taixiuser.widget.NotVerticalScrollRecyclerView
+            android:id="@+id/action_recycler_view"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:nestedScrollingEnabled="false"
+            android:layout_height="wrap_content"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/action_view_line" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

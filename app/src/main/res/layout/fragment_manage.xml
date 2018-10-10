@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_customer_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/tv_customer_manage"
+                style="@style/TitleTextStyle"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="客户管理" />
+
+            <TextView
+                android:id="@+id/tv_customer"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_customer"
+                android:text="我的客户"
+                app:layout_constraintTop_toBottomOf="@id/tv_customer_manage" />
+
+            <TextView
+                android:id="@+id/tv_retail"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/retail"
+                android:text="零售发货"
+                app:layout_constraintLeft_toRightOf="@id/tv_customer"
+                app:layout_constraintTop_toTopOf="@id/tv_customer" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_team_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cl_customer_manage">
+
+            <TextView
+                android:id="@+id/tv_team_manage"
+                style="@style/TitleTextStyle"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="团队管理" />
+
+            <TextView
+                android:id="@+id/tv_team"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_team"
+                android:text="我的团队"
+                app:layout_constraintTop_toBottomOf="@id/tv_team_manage" />
+
+            <TextView
+                android:id="@+id/tv_auth"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_auth"
+                android:text="我的授权"
+                app:layout_constraintLeft_toRightOf="@id/tv_team"
+                app:layout_constraintTop_toTopOf="@id/tv_team" />
+
+            <TextView
+                android:id="@+id/tv_proxy"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_proxy"
+                android:text="加盟代理"
+                app:layout_constraintLeft_toRightOf="@id/tv_auth"
+                app:layout_constraintTop_toTopOf="@id/tv_auth" />
+
+            <TextView
+                android:id="@+id/tv_promote"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_promote"
+                android:text="晋升之路"
+                app:layout_constraintLeft_toRightOf="@id/tv_proxy"
+                app:layout_constraintTop_toTopOf="@id/tv_proxy" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_earnings_manage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cl_team_manage">
+
+            <TextView
+                android:id="@+id/tv_earnings_manage"
+                style="@style/TitleTextStyle"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="收益管理" />
+
+            <TextView
+                android:id="@+id/tv_store"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_store"
+                android:text="商城"
+                app:layout_constraintTop_toBottomOf="@id/tv_earnings_manage" />
+
+            <TextView
+                android:id="@+id/tv_replenish"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_replenish"
+                android:text="补货"
+                app:layout_constraintLeft_toRightOf="@id/tv_store"
+                app:layout_constraintTop_toTopOf="@id/tv_store" />
+
+            <TextView
+                android:id="@+id/tv_earnings"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/mine_earnings"
+                android:text="收益"
+                app:layout_constraintLeft_toRightOf="@id/tv_replenish"
+                app:layout_constraintTop_toTopOf="@id/tv_replenish" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/cl_cloud_stock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/cl_earnings_manage">
+
+            <TextView
+                android:id="@+id/tv_cloud_stock_manage"
+                style="@style/TitleTextStyle"
+                android:paddingLeft="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding"
+                android:text="云仓管理" />
+
+            <TextView
+                android:id="@+id/tv_factory_ship"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/factory_ship"
+                android:text="工厂代发"
+                app:layout_constraintTop_toBottomOf="@id/tv_cloud_stock_manage" />
+
+            <TextView
+                android:id="@+id/tv_move_stock"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/move_stock"
+                android:text="配置移仓"
+                app:layout_constraintLeft_toRightOf="@id/tv_factory_ship"
+                app:layout_constraintTop_toTopOf="@id/tv_factory_ship" />
+
+            <TextView
+                android:id="@+id/tv_stock_record"
+                style="@style/ManageMenuStyle"
+                android:drawableTop="@mipmap/stock_record"
+                android:text="库存记录"
+                app:layout_constraintLeft_toRightOf="@id/tv_move_stock"
+                app:layout_constraintTop_toTopOf="@id/tv_move_stock" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

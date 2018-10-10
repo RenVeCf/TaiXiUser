@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/wallet" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="我的钱包" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/collect" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="我的收藏" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/translate" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="客户转移记录" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/kefu" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="咨询客服" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/about" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="关于我们" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+    <View style="@style/ViewLine" />
+
+    <LinearLayout
+        style="@style/BaseTableStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/setting" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:layout_weight="1"
+            android:text="设置" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right" />
+
+
+    </LinearLayout>
+
+</merge>
