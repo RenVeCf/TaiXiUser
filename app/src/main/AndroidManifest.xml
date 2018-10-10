@@ -7,12 +7,12 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".platform.global.GlobalApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".platform.global.GlobalApplication"
         android:theme="@style/AppTheme">
 
         <activity-alias
@@ -34,6 +34,17 @@
         <activity android:name=".ui.activity.account.LoginActivity" />
         <activity android:name=".ui.activity.account.RegisterActivity" />
         <activity android:name=".ui.activity.account.LostPwdActivity" />
+
+        <!-- home -->
+        <activity android:name=".ui.activity.home.QuestionActivity" />
+        <activity android:name=".ui.activity.home.SystemMessageActivity" />
+        <activity android:name=".ui.activity.home.HomeActionActivity" />
+
+        <!-- matter -->
+        <activity android:name=".ui.activity.matter.MatterDetailActivity" />
+
+
+        <activity android:name=".ui.activity.web.WebActivity" />
 
     </application>
 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tootls="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/base_padding"
+    android:paddingLeft="@dimen/base_padding"
+    android:paddingRight="@dimen/base_padding"
+    android:paddingTop="@dimen/big_padding">
+
+    <TextView
+        android:id="@+id/tv_time"
+        style="@style/SmallTextStyle"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tootls:text="2018-09-08" />
+
+    <TextView
+        android:id="@+id/tv_msg"
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/small_padding"
+        android:background="@drawable/shape_msg_bg"
+        android:padding="@dimen/base_padding"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_time"
+        tootls:text="发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到发送到" />
+
+
+</android.support.constraint.ConstraintLayout>

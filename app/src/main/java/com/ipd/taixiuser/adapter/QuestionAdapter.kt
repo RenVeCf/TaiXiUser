@@ -6,30 +6,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.MatterBean
-import com.ipd.taixiuser.imageload.ImageLoader
-import kotlinx.android.synthetic.main.item_matter.view.*
+import com.ipd.taixiuser.bean.QuestionBean
+import kotlinx.android.synthetic.main.item_question.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class MatterAdapter(val context: Context, private val list: List<MatterBean>?, private val itemClick: (info: MatterBean) -> Unit) : RecyclerView.Adapter<MatterAdapter.ViewHolder>() {
+class QuestionAdapter(val context: Context, private val list: List<QuestionBean>?, private val itemClick: (info: QuestionBean) -> Unit) : RecyclerView.Adapter<QuestionAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_matter, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_question, parent, false))
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadImgWithPlaceHolder(context, info.img, R.mipmap.matter_img, holder.itemView.iv_icon)
         holder.itemView.tv_title.text = info.title
-        holder.itemView.tv_desc.text = info.content
-        holder.itemView.tv_time.text = info.ctime
+
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

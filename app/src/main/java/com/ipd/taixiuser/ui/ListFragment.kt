@@ -22,7 +22,7 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
     val EMPTY_DATA = 1
     val NO_MORE_DATA = 2
     val NORMAL = 0
-    val INIT_PAGE = 0
+    val INIT_PAGE = 1
 
     protected lateinit var recycler_view: RecyclerView
     protected lateinit var swipe_load_layout: SwipeToLoadLayout
@@ -152,7 +152,7 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
     override fun getDataSuccess(result: T): String? {
         if (result is BaseResult<*>) {
             val response = result
-            if (response.code != 0 && response.code != 10000) {
+            if (response.code != 200) {
                 return response.msg
             }
         } else {

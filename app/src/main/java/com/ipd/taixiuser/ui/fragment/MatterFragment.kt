@@ -3,13 +3,17 @@ package com.ipd.taixiuser.ui.fragment
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.MatterAdapter
+import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.ListResult
 import com.ipd.taixiuser.bean.MatterBean
+import com.ipd.taixiuser.platform.global.Constant
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
+import com.ipd.taixiuser.ui.activity.matter.MatterDetailActivity
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import rx.Observable
-import java.util.concurrent.TimeUnit
 
-class MatterFragment : ListFragment<List<MatterBean>, MatterBean>() {
+class MatterFragment : ListFragment<BaseResult<ListResult<MatterBean>>, MatterBean>() {
 
     override fun getTitleLayout(): Int {
         return R.layout.base_toolbar
@@ -22,21 +26,14 @@ class MatterFragment : ListFragment<List<MatterBean>, MatterBean>() {
         mHeaderView.tv_title.text = "素材"
     }
 
-    override fun loadListData(): Observable<List<MatterBean>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    var list: ArrayList<MatterBean> = ArrayList()
-                    for (index in 0 until 10) {
-                        list.add(MatterBean())
-                    }
-                    list
-                }
+    override fun loadListData(): Observable<BaseResult<ListResult<MatterBean>>> {
+        return ApiManager.getService().matterList(page, Constant.PAGE_SIZE)
     }
 
-    override fun isNoMoreData(result: List<MatterBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.isEmpty())) {
+    override fun isNoMoreData(result: BaseResult<ListResult<MatterBean>>): Int {
+        if (page == INIT_PAGE && (result == null || result.data.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.isEmpty()) {
+        } else if (result == null || result.data.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
@@ -47,7 +44,7 @@ class MatterFragment : ListFragment<List<MatterBean>, MatterBean>() {
         if (mAdapter == null) {
             mAdapter = MatterAdapter(mActivity, data, {
                 //itemClick
-
+                MatterDetailActivity.launch(mActivity,it.id)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -56,8 +53,8 @@ class MatterFragment : ListFragment<List<MatterBean>, MatterBean>() {
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<MatterBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<ListResult<MatterBean>>) {
+        data?.addAll(result?.data?.data ?: arrayListOf())
     }
 
 

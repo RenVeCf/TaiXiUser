@@ -116,37 +116,15 @@
 
         </android.support.constraint.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_menu"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/menu_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/white"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/cl_project">
-
-            <TextView
-                style="@style/HomeMenuStyle"
-                android:drawableTop="@mipmap/menu_business_school"
-                android:text="商学院" />
-
-            <TextView
-                style="@style/HomeMenuStyle"
-                android:drawableTop="@mipmap/menu_travel"
-                android:text="悦八方旅游" />
-
-            <TextView
-                style="@style/HomeMenuStyle"
-                android:drawableTop="@mipmap/menu_health_manage"
-                android:text="乐多健康管理" />
-
-            <TextView
-                style="@style/HomeMenuStyle"
-                android:drawableTop="@mipmap/menu_e_commerce"
-                android:text="众悦电子商务" />
-
-
-        </LinearLayout>
+            app:layoutManager="android.support.v7.widget.GridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/cl_project"
+            app:spanCount="4" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/cl_action"
@@ -158,7 +136,7 @@
             android:paddingLeft="@dimen/base_padding"
             android:paddingRight="@dimen/base_padding"
             android:paddingTop="@dimen/small_padding"
-            app:layout_constraintTop_toBottomOf="@id/ll_menu">
+            app:layout_constraintTop_toBottomOf="@id/menu_recycler_view">
 
             <ImageView
                 android:id="@+id/iv_action"
@@ -184,9 +162,9 @@
         <com.ipd.taixiuser.widget.NotVerticalScrollRecyclerView
             android:id="@+id/action_recycler_view"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/white"
             android:nestedScrollingEnabled="false"
-            android:layout_height="wrap_content"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/action_view_line" />
 

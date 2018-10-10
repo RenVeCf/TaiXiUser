@@ -67,18 +67,6 @@
     </style>
 
 
-    <style name="HomeMenuStyle" parent="BaseTextStyle">
-        <item name="android:background">?android:selectableItemBackground</item>
-        <item name="android:width">0dp</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:paddingTop">@dimen/base_padding</item>
-        <item name="android:paddingBottom">@dimen/base_padding</item>
-        <item name="android:drawablePadding">7dp</item>
-        <item name="cardCornerRadius">10dp</item>
-    </style>
-
     <style name="StoreCardStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
