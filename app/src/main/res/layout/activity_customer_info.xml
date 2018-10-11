@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+
+            <android.support.constraint.ConstraintLayout style="@style/BaseTableStyle">
+
+
+                <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+                    android:id="@+id/customer_avatar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    tools:src="@mipmap/customer_avatar" />
+
+                <TextView
+                    android:id="@+id/tv_customer_name"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="@dimen/base_padding"
+                    app:layout_constraintBottom_toBottomOf="@id/customer_avatar"
+                    app:layout_constraintLeft_toRightOf="@id/customer_avatar"
+                    app:layout_constraintTop_toTopOf="@id/customer_avatar"
+                    tools:text="徐梅" />
+
+                <TextView
+                    android:id="@+id/tv_customer_level"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginTop="6dp"
+                    android:drawableLeft="@mipmap/proxy_lable"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_customer_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_customer_name"
+                    tools:text="代理 (M2FOAJ)" />
+
+                <TextView
+                    android:id="@+id/tv_customer_phone"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginTop="6dp"
+                    android:drawableLeft="@mipmap/customer_phone"
+                    android:drawablePadding="5dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_customer_name"
+                    app:layout_constraintTop_toBottomOf="@id/tv_customer_level"
+                    tools:text="18133330000" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="5dp" />
+
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="微信号" />
+
+                <TextView
+                    android:id="@+id/tv_wechat"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:textColor="@color/LightGrey"
+                    tools:text="VI844" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="手机号" />
+
+                <TextView
+                    android:id="@+id/tv_phone"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:textColor="@color/LightGrey"
+                    tools:text="17200491483" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="上级" />
+
+                <TextView
+                    android:id="@+id/tv_leader"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:textColor="@color/LightGrey"
+                    tools:text="和语言" />
+
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:background="@color/window_bg_color"
+                android:padding="14dp"
+                android:text="收货地址" />
+
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="地区" />
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:textColor="@color/LightGrey"
+                    tools:text="上海/上海市/青浦区" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:background="@color/window_bg_color"
+                android:padding="14dp"
+                android:text="详细地址" />
+
+
+            <TextView
+                android:id="@+id/tv_detail_address"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:minHeight="110dp"
+                android:padding="@dimen/base_padding"
+                android:textColor="@color/LightGrey"
+                tools:text="华徐公路888号1号楼2楼IPD" />
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:background="@color/window_bg_color"
+                android:padding="14dp"
+                android:text="备注" />
+
+
+            <TextView
+                android:id="@+id/tv_customer_remark"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|left"
+                android:minHeight="110dp"
+                android:padding="@dimen/base_padding"
+                android:textColor="@color/LightGrey"
+                tools:text="发送到发送到发送到发送发送发送到" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

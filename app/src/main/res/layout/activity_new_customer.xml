@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="姓名" />
+
+                <EditText
+                    android:id="@+id/et_customer_name"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxLength="12"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="手机号" />
+
+                <EditText
+                    android:id="@+id/et_customer_phone"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_city"
+                style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="所在地区" />
+
+                <TextView
+                    android:id="@+id/tv_city"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请选择" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="微信号" />
+
+                <EditText
+                    android:id="@+id/tv_customer_weixin"
+                    style="@style/BaseEditTextStyle"
+                    android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxLength="15"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout android:id="@+id/ll_level" style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="设置代理级别" />
+
+                <TextView
+                    android:id="@+id/tv_level"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请选择" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:background="@color/window_bg_color"
+                android:padding="14dp"
+                android:text="备注" />
+
+
+            <EditText
+                android:id="@+id/tv_customer_remark"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:gravity="top|left"
+                android:hint="请输入"
+                android:maxLength="100"
+                android:padding="@dimen/base_padding" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

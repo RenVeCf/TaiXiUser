@@ -25,6 +25,14 @@ public interface HttpUrl {
     String MATTER_LIST = "material";
     String MATTER_DETAIL = "material/materialinfo";
 
+    //manage
+    String MINE_CUSTOMER = "manage/mycustomer";
+    String NEW_CUSTOMER = "manage/mycustomer/add";
+    String CUSTOMER_INFO = "manage/mycustomer/info";
+
+
+    //mine
+    String MINE = "my";
 
 
 }

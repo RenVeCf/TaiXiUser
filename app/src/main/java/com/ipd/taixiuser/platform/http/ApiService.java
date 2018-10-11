@@ -3,6 +3,7 @@ package com.ipd.taixiuser.platform.http;
 
 import com.ipd.taixiuser.bean.ActionMessageBean;
 import com.ipd.taixiuser.bean.BaseResult;
+import com.ipd.taixiuser.bean.CustomerBean;
 import com.ipd.taixiuser.bean.ForgetPwdBean;
 import com.ipd.taixiuser.bean.HomeBean;
 import com.ipd.taixiuser.bean.ListResult;
@@ -12,6 +13,7 @@ import com.ipd.taixiuser.bean.MatterDetailBean;
 import com.ipd.taixiuser.bean.QuestionBean;
 import com.ipd.taixiuser.bean.RegisterBean;
 import com.ipd.taixiuser.bean.SystemMessageBean;
+import com.ipd.taixiuser.bean.UserInfoBean;
 
 import java.util.List;
 
@@ -91,6 +93,37 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.MATTER_DETAIL)
     Observable<BaseResult<MatterDetailBean>> matterDetail(@Field("material_id") int material_id);
+
+
+    /**
+     * manage
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.MINE_CUSTOMER)
+    Observable<BaseResult<List<CustomerBean>>> mineCustomer(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.NEW_CUSTOMER)
+    Observable<BaseResult<CustomerBean>> newCustomer(@Field("phone") String phone,
+                                                     @Field("username") String username,
+                                                     @Field("weixin") String weixin,
+                                                     @Field("proxy") String proxy,
+                                                     @Field("remark") String remark,
+                                                     @Field("password") String password,
+                                                     @Field("area") String area,
+                                                     @Field("pos_id") String pos_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CUSTOMER_INFO)
+    Observable<BaseResult<CustomerBean>> customerInfo(@Field("user_id") int user_id);
+
+
+    /**
+     * manage
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.MINE)
+    Observable<BaseResult<UserInfoBean>> userInfo(@Field("user_id") String user_id);
 
 
 }

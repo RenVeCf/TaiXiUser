@@ -6,30 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.MatterBean
+import com.ipd.taixiuser.bean.CustomerBean
 import com.ipd.taixiuser.imageload.ImageLoader
-import kotlinx.android.synthetic.main.item_matter.view.*
+import kotlinx.android.synthetic.main.item_customer.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class MatterAdapter(val context: Context, private val list: List<MatterBean>?, private val itemClick: (info: MatterBean) -> Unit) : RecyclerView.Adapter<MatterAdapter.ViewHolder>() {
+class CustomerAdapter(val context: Context, private val list: List<CustomerBean>?, private val itemClick: (info: CustomerBean) -> Unit) : RecyclerView.Adapter<CustomerAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_matter, parent, false))
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_customer, parent, false))
 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadImgWithPlaceHolder(context, info.img, R.mipmap.matter_img, holder.itemView.iv_customer_avatar)
-        holder.itemView.tv_title.text = info.title
-        holder.itemView.tv_desc.text = info.content
-        holder.itemView.tv_time.text = info.ctime
+
+        ImageLoader.loadAvatar(context, info.avatar, holder.itemView.iv_customer_avatar)
+        holder.itemView.tv_customer_name.text = info.username
+        holder.itemView.tv_level.text = "(${info.proxy})"
+        holder.itemView.tv_customer_remark.text = "备注:${info.remark}"
+        holder.itemView.tv_customer_phone.text = info.phone
+
+
+
+
+
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -17,13 +17,15 @@
 
         <activity-alias
             android:name=".launcher"
-            android:targetActivity=".MainActivity">
+            android:targetActivity=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity-alias>
+
+        <activity android:name=".ui.SplashActivity" />
 
         <activity
             android:name=".MainActivity"
@@ -42,6 +44,11 @@
 
         <!-- matter -->
         <activity android:name=".ui.activity.matter.MatterDetailActivity" />
+
+        <!-- manage -->
+        <activity android:name=".ui.activity.manage.MineCustomerActivity" />
+        <activity android:name=".ui.activity.manage.NewCustomerActivity" />
+        <activity android:name=".ui.activity.manage.CustomerInfoActivity" />
 
 
         <activity android:name=".ui.activity.web.WebActivity" />

@@ -55,4 +55,5 @@ dependencies {
     implementation project(':jumpboxlibrary')
 
     implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
 }
