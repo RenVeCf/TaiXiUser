@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/base_padding"
+    android:paddingTop="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/tv_operator"
+        style="@style/BaseTextStyle"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:text="发出:徐梅"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_operation_level"
+        style="@style/BaseTextStyle"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:text="(MCY192304)"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toRightOf="@id/tv_operator" />
+
+    <TextView
+        android:id="@+id/tv_operation_date"
+        style="@style/BaseTextStyle"
+        android:layout_marginRight="@dimen/base_padding"
+        android:text="2018-08-08"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <View
+        android:id="@+id/view_line"
+        style="@style/ViewLine"
+        android:layout_marginTop="@dimen/base_padding"
+        app:layout_constraintTop_toBottomOf="@id/tv_operator" />
+
+    <com.ipd.taixiuser.widget.NotVerticalScrollRecyclerView
+        android:id="@+id/product_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/view_line" />
+
+
+    <View
+        android:id="@+id/view_line2"
+        style="@style/ViewLine"
+        app:layout_constraintTop_toBottomOf="@id/product_recycler_view" />
+
+    <TextView
+        android:id="@+id/tv_order_hint"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="已完成"
+        app:layout_constraintRight_toRightOf="@id/tv_operation_date"
+        app:layout_constraintTop_toBottomOf="@id/view_line2" />
+
+
+</android.support.constraint.ConstraintLayout>
