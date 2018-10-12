@@ -6,7 +6,7 @@ buildscript {
     ext.buildToolsVersion = "27.0.3"
     ext.targetSdkVersion = 21
     ext.kotlin_version = '1.2.30'
-    ext.support_version = '26.1.0'
+    ext.support_version = '27.0.1'
     repositories {
         google()
         jcenter()

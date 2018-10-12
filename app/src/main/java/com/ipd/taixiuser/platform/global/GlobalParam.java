@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 
 import com.ipd.jumpbox.jumpboxlibrary.utils.SharedPreferencesUtil;
+import com.ipd.taixiuser.MainActivity;
 
 /**
  * Created by jumpbox on 16/4/19.
@@ -34,6 +35,11 @@ public class GlobalParam {
     public static void onExitUser() {
         GlobalParam.saveUserId("");
         GlobalParam.saveUserToken("");
+
+        Intent intent = new Intent(GlobalApplication.Companion.getMContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        GlobalApplication.Companion.getMContext().startActivity(intent);
     }
 
     public static String getUserIdOrJump() {

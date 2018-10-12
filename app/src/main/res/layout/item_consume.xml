@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/tv_consume_name"
+        style="@style/BaseTextStyle"
+        android:layout_marginLeft="@dimen/base_padding"
+        android:text="产品购买"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_consume_time"
+        style="@style/SmallTextStyle"
+        android:layout_marginBottom="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="2018-09-09 15:45:33"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/tv_consume_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_consume_name" />
+
+
+    <TextView
+        android:id="@+id/tv_consume_price"
+        style="@style/BaseTextStyle"
+        android:layout_marginRight="@dimen/base_padding"
+        android:text="-2000"
+        app:layout_constraintBottom_toBottomOf="@id/tv_consume_time"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        style="@style/ViewLine"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>

@@ -6,8 +6,13 @@ import com.ipd.taixiuser.bean.UserInfoBean
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.presenter.UserInfoPresenter
 import com.ipd.taixiuser.ui.BaseUIFragment
+import com.ipd.taixiuser.ui.activity.mine.CustomerTransferRecordActivity
+import com.ipd.taixiuser.ui.activity.mine.MyCollectActivity
+import com.ipd.taixiuser.ui.activity.mine.MyWalletActivity
+import com.ipd.taixiuser.ui.activity.mine.SettingActivity
 import com.ipd.taixiuser.utils.StringUtils
 import kotlinx.android.synthetic.main.fragment_mine.view.*
+import kotlinx.android.synthetic.main.layout_mine_menu.view.*
 
 class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
     override fun getTitleLayout(): Int = -1
@@ -38,6 +43,28 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
     }
 
     override fun initListener() {
+        mContentView.ll_wallet.setOnClickListener {
+            //我的钱包
+            MyWalletActivity.launch(mActivity)
+        }
+        mContentView.ll_collect.setOnClickListener {
+            //我的收藏
+            MyCollectActivity.launch(mActivity)
+        }
+        mContentView.ll_customer_transfer_record.setOnClickListener {
+            //客户转移记录
+            CustomerTransferRecordActivity.launch(mActivity)
+        }
+        mContentView.ll_kefu.setOnClickListener {
+            //客服
+        }
+        mContentView.ll_about.setOnClickListener {
+            //关于我们
+        }
+        mContentView.ll_setting.setOnClickListener {
+            //设置
+            SettingActivity.launch(mActivity)
+        }
     }
 
     override fun getUserInfoSuccess(userInfo: UserInfoBean) {

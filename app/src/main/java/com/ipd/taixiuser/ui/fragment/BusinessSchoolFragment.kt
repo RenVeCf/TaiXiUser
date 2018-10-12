@@ -5,6 +5,7 @@ import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.BusinessSchoolAdapter
 import com.ipd.taixiuser.bean.BusinessSchoolBean
 import com.ipd.taixiuser.ui.ListFragment
+import com.ipd.taixiuser.ui.activity.businessschool.BusinessSchoolDetailActivity
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import rx.Observable
 import java.util.concurrent.TimeUnit
@@ -45,7 +46,7 @@ class BusinessSchoolFragment : ListFragment<List<BusinessSchoolBean>, BusinessSc
         if (mAdapter == null) {
             mAdapter = BusinessSchoolAdapter(mActivity, data, {
                 //itemClick
-
+                BusinessSchoolDetailActivity.launch(mActivity, -1)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

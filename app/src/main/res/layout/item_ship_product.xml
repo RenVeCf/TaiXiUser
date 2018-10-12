@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingBottom="6dp"
+    android:paddingTop="6dp">
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_weight="4"
+        android:text="酵素青汁" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_weight="2"
+        android:text="0箱"
+        android:textColor="@color/LightGrey" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_weight="2"
+        android:text="20盒"
+        android:textColor="@color/LightGrey" />
+
+    <TextView
+        style="@style/BaseTextStyle"
+        android:layout_width="0dp"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_weight="3"
+        android:textColor="@color/LightGrey" />
+
+
+</LinearLayout>

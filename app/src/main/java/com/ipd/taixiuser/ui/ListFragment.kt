@@ -45,7 +45,7 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
         mPresenter?.detachView()
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
             //初始化参数
             isCreate = true

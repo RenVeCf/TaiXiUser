@@ -15,13 +15,17 @@ import kotlinx.android.synthetic.main.activity_lost_pwd.*
 class LostPwdActivity : BaseUIActivity(), TextWatcher, AccountPresenter.IForgetPasswordView {
 
     companion object {
-        fun launch(activity: Activity) {
+        val LOST_PWD = 0
+        val CHANGE_PWD = 1
+        fun launch(activity: Activity, type: Int = LOST_PWD) {
             val intent = Intent(activity, LostPwdActivity::class.java)
+            intent.putExtra("type", type)
             activity.startActivity(intent)
         }
     }
 
-    override fun getToolbarTitle(): String = "忘记密码"
+    private val mType by lazy { intent.getIntExtra("type", LOST_PWD) }
+    override fun getToolbarTitle(): String = if (mType == LOST_PWD) "忘记密码" else "修改密码"
 
     override fun getContentLayout(): Int = R.layout.activity_lost_pwd
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/BaseTableStyle"
+            android:background="@color/white">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="接受人账号" />
+
+            <EditText
+                android:id="@+id/et_customer_name"
+                style="@style/BaseEditTextStyle"
+                android:gravity="right"
+                android:hint="请输入接受人账号"
+                android:maxLength="16"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_next"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="下一步"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

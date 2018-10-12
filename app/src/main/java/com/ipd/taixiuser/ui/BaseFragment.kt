@@ -6,8 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ipd.taixiuser.platform.global.GlobalApplication
 import com.ipd.jumpbox.jumpboxlibrary.utils.ToastCommom
+import com.ipd.taixiuser.platform.global.GlobalApplication
 import kotlin.properties.Delegates
 
 /**
@@ -20,12 +20,12 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mActivity = activity
+        mActivity = activity!!
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
-            mRootView = inflater?.inflate(getBaseLayout(), container, false) as ViewGroup
+            mRootView = inflater.inflate(getBaseLayout(), container, false) as ViewGroup
             initBaseLayout(mRootView)
             onViewAttach()
             initView(savedInstanceState)

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rl_change_pwd"
+                style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="修改密码" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="5dp" />
+
+            <LinearLayout android:id="@+id/ll_clear_cache" style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="清除缓存" />
+
+                <TextView
+                    android:id="@+id/tv_cache"
+                    style="@style/BaseEditTextStyle"
+                    android:layout_marginRight="@dimen/small_padding"
+                    android:gravity="right"
+                    android:text="0.0MB"
+                    android:textColor="@color/LightGrey" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right" />
+
+            </LinearLayout>
+
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="5dp" />
+
+            <RelativeLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="使用条款" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="5dp" />
+
+            <RelativeLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="隐私政策" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/arrow_right" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_exit"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="退出登录"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils
 import android.widget.LinearLayout
 import com.ipd.taixiuser.platform.global.AuthUtils
 import com.ipd.taixiuser.ui.BaseActivity
-import com.ipd.taixiuser.ui.activity.account.LoginActivity
 import com.ipd.taixiuser.ui.fragment.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -38,9 +37,9 @@ class MainActivity : BaseActivity() {
     override fun initListener() {
         tabs.forEachIndexed { index, layout ->
             layout.setOnClickListener {
-                if (it == ll_manage || it == ll_mine){
+                if (it == ll_manage || it == ll_mine) {
                     //登录
-                    if (!AuthUtils.isLoginAndShowDialog(mActivity)){
+                    if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
                         return@setOnClickListener
                     }
                 }

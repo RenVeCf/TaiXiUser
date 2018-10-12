@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="收货人" />
+
+                <EditText
+                    android:id="@+id/et_receive_name"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxLength="10"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="联系电话" />
+
+                <EditText
+                    android:id="@+id/et_receive_phone"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout
+                android:id="@+id/ll_city"
+                style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="所在地区" />
+
+                <TextView
+                    android:id="@+id/tv_receive_city"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请选择" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+
+            <EditText
+                android:id="@+id/tv_receive_detail_address"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:gravity="top|left"
+                android:hint="请输入详细地址"
+                android:maxLength="100"
+                android:padding="@dimen/base_padding" />
+
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="5dp" />
+
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="发货方式" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/rb_express"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/selector_checkbox"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/small_padding"
+                        android:text="发物流"
+                        android:textColor="@color/LightGrey" />
+
+                    <RadioButton
+                        android:id="@+id/rb_local"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:button="@drawable/selector_checkbox"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/small_padding"
+                        android:text="同城"
+                        android:textColor="@color/LightGrey" />
+
+
+                </RadioGroup>
+
+
+            </LinearLayout>
+
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="物流公司" />
+
+                <EditText
+                    android:id="@+id/et_express_company"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxLength="15"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="快递单号" />
+
+                <EditText
+                    android:id="@+id/et_express_no"
+                    style="@style/BaseEditTextStyle"
+                    android:gravity="right"
+                    android:hint="请输入"
+                    android:maxLength="20"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
+            <LinearLayout style="@style/BaseTableStyle">
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="商品信息" />
+
+                <ImageView
+                    android:id="@+id/iv_add_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:src="@mipmap/product_add" />
+
+            </LinearLayout>
+
+            <com.ipd.taixiuser.widget.ProductListLayout
+                android:id="@+id/product_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <View
+                style="@style/ViewLine"
+                android:layout_height="50dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

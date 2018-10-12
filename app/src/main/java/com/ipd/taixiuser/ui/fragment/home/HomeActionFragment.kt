@@ -24,7 +24,7 @@ class HomeActionFragment : ListFragment<BaseResult<ListResult<ActionMessageBean>
         }
     }
 
-    private val mActionType: Int by lazy { arguments.getInt("actionType", 0) }
+    private val mActionType: Int by lazy { arguments?.getInt("actionType", 0) ?: 0 }
 
     override fun loadListData(): Observable<BaseResult<ListResult<ActionMessageBean>>> {
         return ApiManager.getService().actionMessage(mActionType, GlobalParam.getUserIdOrJump(), page, Constant.PAGE_SIZE)

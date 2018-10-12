@@ -45,10 +45,31 @@
         <!-- matter -->
         <activity android:name=".ui.activity.matter.MatterDetailActivity" />
 
+        <!-- businessSchool -->
+        <activity android:name=".ui.activity.businessschool.BusinessSchoolDetailActivity" />
+
         <!-- manage -->
         <activity android:name=".ui.activity.manage.MineCustomerActivity" />
         <activity android:name=".ui.activity.manage.NewCustomerActivity" />
         <activity android:name=".ui.activity.manage.CustomerInfoActivity" />
+        <activity android:name=".ui.activity.manage.RetailActivity" />
+        <activity android:name=".ui.activity.manage.ShipOrderActivity" />
+        <activity android:name=".ui.activity.manage.MineTeamActivity" />
+        <activity android:name=".ui.activity.manage.ProxyListActivity" />
+        <activity android:name=".ui.activity.manage.ProxyInfoActivity" />
+        <activity android:name=".ui.activity.manage.ProxyTransferActivity" />
+        <activity android:name=".ui.activity.manage.ConfirmTransferActivity" />
+
+        <!-- mine -->
+        <activity android:name=".ui.activity.mine.MyWalletActivity" />
+        <activity android:name=".ui.activity.mine.WithDrawActivity" />
+        <activity android:name=".ui.activity.mine.WithdrawProgressActivity" />
+        <activity android:name=".ui.activity.mine.WithdrawProgressDetailActivity" />
+        <activity android:name=".ui.activity.mine.ChooseBankCardActivity" />
+        <activity android:name=".ui.activity.mine.NewBankCardActivity" />
+        <activity android:name=".ui.activity.mine.MyCollectActivity" />
+        <activity android:name=".ui.activity.mine.CustomerTransferRecordActivity" />
+        <activity android:name=".ui.activity.mine.SettingActivity" />
 
 
         <activity android:name=".ui.activity.web.WebActivity" />

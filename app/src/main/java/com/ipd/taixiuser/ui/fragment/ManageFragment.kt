@@ -4,6 +4,8 @@ import android.os.Bundle
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.ui.BaseUIFragment
 import com.ipd.taixiuser.ui.activity.manage.MineCustomerActivity
+import com.ipd.taixiuser.ui.activity.manage.MineTeamActivity
+import com.ipd.taixiuser.ui.activity.manage.RetailActivity
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_manage.view.*
 
@@ -26,6 +28,14 @@ class ManageFragment : BaseUIFragment() {
         mContentView.tv_customer.setOnClickListener {
             //我的客户
             MineCustomerActivity.launch(mActivity)
+        }
+        mContentView.tv_retail.setOnClickListener {
+            //零售发货
+            RetailActivity.launch(mActivity)
+        }
+        mContentView.tv_team.setOnClickListener {
+            //我的团队
+            MineTeamActivity.launch(mActivity)
         }
     }
 

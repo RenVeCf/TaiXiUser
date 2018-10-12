@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/base_padding">
+
+    <TextView
+        android:id="@+id/tv_transfer_name"
+        style="@style/BaseTextStyle"
+        android:text="客户姓名:徐梅"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_transfer_time"
+        style="@style/BaseTextStyle"
+        android:text="2018-08-08"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_transfer_account"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="客户账号：18321836627"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_name" />
+
+    <TextView
+        android:id="@+id/tv_operator"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="转移人：张逸"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_account" />
+
+
+    <TextView
+        android:id="@+id/tv_receive_name"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="接收人：张嘉译"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_transfer_account" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/SmallTextStyle"
+            android:layout_width="match_parent"
+            android:background="@color/window_bg_color"
+            android:padding="14dp"
+            android:text="请添加持卡人本人的银行卡"
+            android:textColor="@color/LightGrey" />
+
+
+        <LinearLayout style="@style/BaseTableStyle">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="持卡人" />
+
+            <EditText
+                android:id="@+id/et_customer_name"
+                style="@style/BaseEditTextStyle"
+                android:gravity="right"
+                android:hint="请输入"
+                android:maxLength="10"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <View style="@style/ViewLine" />
+
+        <LinearLayout style="@style/BaseTableStyle">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="卡号" />
+
+            <EditText
+                android:id="@+id/et_customer_phone"
+                style="@style/BaseEditTextStyle"
+                android:gravity="right"
+                android:hint="请输入"
+                android:inputType="number"
+                android:maxLength="19"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding">
+
+        <TextView
+            android:id="@+id/tv_commit"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="确认"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</LinearLayout>

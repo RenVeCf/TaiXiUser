@@ -20,7 +20,7 @@ abstract class LazyLoadFragment : BaseUIFragment() {
         return false
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         isViewCreated = true
         super.onViewCreated(view, savedInstanceState)
     }
@@ -52,7 +52,7 @@ abstract class LazyLoadFragment : BaseUIFragment() {
 
     abstract fun loadDataWhenVisible()
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (mRootView == null) {
             firstLoad = true
         }
