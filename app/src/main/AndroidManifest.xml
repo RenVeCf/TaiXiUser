@@ -59,6 +59,13 @@
         <activity android:name=".ui.activity.manage.ProxyInfoActivity" />
         <activity android:name=".ui.activity.manage.ProxyTransferActivity" />
         <activity android:name=".ui.activity.manage.ConfirmTransferActivity" />
+        <activity android:name=".ui.activity.manage.FactoryShipActivity" />
+        <activity android:name=".ui.activity.manage.FactoryShipPayActivity" />
+        <activity android:name=".ui.activity.manage.PayResultActivity" />
+
+        <!-- order -->
+        <activity android:name=".ui.activity.order.OrderActivity" />
+        <activity android:name=".ui.activity.order.OrderDetailActivity" />
 
         <!-- mine -->
         <activity android:name=".ui.activity.mine.MyWalletActivity" />

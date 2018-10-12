@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/cl_bottom_menu"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:paddingBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="@mipmap/order_detail_bg"
+                android:gravity="center_vertical"
+                android:padding="@dimen/base_padding">
+
+                <ImageView
+                    android:id="@+id/iv_order_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/wait_send" />
+
+                <TextView
+                    android:id="@+id/tv_order_status"
+                    style="@style/TitleTextStyle"
+                    android:layout_marginLeft="18dp"
+                    android:text="待发货"
+                    android:textColor="@color/white" />
+
+
+            </LinearLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/base_padding">
+
+                <ImageView
+                    android:id="@+id/iv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_address"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_receive_name"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="@dimen/base_padding"
+                    android:text="张嘉译"
+                    app:layout_constraintLeft_toRightOf="@id/iv_address" />
+
+                <TextView
+                    android:id="@+id/tv_receive_phone"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginLeft="20dp"
+                    android:text="18321836627"
+                    app:layout_constraintLeft_toRightOf="@id/tv_receive_name" />
+
+
+                <TextView
+                    android:id="@+id/tv_receive_detail_address"
+                    style="@style/SmallTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="@dimen/base_padding"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="上海 上海市 青浦区 华徐公路888号1号楼2楼IPD"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/tv_receive_name"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_receive_name" />
+
+            </android.support.constraint.ConstraintLayout>
+
+
+            <com.ipd.taixiuser.widget.NotVerticalScrollRecyclerView
+                android:id="@+id/product_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="android.support.v7.widget.LinearLayoutManager" />
+
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                android:padding="@dimen/base_padding">
+
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="商品总价："
+                    android:textColor="@color/LightGrey" />
+
+                <TextView
+                    android:id="@+id/tv_order_price"
+                    style="@style/SmallTextStyle"
+                    android:text="￥ 6000.00"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="运费："
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintTop_toTopOf="@id/tv_express_fee" />
+
+                <TextView
+                    android:id="@+id/tv_express_fee"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="￥ 200.00"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_price" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:text="合计："
+                    app:layout_constraintTop_toTopOf="@id/tv_total_price" />
+
+                <TextView
+                    android:id="@+id/tv_total_price"
+                    style="@style/BaseTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="￥ 6200.00"
+                    android:textColor="@color/red"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_express_fee" />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/base_padding">
+
+
+                <TextView
+                    android:id="@+id/tv_order_no"
+                    style="@style/SmallTextStyle"
+                    android:text="订单编号：193727476801"
+                    android:textColor="@color/LightGrey" />
+
+                <TextView
+                    android:id="@+id/tv_trade_no"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="交易号：20180926738619839"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_no" />
+
+                <TextView
+                    android:id="@+id/tv_order_create_time"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="创建时间：2018-09-26 15:45:17"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintTop_toBottomOf="@id/tv_trade_no" />
+
+                <TextView
+                    android:id="@+id/tv_order_deal_time"
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:text="成交时间：2018-09-26 16:24:32"
+                    android:textColor="@color/LightGrey"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_create_time" />
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/btn_operation1"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="8dp"
+            android:text="取消货单"
+            android:textColor="@color/white"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btn_operation2" />
+
+        <TextView
+            android:id="@+id/btn_operation2"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/base_padding"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:paddingTop="8dp"
+            android:text="取消货单"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toRightOf="@id/btn_operation1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_goneMarginLeft="0dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.constraint.ConstraintLayout>

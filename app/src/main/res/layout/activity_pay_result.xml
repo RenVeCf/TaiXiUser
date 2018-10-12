@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+
+    <ImageView
+        android:id="@+id/iv_pay_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/pay_success"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/tv_pay_status"
+        style="@style/TitleTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="支付成功"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_pay_status" />
+
+    <TextView
+        android:id="@+id/tv_order_no"
+        style="@style/BaseTextStyle"
+        android:layout_marginTop="@dimen/base_padding"
+        android:text="订单编号：118876293"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_pay_status" />
+
+
+    <FrameLayout
+        android:id="@+id/fl_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/small_padding"
+        android:paddingTop="@dimen/small_padding"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_ship_order"
+            style="@style/BaseTextStyle"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_account_btn"
+            android:paddingBottom="8dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            android:paddingTop="8dp"
+            android:text="查看发货记录"
+            android:textColor="@color/white" />
+
+    </FrameLayout>
+
+
+</android.support.constraint.ConstraintLayout>

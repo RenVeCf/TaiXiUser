@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    app:layout_constraintBottom_toBottomOf="@id/iv_product"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@id/iv_product">
+
+    <ImageView
+        android:id="@+id/iv_sub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/product_sub" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        style="@style/SmallTextStyle"
+        android:layout_width="38dp"
+        android:layout_height="22dp"
+        android:layout_marginLeft="@dimen/small_padding"
+        android:layout_marginRight="@dimen/small_padding"
+        android:background="@drawable/shape_product_edit_bg"
+        android:gravity="center"
+        android:maxLength="4"
+        android:singleLine="true"
+        android:text="0"
+        android:textColor="@color/LightGrey" />
+
+    <ImageView
+        android:id="@+id/iv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/product_add" />
+
+
+</LinearLayout>
+
+

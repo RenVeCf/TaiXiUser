@@ -3,6 +3,7 @@ package com.ipd.taixiuser.ui.fragment
 import android.os.Bundle
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.ui.BaseUIFragment
+import com.ipd.taixiuser.ui.activity.manage.FactoryShipActivity
 import com.ipd.taixiuser.ui.activity.manage.MineCustomerActivity
 import com.ipd.taixiuser.ui.activity.manage.MineTeamActivity
 import com.ipd.taixiuser.ui.activity.manage.RetailActivity
@@ -36,6 +37,10 @@ class ManageFragment : BaseUIFragment() {
         mContentView.tv_team.setOnClickListener {
             //我的团队
             MineTeamActivity.launch(mActivity)
+        }
+        mContentView.tv_factory_ship.setOnClickListener {
+            //工厂代发
+            FactoryShipActivity.launch(mActivity)
         }
     }
 

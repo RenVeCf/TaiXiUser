@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="5dp"
     android:background="@color/white"
     android:paddingBottom="@dimen/small_padding"
@@ -16,46 +15,40 @@
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:scaleType="centerCrop"
-        tools:src="@mipmap/matter_img" />
+        android:src="@mipmap/product" />
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/BaseTextStyle"
         android:layout_width="0dp"
         android:layout_marginLeft="@dimen/base_padding"
+        android:layout_marginTop="@dimen/small_padding"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="『查询』青汁怎样查真伪？"
-        app:layout_constraintBottom_toTopOf="@id/tv_desc"
+        android:text="酵素青汁"
         app:layout_constraintLeft_toRightOf="@id/iv_product"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/tv_desc"
-        style="@style/SmallTextStyle"
-        android:layout_width="0dp"
-        android:layout_marginTop="@dimen/small_padding"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:text="我们每一盒青汁上，都有彩色的二维码标签，都有彩色的二维码标签都有彩色的二维码标签"
-        android:textColor="@color/LightGrey"
-        app:layout_constraintBottom_toTopOf="@id/tv_time"
-        app:layout_constraintLeft_toLeftOf="@id/tv_title"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title" />
-
-    <TextView
-        android:id="@+id/tv_time"
-        style="@style/SmallTextStyle"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="2018-08-08"
+        android:id="@+id/tv_stock_box"
+        style="@style/BaseTextStyle"
+        android:text="3箱"
         android:textColor="@color/LightGrey"
         app:layout_constraintBottom_toBottomOf="@id/iv_product"
+        app:layout_constraintLeft_toLeftOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/iv_product" />
+
+
+    <TextView
+        android:id="@+id/tv_product_price"
+        style="@style/BaseTextStyle"
+        android:text="￥ 168.00"
+        android:textColor="@color/red"
+        app:layout_constraintBottom_toBottomOf="@id/iv_product"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_desc" />
+        app:layout_constraintTop_toTopOf="@id/iv_product" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -11,7 +11,7 @@
     android:paddingTop="@dimen/small_padding">
 
     <ImageView
-        android:id="@+id/iv_customer_avatar"
+        android:id="@+id/iv_product"
         android:layout_width="110dp"
         android:layout_height="110dp"
         android:scaleType="centerCrop"
@@ -26,7 +26,7 @@
         android:maxLines="1"
         android:text="『查询』青汁怎样查真伪？"
         app:layout_constraintBottom_toTopOf="@id/tv_desc"
-        app:layout_constraintLeft_toRightOf="@id/iv_customer_avatar"
+        app:layout_constraintLeft_toRightOf="@id/iv_product"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
@@ -51,7 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_padding"
-        app:layout_constraintBottom_toBottomOf="@id/iv_customer_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/iv_product"
         app:layout_constraintLeft_toLeftOf="@id/tv_title"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_desc">

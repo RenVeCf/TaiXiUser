@@ -12,7 +12,7 @@
     android:paddingTop="@dimen/base_padding">
 
     <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
-        android:id="@+id/iv_customer_avatar"
+        android:id="@+id/iv_product"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:scaleType="centerCrop"
@@ -23,8 +23,8 @@
         style="@style/BaseTextStyle"
         android:layout_marginLeft="@dimen/base_padding"
         android:text="客户001"
-        app:layout_constraintLeft_toRightOf="@id/iv_customer_avatar"
-        app:layout_constraintTop_toTopOf="@id/iv_customer_avatar" />
+        app:layout_constraintLeft_toRightOf="@id/iv_product"
+        app:layout_constraintTop_toTopOf="@id/iv_product" />
 
     <TextView
         android:id="@+id/tv_level"
@@ -61,7 +61,7 @@
         android:singleLine="true"
         android:text="备注:每月都有大单"
         android:textColor="@color/LightGrey"
-        app:layout_constraintBottom_toBottomOf="@id/iv_customer_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/iv_product"
         app:layout_constraintLeft_toLeftOf="@id/tv_customer_name"
         app:layout_constraintRight_toLeftOf="@id/iv_arrow" />
 

@@ -27,7 +27,7 @@ class CustomerAdapter(val context: Context, private val list: List<CustomerBean>
         val info = list!![position]
 
 
-        ImageLoader.loadAvatar(context, info.avatar, holder.itemView.iv_customer_avatar)
+        ImageLoader.loadAvatar(context, info.avatar, holder.itemView.iv_product)
         holder.itemView.tv_customer_name.text = info.username
         holder.itemView.tv_level.text = "(${info.proxy})"
         holder.itemView.tv_customer_remark.text = "备注:${info.remark}"
