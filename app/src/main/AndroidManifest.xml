@@ -66,6 +66,8 @@
         <activity android:name=".ui.activity.manage.MoveStockProductActivity" />
         <activity android:name=".ui.activity.manage.MoveStockConfirmActivity" />
         <activity android:name=".ui.activity.manage.MoveStockHistoryActivity" />
+        <activity android:name=".ui.activity.manage.StockRecordActivity" />
+        <activity android:name=".ui.activity.manage.EarningsActivity" />
 
         <!-- order -->
         <activity android:name=".ui.activity.order.OrderActivity" />

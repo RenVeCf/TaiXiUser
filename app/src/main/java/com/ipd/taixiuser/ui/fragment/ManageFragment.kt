@@ -35,6 +35,10 @@ class ManageFragment : BaseUIFragment() {
             //我的团队
             MineTeamActivity.launch(mActivity)
         }
+        mContentView.tv_earnings.setOnClickListener {
+            //收益
+            EarningsActivity.launch(mActivity)
+        }
         mContentView.tv_factory_ship.setOnClickListener {
             //工厂代发
             FactoryShipActivity.launch(mActivity)
@@ -42,6 +46,10 @@ class ManageFragment : BaseUIFragment() {
         mContentView.tv_move_stock.setOnClickListener {
             //配置移仓
             MoveStockActivity.launch(mActivity)
+        }
+        mContentView.tv_stock_record.setOnClickListener {
+            //库存记录
+            StockRecordActivity.launch(mActivity)
         }
     }
 
