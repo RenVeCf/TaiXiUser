@@ -32,7 +32,7 @@
 
 
     <TextView
-        android:id="@+id/tv_stock_box"
+        android:id="@+id/tv_product_desc"
         style="@style/SmallTextStyle"
         android:text="库存：3箱"
         android:textColor="@color/LightGrey"

@@ -68,6 +68,10 @@
         <activity android:name=".ui.activity.manage.MoveStockHistoryActivity" />
         <activity android:name=".ui.activity.manage.StockRecordActivity" />
         <activity android:name=".ui.activity.manage.EarningsActivity" />
+        <activity android:name=".ui.activity.manage.StoreActivity" />
+        <activity android:name=".ui.activity.manage.StorePayActivity" />
+        <activity android:name=".ui.activity.manage.LeaderReplenishActivity" />
+        <activity android:name=".ui.activity.manage.ProxyReplenishActivity" />
 
         <!-- order -->
         <activity android:name=".ui.activity.order.OrderActivity" />

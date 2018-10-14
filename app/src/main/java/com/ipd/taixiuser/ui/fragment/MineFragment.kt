@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.ui.fragment
 
+import android.os.Build
 import android.os.Bundle
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.UserInfoBean
@@ -34,6 +35,9 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
 
 
     override fun initView(bundle: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mContentView.card_user.clipToOutline = false
+        }
     }
 
     override fun loadData() {

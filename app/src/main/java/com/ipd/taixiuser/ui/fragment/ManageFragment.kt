@@ -35,6 +35,15 @@ class ManageFragment : BaseUIFragment() {
             //我的团队
             MineTeamActivity.launch(mActivity)
         }
+        mContentView.tv_store.setOnClickListener {
+            //商城
+            StoreActivity.launch(mActivity)
+        }
+        mContentView.tv_replenish.setOnClickListener {
+            //补货
+//            LeaderReplenishActivity.launch(mActivity)
+            ProxyReplenishActivity.launch(mActivity)
+        }
         mContentView.tv_earnings.setOnClickListener {
             //收益
             EarningsActivity.launch(mActivity)

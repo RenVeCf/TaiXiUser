@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/ll_bottom_menu"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
+
+            <include layout="@layout/item_store_product" />
+
+
+            <TextView
+                android:id="@+id/tv_pay_type_title"
+                style="@style/BaseTextStyle"
+                android:layout_width="match_parent"
+                android:background="@color/window_bg_color"
+                android:paddingBottom="6dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp"
+                android:paddingTop="6dp"
+                android:text="支付方式"
+                android:textColor="@color/LightGrey" />
+
+            <include layout="@layout/layout_pay_type" />
+
+            <LinearLayout
+                android:id="@+id/ll_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/window_bg_color"
+                android:orientation="horizontal"
+                android:paddingBottom="6dp"
+                android:paddingLeft="@dimen/base_padding"
+                android:paddingRight="@dimen/base_padding"
+                android:paddingTop="6dp">
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="购买完成，可自动升级为总代，点击可查看"
+                    android:textColor="@color/LightGrey" />
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:text="总代权限"
+                    android:textColor="@color/colorPrimaryDark" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_bottom_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/base_padding"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:text="合计：" />
+
+        <TextView
+            style="@style/TitleTextStyle"
+            android:text="￥ 6048.00"
+            android:textColor="@color/red" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:layout_weight="1"
+            android:text="(含运费200元)"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            android:id="@+id/tv_pay"
+            style="@style/TitleTextStyle"
+            android:layout_width="115dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="center"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            android:text="支付"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
