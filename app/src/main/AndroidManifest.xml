@@ -72,6 +72,8 @@
         <activity android:name=".ui.activity.manage.StorePayActivity" />
         <activity android:name=".ui.activity.manage.LeaderReplenishActivity" />
         <activity android:name=".ui.activity.manage.ProxyReplenishActivity" />
+        <activity android:name=".ui.activity.manage.JoinProxyActivity" />
+        <activity android:name=".ui.activity.manage.PromoteActivity" />
 
         <!-- order -->
         <activity android:name=".ui.activity.order.OrderActivity" />

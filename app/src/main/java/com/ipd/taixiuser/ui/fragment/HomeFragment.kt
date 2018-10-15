@@ -55,10 +55,21 @@ class HomeFragment : BaseUIFragment() {
                                 }
                             }
 
+                            mContentView.cl_info.setOnClickListener {
+                                //泰溪介绍
+                                WebActivity.launch(mActivity, WebActivity.HTML, data.taixi.content, "泰溪介绍")
+                            }
+
+                            mContentView.cl_project.setOnClickListener {
+                                //科研项目
+                                WebActivity.launch(mActivity, WebActivity.HTML, data.keyan.content, "科研项目")
+                            }
 
                             mContentView.menu_recycler_view.adapter = HomeMenuAdapter(mActivity, data.introduction, {
                                 WebActivity.launch(mActivity, WebActivity.HTML, it.content, it.title)
                             })
+
+
 
                             val list = arrayListOf(
                                     HomeActionBean(R.mipmap.icon_system_msg, data.lastsysnews.num, "系统消息", data.lastsysnews.content),

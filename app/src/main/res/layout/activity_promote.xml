@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ipd.taixiuser.widget.PromoteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:layerType="software"
+    android:padding="@dimen/base_padding">
+
+
+    <LinearLayout
+        android:id="@+id/ll_area_ceo"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/ll_shareholder">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:gravity="center"
+            android:text="体系内达到30个分公司， 其中直推分公司≥5"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:layout_marginTop="4dp"
+            android:text="大区总裁" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_shareholder"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toRightOf="@id/ll_area_ceo"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:gravity="center"
+            android:text="体系内达到50个分公司， 其中8个直推分公司"
+            android:textColor="@color/LightGrey" />
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:layout_marginTop="@dimen/small_padding"
+            android:text="分红股东" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_company"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_area_ceo">
+
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:text="分公司" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_leader_proxy"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_company">
+
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:text="总代理" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_proxy"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_leader_proxy">
+
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:text="代理" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_vip"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_proxy">
+
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:text="VIP" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_retail"
+        style="@style/PromoteLableMarginStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_vip">
+
+
+        <TextView
+            style="@style/PromoteLableStyle"
+            android:text="零售" />
+
+    </LinearLayout>
+
+
+</com.ipd.taixiuser.widget.PromoteLayout>

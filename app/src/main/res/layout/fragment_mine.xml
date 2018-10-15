@@ -37,6 +37,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginTop="100dp"
             android:clipChildren="false"
+            android:clipToPadding="false"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
             app:layout_constraintTop_toTopOf="parent">

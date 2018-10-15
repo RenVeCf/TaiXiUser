@@ -35,6 +35,14 @@ class ManageFragment : BaseUIFragment() {
             //我的团队
             MineTeamActivity.launch(mActivity)
         }
+        mContentView.tv_proxy.setOnClickListener {
+            //加盟代理
+            JoinProxyActivity.launch(mActivity)
+        }
+        mContentView.tv_promote.setOnClickListener {
+            //晋升之路
+            PromoteActivity.launch(mActivity)
+        }
         mContentView.tv_store.setOnClickListener {
             //商城
             StoreActivity.launch(mActivity)
