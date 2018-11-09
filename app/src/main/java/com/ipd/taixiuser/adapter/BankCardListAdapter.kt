@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.BankCardBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_bank_card.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,7 +26,9 @@ class BankCardListAdapter(val context: Context, private val list: List<BankCardB
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-
+        ImageLoader.loadNoPlaceHolderImg(context, info.newbank.img, holder.itemView.iv_bank_icon)
+        holder.itemView.tv_bank_name.text = info.newbank.bankname
+        holder.itemView.tv_bank_no.text = "尾号 ${info.tailnumber}"
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

@@ -4,16 +4,16 @@ import android.os.Build
 import android.os.Bundle
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.UserInfoBean
+import com.ipd.taixiuser.event.UpdateUserInfoEvent
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.presenter.UserInfoPresenter
 import com.ipd.taixiuser.ui.BaseUIFragment
-import com.ipd.taixiuser.ui.activity.mine.CustomerTransferRecordActivity
-import com.ipd.taixiuser.ui.activity.mine.MyCollectActivity
-import com.ipd.taixiuser.ui.activity.mine.MyWalletActivity
-import com.ipd.taixiuser.ui.activity.mine.SettingActivity
+import com.ipd.taixiuser.ui.activity.mine.*
 import com.ipd.taixiuser.utils.StringUtils
 import kotlinx.android.synthetic.main.fragment_mine.view.*
 import kotlinx.android.synthetic.main.layout_mine_menu.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
     override fun getTitleLayout(): Int = -1
@@ -23,12 +23,14 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
     private var mPresenter: UserInfoPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
+        EventBus.getDefault().register(this)
         mPresenter = UserInfoPresenter()
         mPresenter?.attachView(mActivity, this)
     }
 
     override fun onViewDetach() {
         super.onViewDetach()
+        EventBus.getDefault().unregister(this)
         mPresenter?.detachView()
         mPresenter = null
     }
@@ -47,6 +49,10 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
     }
 
     override fun initListener() {
+        mContentView.civ_avatar.setOnClickListener {
+            //用户资料
+            UserInfoActivity.launch(mActivity)
+        }
         mContentView.ll_wallet.setOnClickListener {
             //我的钱包
             MyWalletActivity.launch(mActivity)
@@ -83,5 +89,10 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
         showError(errMsg)
     }
 
+
+    @Subscribe
+    fun onMainEvent(event: UpdateUserInfoEvent) {
+        loadData()
+    }
 
 }

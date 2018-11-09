@@ -3,18 +3,19 @@ package com.ipd.taixiuser.ui.activity.businessschool
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.MatterDetailBean
-import com.ipd.taixiuser.presenter.MatterDetailPresenter
+import com.ipd.taixiuser.bean.BusinessDetailBean
+import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
+import com.ipd.taixiuser.platform.global.AuthUtils
+import com.ipd.taixiuser.presenter.BusinessSchoolDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.GlideImageLoader
 import com.youth.banner.BannerConfig
-import kotlinx.android.synthetic.main.activity_matter.*
+import kotlinx.android.synthetic.main.activity_business_school.*
+import org.greenrobot.eventbus.EventBus
 
-class BusinessSchoolDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetailView {
+class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPresenter.IBusinessSchoolDetailView {
 
     companion object {
         fun launch(activity: Activity, matterId: Int) {
@@ -29,10 +30,10 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), MatterDetailPresenter.Mat
 
     override fun getContentLayout(): Int = R.layout.activity_business_school
 
-    private var mPresenter: MatterDetailPresenter? = null
+    private var mPresenter: BusinessSchoolDetailPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
-        mPresenter = MatterDetailPresenter()
+        mPresenter = BusinessSchoolDetailPresenter()
         mPresenter?.attachView(this, this)
     }
 
@@ -47,16 +48,15 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), MatterDetailPresenter.Mat
     }
 
     override fun loadData() {
-//        showProgress()
-//        mPresenter?.loadMatterDetail(mBusinessSchoolId)
+        showProgress()
+        mPresenter?.loadBusinessSchoolDetail(mBusinessSchoolId)
 
     }
 
     override fun initListener() {
     }
 
-    override fun loadMatterDetailSuccess(info: MatterDetailBean) {
-        showContent()
+    override fun loadBusinessDetailSuccess(info: BusinessDetailBean) {
         banner.setIndicatorGravity(BannerConfig.RIGHT)
                 .setImages(info.banner)
                 .setImageLoader(GlideImageLoader())
@@ -69,11 +69,48 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), MatterDetailPresenter.Mat
         tv_matter_title.text = info.title
         tv_time.text = info.ctime
         tv_content.text = info.content
+        iv_praise.isSelected = info.is_praise == "1"
+        iv_collect.isSelected = info.is_collect == "1"
 
+
+        ll_praise.setOnClickListener {
+            //点赞
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
+                return@setOnClickListener
+            }
+            mPresenter?.praise(mBusinessSchoolId)
+        }
+
+        ll_collect.setOnClickListener {
+            //收藏
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
+                return@setOnClickListener
+            }
+            mPresenter?.collect(mBusinessSchoolId)
+        }
+        ll_share.setOnClickListener {
+            //分享
+
+        }
+
+        showContent()
     }
 
-    override fun loadMatterDetailFail(errMsg: String) {
+    override fun loadBusinessDetailFail(errMsg: String) {
         showError(errMsg)
+    }
+
+    override fun praiseSuccess() {
+        iv_praise.isSelected = !iv_praise.isSelected
+    }
+
+    override fun praiseFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateBusinessSchoolEvent())
+        iv_collect.isSelected = !iv_collect.isSelected
     }
 
 

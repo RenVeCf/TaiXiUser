@@ -7,13 +7,17 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.ConsumeAdapter
-import com.ipd.taixiuser.bean.ConsumeBean
-import com.ipd.taixiuser.presenter.RetailPresenter
+import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.WalletBean
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
+import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_my_wallet.*
 
 
-class MyWalletActivity : BaseUIActivity(), RetailPresenter.IRetailView {
+class MyWalletActivity : BaseUIActivity() {
 
     companion object {
         fun launch(activity: Activity) {
@@ -27,28 +31,33 @@ class MyWalletActivity : BaseUIActivity(), RetailPresenter.IRetailView {
     override fun getContentLayout(): Int = R.layout.activity_my_wallet
 
 
-    private var mPresenter: RetailPresenter? = null
-    override fun onViewAttach() {
-        super.onViewAttach()
-        mPresenter = RetailPresenter()
-        mPresenter?.attachView(this, this)
-    }
-
-    override fun onViewDetach() {
-        super.onViewDetach()
-        mPresenter?.detachView()
-        mPresenter = null
-    }
-
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
-        val list = listOf(ConsumeBean(), ConsumeBean(), ConsumeBean(), ConsumeBean(), ConsumeBean(), ConsumeBean(), ConsumeBean())
-        consume_recycler_view.adapter = ConsumeAdapter(mActivity, list, {
+        showProgress()
+        ApiManager.getService().myWallet(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<WalletBean>>() {
+                    override fun _onNext(result: BaseResult<WalletBean>) {
+                        if (result.code == 200) {
+                            tv_balance.text = result.data.balance
+                            consume_recycler_view.adapter = ConsumeAdapter(mActivity, result.data.consumption) {
 
-        })
+                            }
+
+                            showContent()
+                        } else {
+                            showError(result.msg)
+                        }
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        showError()
+                    }
+                })
+
     }
 
     override fun initListener() {
@@ -57,14 +66,6 @@ class MyWalletActivity : BaseUIActivity(), RetailPresenter.IRetailView {
             WithDrawActivity.launch(mActivity)
         }
 
-    }
-
-
-    override fun shipSuccess() {
-
-    }
-
-    override fun shipFail(errMsg: String) {
     }
 
 

@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ProductBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_store_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,6 +26,11 @@ class StoreProductAdapter(val context: Context, private val list: List<ProductBe
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
+        holder.itemView.tv_title.text = info.name
+        holder.itemView.tv_product_desc.text = info.content
+        holder.itemView.tv_product_spec.text = "${info.fox}${info.unit}"
+        holder.itemView.tv_product_price.text = "￥ ${info.price}"
 
 
         holder.itemView.setOnClickListener {

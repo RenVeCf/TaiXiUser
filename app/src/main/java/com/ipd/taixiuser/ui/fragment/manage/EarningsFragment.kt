@@ -4,43 +4,45 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.EarningsAdapter
 import com.ipd.taixiuser.bean.BaseResult
-import com.ipd.taixiuser.bean.CustomerBean
+import com.ipd.taixiuser.bean.EarningParentBean
+import com.ipd.taixiuser.bean.EarningsBean
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
+import com.ipd.taixiuser.ui.activity.manage.EarningsActivity
 import rx.Observable
-import java.util.*
-import java.util.concurrent.TimeUnit
 
-class EarningsFragment : ListFragment<BaseResult<List<CustomerBean>>, CustomerBean>() {
+class EarningsFragment : ListFragment<BaseResult<EarningParentBean>, EarningsBean>() {
 
     override fun getContentLayout(): Int = R.layout.fragment_stock_record_list
 
-    override fun loadListData(): Observable<BaseResult<List<CustomerBean>>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    val list = ArrayList<CustomerBean>()
-                    for (index in 0 until 10) {
-                        list.add(CustomerBean())
-                    }
-                    BaseResult(200, list.toList())
-                }
+    override fun loadListData(): Observable<BaseResult<EarningParentBean>> {
+        return ApiManager.getService().earningsList(GlobalParam.getUserIdOrJump())
     }
 
-    override fun isNoMoreData(result: BaseResult<List<CustomerBean>>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.isEmpty())) {
+    override fun isNoMoreData(result: BaseResult<EarningParentBean>): Int {
+        if (page == INIT_PAGE && (result == null || result.data.list.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.isEmpty()) {
+        } else if (result == null || result.data.list.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
     }
 
+    override fun loadListDataSuccess(isRefresh: Boolean, result: BaseResult<EarningParentBean>) {
+        super.loadListDataSuccess(isRefresh, result)
+        if (mActivity is EarningsActivity){
+            (mActivity as EarningsActivity).setPriceInfo(result)
+        }
+    }
+
     private var mAdapter: EarningsAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = EarningsAdapter(mActivity, data, {
+            mAdapter = EarningsAdapter(mActivity, data) {
                 //itemClick
 
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -48,8 +50,8 @@ class EarningsFragment : ListFragment<BaseResult<List<CustomerBean>>, CustomerBe
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: BaseResult<List<CustomerBean>>) {
-        data?.addAll(result?.data ?: arrayListOf())
+    override fun addData(isRefresh: Boolean, result: BaseResult<EarningParentBean>) {
+        data?.addAll(result?.data?.list ?: arrayListOf())
     }
 
 }

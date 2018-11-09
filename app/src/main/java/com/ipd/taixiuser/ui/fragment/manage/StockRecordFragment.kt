@@ -4,31 +4,33 @@ import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.StockRecordAdapter
 import com.ipd.taixiuser.bean.BaseResult
-import com.ipd.taixiuser.bean.CustomerBean
+import com.ipd.taixiuser.bean.StockRecordBean
+import com.ipd.taixiuser.bean.StockRecordParentBean
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
+import com.ipd.taixiuser.ui.activity.manage.StockRecordActivity
 import rx.Observable
-import java.util.*
-import java.util.concurrent.TimeUnit
 
-class StockRecordFragment : ListFragment<BaseResult<List<CustomerBean>>, CustomerBean>() {
+class StockRecordFragment : ListFragment<BaseResult<StockRecordParentBean>, StockRecordBean>() {
 
     override fun getContentLayout(): Int = R.layout.fragment_stock_record_list
 
-    override fun loadListData(): Observable<BaseResult<List<CustomerBean>>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    val list = ArrayList<CustomerBean>()
-                    for (index in 0 until 10) {
-                        list.add(CustomerBean())
-                    }
-                    BaseResult(200, list.toList())
-                }
+    override fun loadListData(): Observable<BaseResult<StockRecordParentBean>> {
+        return ApiManager.getService().stockRecordList(GlobalParam.getUserIdOrJump())
     }
 
-    override fun isNoMoreData(result: BaseResult<List<CustomerBean>>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.isEmpty())) {
+    override fun loadListDataSuccess(isRefresh: Boolean, result: BaseResult<StockRecordParentBean>) {
+        super.loadListDataSuccess(isRefresh, result)
+        if (mActivity is StockRecordActivity){
+            (mActivity as StockRecordActivity).setStockInfo(result)
+        }
+    }
+
+    override fun isNoMoreData(result: BaseResult<StockRecordParentBean>): Int {
+        if (page == INIT_PAGE && (result == null || result.data.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.isEmpty()) {
+        } else if (result == null || result.data.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
@@ -37,10 +39,10 @@ class StockRecordFragment : ListFragment<BaseResult<List<CustomerBean>>, Custome
     private var mAdapter: StockRecordAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = StockRecordAdapter(mActivity, data, {
+            mAdapter = StockRecordAdapter(mActivity, data) {
                 //itemClick
 
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -48,8 +50,8 @@ class StockRecordFragment : ListFragment<BaseResult<List<CustomerBean>>, Custome
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: BaseResult<List<CustomerBean>>) {
-        data?.addAll(result?.data ?: arrayListOf())
+    override fun addData(isRefresh: Boolean, result: BaseResult<StockRecordParentBean>) {
+        data?.addAll(result?.data.data ?: arrayListOf())
     }
 
 }

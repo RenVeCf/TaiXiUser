@@ -5,13 +5,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.presenter.RetailPresenter
+import com.ipd.taixiuser.bean.ApplyWithdrawBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.presenter.WithdrawPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_apply_withdraw.*
 
 
-class WithDrawActivity : BaseUIActivity(), RetailPresenter.IRetailView {
+class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
 
     companion object {
         fun launch(activity: Activity) {
@@ -25,10 +28,10 @@ class WithDrawActivity : BaseUIActivity(), RetailPresenter.IRetailView {
     override fun getContentLayout(): Int = R.layout.activity_apply_withdraw
 
 
-    private var mPresenter: RetailPresenter? = null
+    private var mPresenter: WithdrawPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
-        mPresenter = RetailPresenter()
+        mPresenter = WithdrawPresenter()
         mPresenter?.attachView(this, this)
     }
 
@@ -43,11 +46,16 @@ class WithDrawActivity : BaseUIActivity(), RetailPresenter.IRetailView {
     }
 
     override fun loadData() {
-
+        showProgress()
+        mPresenter?.loadWithdrawInfo()
     }
 
     override fun initListener() {
         cl_bank.setOnClickListener {
+            ChooseBankCardActivity.launch(mActivity)
+        }
+
+        cl_empty_bank.setOnClickListener {
             ChooseBankCardActivity.launch(mActivity)
         }
 
@@ -58,12 +66,31 @@ class WithDrawActivity : BaseUIActivity(), RetailPresenter.IRetailView {
 
     }
 
+    override fun loadWithdrawInfoSuccess(info: ApplyWithdrawBean) {
+        if (info.bankcard == null || info.bankcard.id == 0) {
+            cl_bank.visibility = View.GONE
+            cl_empty_bank.visibility = View.VISIBLE
 
-    override fun shipSuccess() {
+        } else {
+            cl_bank.visibility = View.VISIBLE
+            cl_empty_bank.visibility = View.GONE
+            ImageLoader.loadNoPlaceHolderImg(mActivity, info.bankcard.newbank.img, iv_bank_icon)
+            tv_bank_name.text = info.bankcard.newbank.bankname
+            tv_bank_no.text = "尾号 ${info.bankcard.tailnumber}"
+            tv_withdraw_info.text = "提现金额（收取${info.bankcard.newbank.charge}%手续费）"
+        }
 
+        tv_balance.text = "可用余额：${info.balance}元"
+
+        tv_all_balance.setOnClickListener {
+            et_withdraw_money.setText(info.balance.toString())
+        }
+
+        showContent()
     }
 
-    override fun shipFail(errMsg: String) {
+    override fun loadWithdrawInfoFail(errMsg: String) {
+        showError(errMsg)
     }
 
 

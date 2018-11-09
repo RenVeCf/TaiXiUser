@@ -126,6 +126,11 @@ abstract class ListFragment<T, E> : LazyLoadFragment(), OnRefreshListener, OnLoa
         getListData(true)
     }
 
+    fun onRefresh(isCreate: Boolean) {
+        this.isCreate = isCreate
+        onRefresh()
+    }
+
     /**
      * 加载更多
      */

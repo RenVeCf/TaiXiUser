@@ -55,9 +55,10 @@
                     android:textColor="@color/LightGrey" />
 
                 <TextView
+                    android:id="@+id/tv_cur_stock"
                     style="@style/SmallTextStyle"
                     android:layout_marginTop="4dp"
-                    android:text="3箱"
+                    android:text="0箱"
                     android:textColor="#F5A623"
                     android:textSize="16sp" />
 
@@ -77,9 +78,10 @@
                     android:textColor="@color/LightGrey" />
 
                 <TextView
+                    android:id="@+id/tv_total_stock"
                     style="@style/SmallTextStyle"
                     android:layout_marginTop="4dp"
-                    android:text="3箱"
+                    android:text="0箱"
                     android:textColor="#75C4FF"
                     android:textSize="16sp" />
 

@@ -11,7 +11,6 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -80,6 +79,7 @@
         <activity android:name=".ui.activity.order.OrderDetailActivity" />
 
         <!-- mine -->
+        <activity android:name=".ui.activity.mine.UserInfoActivity" />
         <activity android:name=".ui.activity.mine.MyWalletActivity" />
         <activity android:name=".ui.activity.mine.WithDrawActivity" />
         <activity android:name=".ui.activity.mine.WithdrawProgressActivity" />
@@ -89,6 +89,10 @@
         <activity android:name=".ui.activity.mine.MyCollectActivity" />
         <activity android:name=".ui.activity.mine.CustomerTransferRecordActivity" />
         <activity android:name=".ui.activity.mine.SettingActivity" />
+
+
+        <!-- crop -->
+        <activity android:name=".ui.activity.CropActivity" />
 
 
         <activity android:name=".ui.activity.web.WebActivity" />

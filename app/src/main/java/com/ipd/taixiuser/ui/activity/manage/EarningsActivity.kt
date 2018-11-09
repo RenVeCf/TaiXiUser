@@ -6,9 +6,16 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taixiuser.R
+import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.EarningParentBean
+import com.ipd.taixiuser.bean.ExplainHtmlBean
+import com.ipd.taixiuser.platform.http.ApiManager
+import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.ui.fragment.manage.EarningsFragment
+import kotlinx.android.synthetic.main.activity_earnings.*
 
 class EarningsActivity : BaseUIActivity() {
     companion object {
@@ -43,11 +50,28 @@ class EarningsActivity : BaseUIActivity() {
         val id = item.itemId
         if (id == R.id.earnings_explain) {
             //收益说明
-            WebActivity.launch(mActivity, WebActivity.URL, "http://www.baidu.com", "收益说明")
+            ApiManager.getService().explainHtml("3")
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<ExplainHtmlBean>>(mActivity, true) {
+                        override fun _onNext(result: BaseResult<ExplainHtmlBean>) {
+                            if (result.code == 200) {
+                                WebActivity.launch(mActivity, WebActivity.HTML, result.data.content, "收益说明")
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
+
             return true
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    fun setPriceInfo(result: BaseResult<EarningParentBean>) {
+        tv_month_earnings.text = "${result.data.monthprice}元"
+        tv_total_earnings.text = "${result.data.price}元"
+
     }
 
 }

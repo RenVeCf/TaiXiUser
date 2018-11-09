@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.BusinessSchoolBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import kotlinx.android.synthetic.main.item_business_school.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -23,6 +25,13 @@ class BusinessSchoolAdapter(val context: Context, private val list: List<Busines
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
+
+        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
+        holder.itemView.tv_title.text = info.title
+        holder.itemView.tv_desc.text = info.content
+        holder.itemView.tv_zan.text = info.praise.toString()
+        holder.itemView.tv_collect.text = info.collect.toString()
+        holder.itemView.tv_time.text = info.ctime
 
 
         holder.itemView.setOnClickListener {

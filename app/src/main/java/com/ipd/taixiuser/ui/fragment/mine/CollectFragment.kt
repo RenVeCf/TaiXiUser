@@ -1,41 +1,57 @@
 package com.ipd.taixiuser.ui.fragment.mine
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import com.ipd.taixiuser.adapter.BusinessSchoolAdapter
-import com.ipd.taixiuser.bean.BusinessSchoolBean
+import com.ipd.taixiuser.adapter.CollectBusinessSchoolAdapter
+import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.CollectBusinessSchoolBean
+import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import com.ipd.taixiuser.ui.activity.businessschool.BusinessSchoolDetailActivity
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 import rx.Observable
-import java.util.concurrent.TimeUnit
 
-class CollectFragment : ListFragment<List<BusinessSchoolBean>, BusinessSchoolBean>() {
-    override fun loadListData(): Observable<List<BusinessSchoolBean>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    var list: ArrayList<BusinessSchoolBean> = ArrayList()
-                    for (index in 0 until 10) {
-                        list.add(BusinessSchoolBean())
-                    }
-                    list
-                }
+class CollectFragment : ListFragment<BaseResult<List<CollectBusinessSchoolBean>>, CollectBusinessSchoolBean>() {
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
     }
 
-    override fun isNoMoreData(result: List<BusinessSchoolBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.isEmpty())) {
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
+    }
+
+
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        setLoadMoreEnable(false)
+    }
+
+    override fun loadListData(): Observable<BaseResult<List<CollectBusinessSchoolBean>>> {
+        return ApiManager.getService().collectList(GlobalParam.getUserId())
+    }
+
+    override fun isNoMoreData(result: BaseResult<List<CollectBusinessSchoolBean>>): Int {
+        if (page == INIT_PAGE && (result == null || result.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.isEmpty()) {
+        } else if (result == null || result.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
     }
 
-    private var mAdapter: BusinessSchoolAdapter? = null
+    private var mAdapter: CollectBusinessSchoolAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = BusinessSchoolAdapter(mActivity, data, {
+            mAdapter = CollectBusinessSchoolAdapter(mActivity, data) {
                 //itemClick
-                BusinessSchoolDetailActivity.launch(mActivity, -1)
-            })
+                BusinessSchoolDetailActivity.launch(mActivity, it.id)
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -43,8 +59,13 @@ class CollectFragment : ListFragment<List<BusinessSchoolBean>, BusinessSchoolBea
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<BusinessSchoolBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<CollectBusinessSchoolBean>>) {
+        data?.addAll(result?.data ?: arrayListOf())
+    }
+
+    @Subscribe
+    fun onMainEvent(event: UpdateBusinessSchoolEvent) {
+        onRefresh(true)
     }
 
 

@@ -1,16 +1,19 @@
 package com.ipd.taixiuser.ui.fragment
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.BusinessSchoolAdapter
+import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.BusinessSchoolBean
+import com.ipd.taixiuser.platform.global.Constant
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import com.ipd.taixiuser.ui.activity.businessschool.BusinessSchoolDetailActivity
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import rx.Observable
-import java.util.concurrent.TimeUnit
 
-class BusinessSchoolFragment : ListFragment<List<BusinessSchoolBean>, BusinessSchoolBean>() {
+class BusinessSchoolFragment : ListFragment<BaseResult<List<BusinessSchoolBean>>, BusinessSchoolBean>() {
 
     override fun getTitleLayout(): Int {
         return R.layout.base_toolbar
@@ -21,21 +24,19 @@ class BusinessSchoolFragment : ListFragment<List<BusinessSchoolBean>, BusinessSc
         mHeaderView.tv_title.text = "商学院"
     }
 
-    override fun loadListData(): Observable<List<BusinessSchoolBean>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    var list: ArrayList<BusinessSchoolBean> = ArrayList()
-                    for (index in 0 until 10) {
-                        list.add(BusinessSchoolBean())
-                    }
-                    list
-                }
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        setLoadMoreEnable(false)
     }
 
-    override fun isNoMoreData(result: List<BusinessSchoolBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.isEmpty())) {
+    override fun loadListData(): Observable<BaseResult<List<BusinessSchoolBean>>> {
+        return ApiManager.getService().businessSchoolList(page, Constant.PAGE_SIZE)
+    }
+
+    override fun isNoMoreData(result: BaseResult<List<BusinessSchoolBean>>): Int {
+        if (page == INIT_PAGE && (result == null || result.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.isEmpty()) {
+        } else if (result == null || result.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
@@ -46,7 +47,7 @@ class BusinessSchoolFragment : ListFragment<List<BusinessSchoolBean>, BusinessSc
         if (mAdapter == null) {
             mAdapter = BusinessSchoolAdapter(mActivity, data, {
                 //itemClick
-                BusinessSchoolDetailActivity.launch(mActivity, -1)
+                BusinessSchoolDetailActivity.launch(mActivity, it.id)
             })
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
@@ -55,8 +56,8 @@ class BusinessSchoolFragment : ListFragment<List<BusinessSchoolBean>, BusinessSc
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: List<BusinessSchoolBean>) {
-        data?.addAll(result)
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<BusinessSchoolBean>>) {
+        data?.addAll(result?.data ?: arrayListOf())
     }
 
 

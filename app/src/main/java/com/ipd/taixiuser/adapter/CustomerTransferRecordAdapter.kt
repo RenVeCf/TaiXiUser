@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean
+import kotlinx.android.synthetic.main.item_customer_transfer_record.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,6 +25,11 @@ class CustomerTransferRecordAdapter(val context: Context, private val list: List
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        holder.itemView.tv_transfer_name.text = "客户姓名：${info.customername}"
+        holder.itemView.tv_transfer_time.text = info.ctime
+        holder.itemView.tv_transfer_account.text = "客户账号：${info.phone}"
+        holder.itemView.tv_operator.text = "转移人：${info.transfername}"
+        holder.itemView.tv_receive_name.text = "接收人：${info.acceptname}"
 
 
         holder.itemView.setOnClickListener {

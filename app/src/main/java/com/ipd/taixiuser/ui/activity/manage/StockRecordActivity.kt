@@ -4,8 +4,11 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.ipd.taixiuser.R
+import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.StockRecordParentBean
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.fragment.manage.StockRecordFragment
+import kotlinx.android.synthetic.main.activity_stock_record.*
 
 class StockRecordActivity : BaseUIActivity() {
     companion object {
@@ -28,6 +31,11 @@ class StockRecordActivity : BaseUIActivity() {
     }
 
     override fun initListener() {
+    }
+
+    fun setStockInfo(result: BaseResult<StockRecordParentBean>) {
+        tv_cur_stock.text = result.data.num + "箱"
+        tv_total_stock.text = result.data.num1 + "箱"
     }
 
 
