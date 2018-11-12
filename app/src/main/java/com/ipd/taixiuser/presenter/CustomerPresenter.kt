@@ -38,7 +38,7 @@ class CustomerPresenter<T> : BasePresenter<T, BasicModel>() {
                 })
     }
 
-    fun addCustomer(phone: String, username: String, weixin: String, proxy: String, remark: String, area: String) {
+    fun addCustomer(phone: String, username: String, weixin: String, proxy: String, remark: String, area: String,address:String) {
         if (mView !is ICustomerOperationView) return
         val view = mView as ICustomerOperationView
 
@@ -59,9 +59,12 @@ class CustomerPresenter<T> : BasePresenter<T, BasicModel>() {
         } else if (TextUtils.isEmpty(level)) {
             view.addCustomerFail("请选择代理级别")
             return
+        }else if (TextUtils.isEmpty(address)) {
+            view.addCustomerFail("请输入详细地址")
+            return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().newCustomer(phone, username, weixin, level, remark, "", area, GlobalParam.getUserIdOrJump()),
+        mModel?.getNormalRequestData(ApiManager.getService().newCustomer(phone, username, weixin, level, remark, "", area,address, GlobalParam.getUserIdOrJump()),
                 object : Response<BaseResult<CustomerBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<CustomerBean>) {
                         if (result.code == 200) {

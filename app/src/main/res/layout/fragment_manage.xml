@@ -30,6 +30,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_customer_manage" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_retail"
                 style="@style/ManageMenuStyle"
                 android:drawableTop="@mipmap/retail"

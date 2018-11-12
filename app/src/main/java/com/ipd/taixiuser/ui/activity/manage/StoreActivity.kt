@@ -15,7 +15,7 @@ class StoreActivity : BaseUIActivity() {
         }
     }
 
-    override fun getToolbarTitle(): String = "进货"
+    override fun getToolbarTitle(): String = "商城"
 
     override fun getContentLayout(): Int = R.layout.activity_container
 

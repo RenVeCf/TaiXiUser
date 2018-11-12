@@ -17,7 +17,88 @@
             android:orientation="vertical"
             android:paddingBottom="50dp">
 
-            <include layout="@layout/item_store_product" />
+            <include layout="@layout/item_store_product_pay" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_receive_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/BaseTableStyle"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/receive_info" />
+
+                    <EditText
+                        android:id="@+id/et_receive_name"
+                        style="@style/BaseEditTextStyle"
+                        android:layout_marginLeft="@dimen/base_padding"
+                        android:hint="请输入收货人姓名"
+                        android:maxLength="10"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/BaseTableStyle"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/receive_phone" />
+
+                    <EditText
+                        android:id="@+id/et_receive_phone"
+                        style="@style/BaseEditTextStyle"
+                        android:layout_marginLeft="@dimen/base_padding"
+                        android:hint="请输入收货人手机号码"
+                        android:maxLength="10"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/BaseTableStyle"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/receive_city" />
+
+                    <TextView
+                        android:id="@+id/tv_receive_city"
+                        style="@style/BaseEditTextStyle"
+                        android:layout_marginLeft="@dimen/base_padding"
+                        android:hint="请选择收货人地址"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/BaseTableStyle"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/white">
+
+                    <EditText
+                        android:id="@+id/et_receive_detail"
+                        style="@style/BaseEditTextStyle"
+                        android:layout_height="80dp"
+                        android:gravity="left|top"
+                        android:hint="请输入详细地址"
+                        android:maxLength="100" />
+
+                </LinearLayout>
+            </LinearLayout>
 
 
             <TextView
@@ -25,10 +106,10 @@
                 style="@style/BaseTextStyle"
                 android:layout_width="match_parent"
                 android:background="@color/window_bg_color"
-                android:paddingBottom="6dp"
                 android:paddingLeft="14dp"
-                android:paddingRight="14dp"
                 android:paddingTop="6dp"
+                android:paddingRight="14dp"
+                android:paddingBottom="6dp"
                 android:text="支付方式"
                 android:textColor="@color/LightGrey" />
 
@@ -40,10 +121,10 @@
                 android:layout_height="wrap_content"
                 android:background="@color/window_bg_color"
                 android:orientation="horizontal"
-                android:paddingBottom="6dp"
                 android:paddingLeft="@dimen/base_padding"
+                android:paddingTop="6dp"
                 android:paddingRight="@dimen/base_padding"
-                android:paddingTop="6dp">
+                android:paddingBottom="6dp">
 
                 <TextView
                     style="@style/SmallTextStyle"
@@ -78,6 +159,7 @@
             android:text="合计：" />
 
         <TextView
+            android:id="@+id/tv_total_price"
             style="@style/TitleTextStyle"
             android:text="￥ 6048.00"
             android:textColor="@color/red" />
@@ -95,8 +177,8 @@
             android:layout_width="115dp"
             android:background="@color/colorPrimaryDark"
             android:gravity="center"
-            android:paddingBottom="15dp"
             android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:text="支付"
             android:textColor="@color/white" />
 

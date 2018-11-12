@@ -31,8 +31,9 @@
             android:paddingTop="@dimen/small_padding">
 
             <TextView
+                android:id="@+id/tv_team_total"
                 style="@style/TitleTextStyle"
-                android:text="12459"
+                android:text="0"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -61,8 +62,9 @@
             android:paddingTop="@dimen/small_padding">
 
             <TextView
+                android:id="@+id/tv_month_team"
                 style="@style/TitleTextStyle"
-                android:text="12459"
+                android:text="0"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 

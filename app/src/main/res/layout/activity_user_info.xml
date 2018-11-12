@@ -134,8 +134,8 @@
                     android:id="@+id/tv_level"
                     style="@style/BaseEditTextStyle"
                     android:gravity="right"
-                    tools:text="代理FSDFS"
-                    android:textColor="@color/LightGrey" />
+                    android:textColor="@color/LightGrey"
+                    tools:text="代理FSDFS" />
 
             </LinearLayout>
 
@@ -154,8 +154,8 @@
                     android:id="@+id/tv_leader"
                     style="@style/BaseEditTextStyle"
                     android:gravity="right"
-                    tools:text="何红艳"
-                    android:textColor="@color/LightGrey" />
+                    android:textColor="@color/LightGrey"
+                    tools:text="何红艳" />
 
             </LinearLayout>
 
@@ -182,8 +182,8 @@
                     android:id="@+id/tv_city"
                     style="@style/BaseEditTextStyle"
                     android:gravity="right"
-                    tools:text="上海 上海市 青浦区"
-                    android:textColor="@color/LightGrey" />
+                    android:textColor="@color/LightGrey"
+                    tools:text="上海 上海市 青浦区" />
 
             </LinearLayout>
 
@@ -198,12 +198,14 @@
                     style="@style/BaseTextStyle"
                     android:text="详细地址" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tv_address"
                     style="@style/BaseEditTextStyle"
+                    android:layout_marginLeft="@dimen/small_padding"
                     android:gravity="right"
-                    tools:text="华徐公路888号1号楼2楼IPD"
-                    android:textColor="@color/LightGrey" />
+                    android:hint="请输入"
+                    android:textColor="@color/LightGrey"
+                    tools:text="华徐公路888号1号楼2楼IPD" />
 
             </LinearLayout>
 

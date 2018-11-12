@@ -75,6 +75,7 @@
                     tools:text="(代理MYN950)" />
 
                 <TextView
+                    android:visibility="gone"
                     style="@style/BaseTextStyle"
                     android:layout_marginTop="@dimen/small_padding"
                     android:background="@drawable/selector_signin"

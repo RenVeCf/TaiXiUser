@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.ui.fragment.manage
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.adapter.StoreProductAdapter
 import com.ipd.taixiuser.bean.BaseResult
@@ -13,6 +14,11 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>() {
+
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        setLoadMoreEnable(false)
+    }
 
     override fun loadListData(): Observable<BaseResult<List<ProductBean>>> {
         return ApiManager.getService().storeList(GlobalParam.getUserIdOrJump())
@@ -32,7 +38,7 @@ class StoreFragment : ListFragment<BaseResult<List<ProductBean>>, ProductBean>()
         if (mAdapter == null) {
             mAdapter = StoreProductAdapter(mActivity, data) {
                 //itemClick
-                StorePayActivity.launch(mActivity)
+                StorePayActivity.launch(mActivity,it.id)
             }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

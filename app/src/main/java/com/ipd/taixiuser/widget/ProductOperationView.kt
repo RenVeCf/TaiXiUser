@@ -19,7 +19,8 @@ class ProductOperationView : FrameLayout {
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init()
     }
-    val MIN_NUM = 0
+
+    var MIN_NUM = 0
 
     val mContentView by lazy { LayoutInflater.from(context).inflate(R.layout.layout_product_edit, this, false) }
 
@@ -49,6 +50,18 @@ class ProductOperationView : FrameLayout {
     fun getNum(): Int {
         val numStr = mContentView.tv_num.text.toString().trim()
         return numStr.toInt()
+    }
+
+    fun setNum(num: Int) {
+        mContentView.tv_num.text = num.toString()
+    }
+
+    fun setMinNum(minNum: Int) {
+        MIN_NUM = minNum
+        if (getNum() < minNum) {
+            setNum(minNum)
+        }
+        checkOperationStatus()
     }
 
     private fun checkOperationStatus() {

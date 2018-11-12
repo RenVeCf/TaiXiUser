@@ -16,6 +16,7 @@ import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.presenter.UserPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.CropActivity
+import com.ipd.taixiuser.utils.CityUtils
 import com.ipd.taixiuser.utils.PictureChooseUtils
 import com.ipd.taixiuser.utils.StringUtils
 import com.ipd.taixiuser.utils.UploadUtils
@@ -65,6 +66,13 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
             PictureChooseUtils.showDialog(mActivity)
         }
 
+        ll_city.setOnClickListener {
+            //城市
+            CityUtils.getInstance().showSelectDialog(mActivity) { province, city, area ->
+                tv_city.text = "${province.title}/${city.title}/${area.title}"
+            }
+        }
+
     }
 
     override fun loadUserInfoSuccess(info: UserInfoBean) {
@@ -73,10 +81,9 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
         et_customer_weixin.setText(info.weixin)
         et_customer_phone.text = info.phone
         tv_level.text = StringUtils.getLevelById(info.proxy)
-//        tv_leader.text = info.phone
+        tv_leader.text = info.posname
         tv_city.text = info.area
-//        tv_address.text = info.add
-
+        tv_address.setText(info.address)
 
         showContent()
     }
@@ -153,8 +160,9 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
             //保存
             val username = et_customer_name.text.toString().trim()
             val wechat = et_customer_weixin.text.toString().trim()
-            mPresenter?.updateUserInfo(avatar = mNewAvatarUrl, username = username, weixin = wechat)
-
+            val city = tv_city.text.toString().trim()
+            val address = tv_address.text.toString().trim()
+            mPresenter?.updateUserInfo(avatar = mNewAvatarUrl, username = username, weixin = wechat, area = city, address = address)
             return true
         }
 

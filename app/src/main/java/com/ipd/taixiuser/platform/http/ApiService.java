@@ -19,10 +19,12 @@ import com.ipd.taixiuser.bean.LoginBean;
 import com.ipd.taixiuser.bean.MatterBean;
 import com.ipd.taixiuser.bean.MatterDetailBean;
 import com.ipd.taixiuser.bean.ProductBean;
+import com.ipd.taixiuser.bean.ProductDetailBean;
 import com.ipd.taixiuser.bean.QuestionBean;
 import com.ipd.taixiuser.bean.RegisterBean;
 import com.ipd.taixiuser.bean.StockRecordParentBean;
 import com.ipd.taixiuser.bean.SystemMessageBean;
+import com.ipd.taixiuser.bean.TeamGroupBean;
 import com.ipd.taixiuser.bean.UploadResultBean;
 import com.ipd.taixiuser.bean.UserInfoBean;
 import com.ipd.taixiuser.bean.WalletBean;
@@ -147,6 +149,7 @@ public interface ApiService {
                                                      @Field("remark") String remark,
                                                      @Field("password") String password,
                                                      @Field("area") String area,
+                                                     @Field("address") String address,
                                                      @Field("pos_id") String pos_id);
 
 
@@ -171,6 +174,47 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.STOCK_RECORD_LIST)
     Observable<BaseResult<StockRecordParentBean>> stockRecordList(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MINE_TEAM)
+    Observable<BaseResult<List<TeamGroupBean>>> mineTeam(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.RETAIL)
+    Observable<BaseResult<ProductBean>> retail(@Field("user_id") String user_id,
+                                               @Field("consignee") String consignee,
+                                               @Field("phone") String phone,
+                                               @Field("city") String city,
+                                               @Field("address") String address,
+                                               @Field("style") String style,
+                                               @Field("logistics") String logistics,
+                                               @Field("trackingnumber") String trackingnumber,
+                                               @Field("goods") String goods);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PRODUCT_LIST)
+    Observable<BaseResult<List<ProductBean>>> productList(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.PRODUCT_DETAIL)
+    Observable<BaseResult<ProductDetailBean>> productDetail(@Field("user_id") String user_id,
+                                                            @Field("goods_id") int goods_id);
+
+    /**
+     * pay
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.BALANCE_PAY)
+    Observable<BaseResult<ProductDetailBean>> balancePay(@Field("user_id") String user_id,
+                                                         @Field("statue") int statue,
+                                                         @Field("goods_id") int goods_id,
+                                                         @Field("fox") int fox,
+                                                         @Field("receiver_id") int receiver_id,
+                                                         @Field("freight") int freight,
+                                                         @Field("receiver_name") int receiver_name,
+                                                         @Field("receiver_phone") int receiver_phone,
+                                                         @Field("receiver_area") int receiver_area,
+                                                         @Field("receiver_address") int receiver_address);
 
 
     /**

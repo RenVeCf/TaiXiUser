@@ -63,8 +63,9 @@ class CustomerInfoActivity : BaseUIActivity(), CustomerPresenter.ICustomerView {
         tv_customer_phone.text = info.phone
         tv_wechat.text = info.weixin
         tv_phone.text = info.phone
-//        tv_leader.text = info.phone #TODO 缺少上级领导字段
+        tv_leader.text = info.posname
         tv_address.text = info.area
+        tv_detail_address.text = info.address
         tv_customer_remark.text = info.remark
 
     }

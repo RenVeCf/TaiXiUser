@@ -32,6 +32,8 @@ public class UserInfoBean {
     public String remark;
     public String balance;
     public String user_token;
+    public String address;
+    public String posname;
     public int last_login_time;
     public int ctime;
     public int pos_id;

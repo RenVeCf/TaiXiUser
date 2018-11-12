@@ -21,6 +21,7 @@
     </RelativeLayout>
 
     <EditText
+        android:id="@+id/et_fox"
         style="@style/BaseEditTextStyle"
         android:layout_width="40dp"
         android:layout_height="35dp"
@@ -38,6 +39,7 @@
         android:text="箱" />
 
     <EditText
+        android:id="@+id/et_box"
         style="@style/BaseEditTextStyle"
         android:layout_width="40dp"
         android:layout_height="35dp"

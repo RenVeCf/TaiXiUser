@@ -31,6 +31,8 @@ public class CustomerBean {
     public String avatar;
     public String weixin;
     public String area;
+    public String address;
+    public String posname;
     public int proxy;
     public String remark;
     public String balance;

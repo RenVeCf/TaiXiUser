@@ -7,7 +7,12 @@ import android.view.Menu
 import android.view.MenuItem
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.TeamGroupAdapter
+import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.TeamGroupBean
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
+import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_mine_team.*
 
@@ -28,19 +33,46 @@ class MineTeamActivity : BaseUIActivity() {
     }
 
     override fun loadData() {
-        val list = listOf(
-                TeamGroupBean(R.mipmap.icon_retail, "零售", "10"),
-                TeamGroupBean(R.mipmap.icon_vip, "VIP", "11"),
-                TeamGroupBean(R.mipmap.icon_proxy, "代理", "12"),
-                TeamGroupBean(R.mipmap.icon_max_proxy, "总代理", "13"),
-                TeamGroupBean(R.mipmap.icon_company, "分公司", "14"),
-                TeamGroupBean(R.mipmap.icon_area_ceo, "大区总裁", "10"),
-                TeamGroupBean(R.mipmap.icon_shareholder, "分红股东", "10")
+        showProgress()
+        ApiManager.getService().mineTeam(GlobalParam.getUserIdOrJump())
+                .compose(RxScheduler.applyScheduler())
+                .subscribe(object : Response<BaseResult<List<TeamGroupBean>>>() {
+                    override fun _onNext(result: BaseResult<List<TeamGroupBean>>) {
+                        if (result.code == 200) {
+                            setContent(result.data)
+                            showContent()
+                        } else {
+                            showError(result.msg)
+                        }
 
+                    }
+
+                    override fun onError(e: Throwable?) {
+                        showError()
+                    }
+
+                })
+
+
+    }
+
+    private fun setContent(data: List<TeamGroupBean>) {
+        val list = listOf(
+                TeamGroupBean(R.mipmap.icon_retail, "零售", data[0].num),
+                TeamGroupBean(R.mipmap.icon_vip, "VIP", data[1].num),
+                TeamGroupBean(R.mipmap.icon_proxy, "代理", data[2].num),
+                TeamGroupBean(R.mipmap.icon_max_proxy, "总代理", data[3].num),
+                TeamGroupBean(R.mipmap.icon_company, "分公司", data[4].num),
+                TeamGroupBean(R.mipmap.icon_area_ceo, "大区总裁", data[5].num),
+                TeamGroupBean(R.mipmap.icon_shareholder, "分红股东", data[6].num)
         )
-        group_recycler_view.adapter = TeamGroupAdapter(mActivity, list, {
+        group_recycler_view.adapter = TeamGroupAdapter(mActivity, list) {
             ProxyListActivity.launch(mActivity)
-        })
+        }
+
+        tv_month_team.text = data[8].monthnum.toString()
+        tv_team_total.text = data[9].num.toString()
+
     }
 
     override fun initListener() {

@@ -39,6 +39,7 @@
         app:layout_constraintTop_toTopOf="@id/tv_group_name" />
 
     <ImageView
+        android:layout_marginRight="@dimen/base_padding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/arrow_right"

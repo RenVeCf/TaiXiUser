@@ -107,6 +107,18 @@
 
             </LinearLayout>
 
+            <View style="@style/ViewLine" />
+
+            <EditText
+                android:id="@+id/et_detail_address"
+                style="@style/BaseEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:gravity="top|left"
+                android:hint="请输入详细地址"
+                android:maxLength="100"
+                android:padding="@dimen/base_padding" />
+
             <TextView
                 style="@style/BaseTextStyle"
                 android:layout_width="match_parent"

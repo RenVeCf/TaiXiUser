@@ -51,9 +51,9 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
 
     override fun initListener() {
         ll_city.setOnClickListener {
-            CityUtils.getInstance().showSelectDialog(mActivity, { province, city, area ->
+            CityUtils.getInstance().showSelectDialog(mActivity) { province, city, area ->
                 tv_city.text = "${province.title}/${city.title}/${area.title}"
-            })
+            }
         }
 
         ll_level.setOnClickListener {
@@ -72,8 +72,9 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
             val customerCity = tv_city.text.toString().trim()
             val customerWeixin = tv_customer_weixin.text.toString().trim()
             val customerLevel = tv_level.text.toString().trim()
+            val customerAddress = et_detail_address.text.toString().trim()
             val customerRemark = tv_customer_remark.text.toString().trim()
-            mPresenter?.addCustomer(customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity)
+            mPresenter?.addCustomer(customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity,customerAddress)
         }
 
     }

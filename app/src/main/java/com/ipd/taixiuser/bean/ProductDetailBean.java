@@ -1,6 +1,6 @@
 package com.ipd.taixiuser.bean;
 
-public class ProductBean {
+public class ProductDetailBean {
 
     /**
      * id : 1
@@ -30,8 +30,4 @@ public class ProductBean {
     public int update_time;
     public String unit;
 
-    @Override
-    public String toString() {
-        return name;
-    }
 }

@@ -37,6 +37,12 @@ class UserPresenter : BasePresenter<UserPresenter.IUserView, BasicModel>() {
         if (TextUtils.isEmpty(username)){
             mView?.updateUserInfoFail("请输入您的真实姓名")
             return
+        }else if (TextUtils.isEmpty(area)){
+            mView?.updateUserInfoFail("请选择所在地区")
+            return
+        }else if (TextUtils.isEmpty(address)){
+            mView?.updateUserInfoFail("请输入详细地址")
+            return
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().updateUserInfo(GlobalParam.getUserIdOrJump(), avatar, username, area, address, weixin),

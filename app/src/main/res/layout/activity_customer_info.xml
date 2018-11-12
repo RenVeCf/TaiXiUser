@@ -64,6 +64,7 @@
                     tools:text="18133330000" />
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@mipmap/arrow_right"

@@ -39,6 +39,13 @@ public interface HttpUrl {
     String STORE_LIST = "manage/purchase";
     String EARNINGS_LIST = "manage/profit";
     String STOCK_RECORD_LIST = "manage/warehouselog";
+    String MINE_TEAM = "manage/myteam";
+    String RETAIL = "manage/retail";
+    String PRODUCT_LIST = "goods/list";
+    String PRODUCT_DETAIL = "manage/purchase/info";
+
+
+    String BALANCE_PAY = "pay/balance";
 
 
     //mine
