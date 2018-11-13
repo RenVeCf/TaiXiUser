@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.ProductBean
+import com.ipd.taixiuser.bean.ReplenishBean
+import kotlinx.android.synthetic.main.item_replenish_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ProxyReplenishProductAdapter(val context: Context, private val list: List<ProductBean>?, private val itemClick: (info: ProductBean) -> Unit) : RecyclerView.Adapter<ProxyReplenishProductAdapter.ViewHolder>() {
+class ProxyReplenishProductAdapter(val context: Context, private val list: List<ReplenishBean.PurchasegoodsBean>?, private val itemClick: (info: ReplenishBean.PurchasegoodsBean) -> Unit) : RecyclerView.Adapter<ProxyReplenishProductAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -24,6 +25,9 @@ class ProxyReplenishProductAdapter(val context: Context, private val list: List<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        holder.itemView.tv_title.text = info.goodsname
+        holder.itemView.tv_fox_stock.text = info.fox.toString()
+        holder.itemView.fox_operation_view.setMaxNum(info.posgoods.fox)
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

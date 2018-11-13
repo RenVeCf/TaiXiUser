@@ -60,12 +60,14 @@
                         style="@style/BaseEditTextStyle"
                         android:layout_marginLeft="@dimen/base_padding"
                         android:hint="请输入收货人手机号码"
-                        android:maxLength="10"
+                        android:maxLength="11"
+                        android:inputType="number"
                         android:singleLine="true" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_city"
                     style="@style/BaseTableStyle"
                     android:layout_marginTop="4dp"
                     android:background="@color/white">

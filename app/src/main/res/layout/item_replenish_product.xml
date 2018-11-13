@@ -9,8 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/base_padding"
-        android:paddingTop="@dimen/base_padding">
+        android:paddingTop="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding">
 
 
         <TextView
@@ -37,7 +37,8 @@
             <TextView
                 style="@style/BaseTextStyle"
                 android:layout_marginTop="@dimen/base_padding"
-                android:text="盒" />
+                android:text="盒"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -49,13 +50,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_fox_stock"
                 style="@style/BaseTextStyle"
                 android:text="3" />
 
             <TextView
                 style="@style/BaseTextStyle"
                 android:layout_marginTop="@dimen/base_padding"
-                android:text="0" />
+                android:text="0"
+                android:visibility="gone" />
 
         </LinearLayout>
 
@@ -68,15 +71,16 @@
 
 
             <com.ipd.taixiuser.widget.ProductOperationView
+                android:id="@+id/fox_operation_view"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp" />
+                android:layout_height="wrap_content" />
 
 
             <com.ipd.taixiuser.widget.ProductOperationView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="6dp" />
+                android:layout_marginTop="6dp"
+                android:visibility="gone" />
 
         </LinearLayout>
 

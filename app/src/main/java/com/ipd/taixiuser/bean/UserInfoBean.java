@@ -29,6 +29,7 @@ public class UserInfoBean {
     public String weixin;
     public String area;
     public String proxy;
+    public String proxyname;
     public String remark;
     public String balance;
     public String user_token;

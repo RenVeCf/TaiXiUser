@@ -8,7 +8,7 @@ import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.platform.http.Response
 
-class StorePayPresenter : BasePresenter<StorePayPresenter.IStorePayView, BasicModel>() {
+class StorePayPresenter : PayPresenter<StorePayPresenter.IStorePayView>() {
     override fun initModel() {
         mModel = BasicModel()
     }
@@ -33,7 +33,7 @@ class StorePayPresenter : BasePresenter<StorePayPresenter.IStorePayView, BasicMo
     }
 
 
-    interface IStorePayView {
+    interface IStorePayView : IPayView {
         fun loadProductSuccess(info: ProductDetailBean)
         fun loadProductFail(errMsg: String)
     }

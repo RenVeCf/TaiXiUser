@@ -44,6 +44,13 @@ public interface HttpUrl {
     String PRODUCT_LIST = "goods/list";
     String PRODUCT_DETAIL = "manage/purchase/info";
 
+    String REPLENISH_PRODUCT_LIST = "manage/replenishment/list";
+    String REPLENISH = "manage/replenishment";
+
+
+    String FACTORY_SHIP = "factory/generation";
+    String EXPRESS_FEE = "factory/generation/freight";
+
 
     String BALANCE_PAY = "pay/balance";
 

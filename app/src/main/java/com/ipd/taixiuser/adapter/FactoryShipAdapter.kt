@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ProductBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.widget.ProductOperationView
+import kotlinx.android.synthetic.main.item_factory_ship.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,6 +27,15 @@ class FactoryShipAdapter(val context: Context, private val list: List<ProductBea
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
+        holder.itemView.tv_title.text = info.name
+        holder.itemView.tv_product_desc.text = "库存：${info.fox}箱"
+        holder.itemView.fox_operation_view.setNum(info.chooseNum)
+        holder.itemView.fox_operation_view.setOnCartNumChangeListener(object : ProductOperationView.OnCartNumChangeListener {
+            override fun onNumChange(lastNum: Int, num: Int) {
+                info.chooseNum = num
+            }
+        })
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

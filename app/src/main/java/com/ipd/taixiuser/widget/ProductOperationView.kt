@@ -21,7 +21,7 @@ class ProductOperationView : FrameLayout {
     }
 
     var MIN_NUM = 0
-
+    private var maxNum = 999
     val mContentView by lazy { LayoutInflater.from(context).inflate(R.layout.layout_product_edit, this, false) }
 
     private fun init() {
@@ -34,6 +34,7 @@ class ProductOperationView : FrameLayout {
             } else {
                 num -= 1
             }
+            mOnCartNumChangeListener?.onNumChange(mContentView.tv_num.text.toString().toInt(), num)
             mContentView.tv_num.text = num.toString()
             checkOperationStatus()
         }
@@ -41,6 +42,7 @@ class ProductOperationView : FrameLayout {
         mContentView.iv_add.setOnClickListener {
             var num = getNum()
             num += 1
+            mOnCartNumChangeListener?.onNumChange(mContentView.tv_num.text.toString().toInt(), num)
             mContentView.tv_num.text = num.toString()
             checkOperationStatus()
         }
@@ -64,9 +66,25 @@ class ProductOperationView : FrameLayout {
         checkOperationStatus()
     }
 
-    private fun checkOperationStatus() {
-        mContentView.iv_sub.isEnabled = getNum() > MIN_NUM
+
+    fun setMaxNum(maxNum: Int) {
+        this.maxNum = maxNum
+        checkOperationStatus()
     }
 
+    private fun checkOperationStatus() {
+        mContentView.iv_sub.isEnabled = getNum() > MIN_NUM
+        mContentView.iv_add.isEnabled = getNum() < maxNum
+    }
+
+
+    private var mOnCartNumChangeListener: OnCartNumChangeListener? = null
+    fun setOnCartNumChangeListener(listener: OnCartNumChangeListener) {
+        mOnCartNumChangeListener = listener
+    }
+
+    interface OnCartNumChangeListener {
+        fun onNumChange(lastNum: Int, num: Int)
+    }
 
 }

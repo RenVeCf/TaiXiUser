@@ -11,8 +11,11 @@ import com.ipd.taixiuser.ui.fragment.manage.MineCustomerFragment
 
 class MineCustomerActivity : BaseUIActivity() {
     companion object {
-        fun launch(activity: Activity) {
+        val NORMAL = 0
+        val CHOOSE = 1
+        fun launch(activity: Activity, type: Int = NORMAL) {
             val intent = Intent(activity, MineCustomerActivity::class.java)
+            intent.putExtra("type", type)
             activity.startActivity(intent)
         }
     }
@@ -25,8 +28,9 @@ class MineCustomerActivity : BaseUIActivity() {
         initToolbar()
     }
 
+    private val mType by lazy { intent.getIntExtra("type", NORMAL) }
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MineCustomerFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MineCustomerFragment.newInstance(mType)).commit()
     }
 
     override fun initListener() {

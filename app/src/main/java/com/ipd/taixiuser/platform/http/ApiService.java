@@ -12,6 +12,8 @@ import com.ipd.taixiuser.bean.CustomerBean;
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
 import com.ipd.taixiuser.bean.EarningParentBean;
 import com.ipd.taixiuser.bean.ExplainHtmlBean;
+import com.ipd.taixiuser.bean.ExpressFeeBean;
+import com.ipd.taixiuser.bean.FactoryShipBean;
 import com.ipd.taixiuser.bean.ForgetPwdBean;
 import com.ipd.taixiuser.bean.HomeBean;
 import com.ipd.taixiuser.bean.ListResult;
@@ -22,6 +24,7 @@ import com.ipd.taixiuser.bean.ProductBean;
 import com.ipd.taixiuser.bean.ProductDetailBean;
 import com.ipd.taixiuser.bean.QuestionBean;
 import com.ipd.taixiuser.bean.RegisterBean;
+import com.ipd.taixiuser.bean.ReplenishBean;
 import com.ipd.taixiuser.bean.StockRecordParentBean;
 import com.ipd.taixiuser.bean.SystemMessageBean;
 import com.ipd.taixiuser.bean.TeamGroupBean;
@@ -196,9 +199,30 @@ public interface ApiService {
     Observable<BaseResult<List<ProductBean>>> productList(@Field("user_id") String user_id);
 
     @FormUrlEncoded
+    @POST(HttpUrl.REPLENISH_PRODUCT_LIST)
+    Observable<BaseResult<ReplenishBean>> replenishProductList(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.REPLENISH)
+    Observable<BaseResult<ProductDetailBean>> replenish(@Field("user_id") String user_id,
+                                                        @Field("goods_id") int goods_id,
+                                                        @Field("fox") int fox);
+
+    @FormUrlEncoded
     @POST(HttpUrl.PRODUCT_DETAIL)
     Observable<BaseResult<ProductDetailBean>> productDetail(@Field("user_id") String user_id,
                                                             @Field("goods_id") int goods_id);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.FACTORY_SHIP)
+    Observable<BaseResult<FactoryShipBean>> factoryShip(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.EXPRESS_FEE)
+    Observable<BaseResult<ExpressFeeBean>> expressFee(@Field("user_id") String user_id,
+                                                      @Field("fox") int fox,
+                                                      @Field("area") String area);
 
     /**
      * pay
@@ -206,15 +230,15 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.BALANCE_PAY)
     Observable<BaseResult<ProductDetailBean>> balancePay(@Field("user_id") String user_id,
-                                                         @Field("statue") int statue,
+                                                         @Field("statue") String statue,
                                                          @Field("goods_id") int goods_id,
                                                          @Field("fox") int fox,
-                                                         @Field("receiver_id") int receiver_id,
-                                                         @Field("freight") int freight,
-                                                         @Field("receiver_name") int receiver_name,
-                                                         @Field("receiver_phone") int receiver_phone,
-                                                         @Field("receiver_area") int receiver_area,
-                                                         @Field("receiver_address") int receiver_address);
+                                                         @Field("receiver_id") String receiver_id,
+                                                         @Field("receiver_name") String receiver_name,
+                                                         @Field("receiver_phone") String receiver_phone,
+                                                         @Field("receiver_area") String receiver_area,
+                                                         @Field("receiver_address") String receiver_address,
+                                                         @Field("freight") String freight);
 
 
     /**
