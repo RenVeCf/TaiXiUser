@@ -13,6 +13,7 @@ import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
 import com.ipd.taixiuser.bean.EarningParentBean;
 import com.ipd.taixiuser.bean.ExplainHtmlBean;
 import com.ipd.taixiuser.bean.ExpressFeeBean;
+import com.ipd.taixiuser.bean.ExpressInfoBean;
 import com.ipd.taixiuser.bean.FactoryShipBean;
 import com.ipd.taixiuser.bean.ForgetPwdBean;
 import com.ipd.taixiuser.bean.HomeBean;
@@ -20,6 +21,8 @@ import com.ipd.taixiuser.bean.ListResult;
 import com.ipd.taixiuser.bean.LoginBean;
 import com.ipd.taixiuser.bean.MatterBean;
 import com.ipd.taixiuser.bean.MatterDetailBean;
+import com.ipd.taixiuser.bean.OrderBean;
+import com.ipd.taixiuser.bean.OrderDetailBean;
 import com.ipd.taixiuser.bean.ProductBean;
 import com.ipd.taixiuser.bean.ProductDetailBean;
 import com.ipd.taixiuser.bean.QuestionBean;
@@ -31,6 +34,7 @@ import com.ipd.taixiuser.bean.TeamGroupBean;
 import com.ipd.taixiuser.bean.UploadResultBean;
 import com.ipd.taixiuser.bean.UserInfoBean;
 import com.ipd.taixiuser.bean.WalletBean;
+import com.ipd.taixiuser.bean.WebBean;
 
 import java.util.List;
 import java.util.Map;
@@ -183,6 +187,31 @@ public interface ApiService {
     Observable<BaseResult<List<TeamGroupBean>>> mineTeam(@Field("user_id") String user_id);
 
     @FormUrlEncoded
+    @POST(HttpUrl.MINE_TEAM_LIST)
+    Observable<BaseResult<List<CustomerBean>>> mineTeamList(@Field("user_id") String user_id,
+                                                            @Field("proxy") int proxy);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TRANSFER_CUSTOMER_AUTH)
+    Observable<BaseResult<CustomerBean>> transferCustomerAuth(@Field("user_id") String user_id,
+                                                              @Field("phone") String phone);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ACCEPT_USER_INFO)
+    Observable<BaseResult<CustomerBean>> acceptUserInfo(@Field("user_id") String user_id,
+                                                        @Field("phone") String phone);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CONFIRM_TRANSFER)
+    Observable<BaseResult<CustomerBean>> confirmTransfer(@Field("accept") int accept,
+                                                         @Field("transfer") String transfer,
+                                                         @Field("customer") int customer);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MY_AUTH)
+    Observable<BaseResult<WebBean>> myAuth(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
     @POST(HttpUrl.RETAIL)
     Observable<BaseResult<ProductBean>> retail(@Field("user_id") String user_id,
                                                @Field("consignee") String consignee,
@@ -225,20 +254,50 @@ public interface ApiService {
                                                       @Field("area") String area);
 
     /**
+     * order
+     */
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_LIST)
+    Observable<BaseResult<List<OrderBean>>> orderList(@Field("user_id") String user_id,
+                                                      @Field("statue") int statue);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ORDER_DETAIL)
+    Observable<BaseResult<OrderDetailBean>> orderDetail(@Field("user_id") String user_id,
+                                                        @Field("order_id") int order_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CANCEL_OR_DELETE_ORDER)
+    Observable<BaseResult<OrderDetailBean>> cancelOrder(@Field("user_id") String user_id,
+                                                        @Field("order_id") int order_id,
+                                                        @Field("statue") int statue);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CANCEL_OR_DELETE_ORDER)
+    Observable<BaseResult<OrderDetailBean>> deleteOrder(@Field("user_id") String user_id,
+                                                        @Field("order_id") int order_id,
+                                                        @Field("is_del") int is_del);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.EXPRESS_INFO)
+    Observable<BaseResult<ExpressInfoBean>> expressInfo(@Field("user_id") String user_id,
+                                                        @Field("order_id") int order_id);
+
+    /**
      * pay
      */
     @FormUrlEncoded
     @POST(HttpUrl.BALANCE_PAY)
-    Observable<BaseResult<ProductDetailBean>> balancePay(@Field("user_id") String user_id,
-                                                         @Field("statue") String statue,
-                                                         @Field("goods_id") int goods_id,
-                                                         @Field("fox") int fox,
-                                                         @Field("receiver_id") String receiver_id,
-                                                         @Field("receiver_name") String receiver_name,
-                                                         @Field("receiver_phone") String receiver_phone,
-                                                         @Field("receiver_area") String receiver_area,
-                                                         @Field("receiver_address") String receiver_address,
-                                                         @Field("freight") String freight);
+    Observable<BaseResult<String>> balancePay(@Field("user_id") String user_id,
+                                              @Field("statue") String statue,
+                                              @Field("goods_id") int goods_id,
+                                              @Field("fox") int fox,
+                                              @Field("receiver_id") String receiver_id,
+                                              @Field("receiver_name") String receiver_name,
+                                              @Field("receiver_phone") String receiver_phone,
+                                              @Field("receiver_area") String receiver_area,
+                                              @Field("receiver_address") String receiver_address,
+                                              @Field("freight") String freight);
 
 
     /**

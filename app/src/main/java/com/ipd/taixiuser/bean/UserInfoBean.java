@@ -35,6 +35,7 @@ public class UserInfoBean {
     public String user_token;
     public String address;
     public String posname;
+    public String qrcodes;
     public int last_login_time;
     public int ctime;
     public int pos_id;

@@ -6,33 +6,31 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.CustomerBean
+import com.ipd.taixiuser.bean.ProductBean
 import com.ipd.taixiuser.imageload.ImageLoader
-import kotlinx.android.synthetic.main.item_proxy.view.*
+import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class ProxyAdapter(val context: Context, private val list: List<CustomerBean>?, private val itemClick: (info: CustomerBean) -> Unit) : RecyclerView.Adapter<ProxyAdapter.ViewHolder>() {
+class OrderProductAdapter(val context: Context, val fox: Int, private val list: List<ProductBean>?, private val itemClick: ((info: ProductBean) -> Unit)?) : RecyclerView.Adapter<OrderProductAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_proxy, parent, false))
-
+        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
-
-        ImageLoader.loadAvatar(context,info.avatar,holder.itemView.customer_avatar)
-        holder.itemView.tv_customer_name.text = info.username
-        holder.itemView.tv_customer_level.text = "${info.proxyname}(${info.nickname})"
-        holder.itemView.tv_customer_phone.text = info.phone
+        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
+        holder.itemView.tv_title.text = info.name
+        holder.itemView.tv_product_desc.text = "${fox}箱"
+        holder.itemView.tv_product_price.text = "￥ ${info.price}"
 
         holder.itemView.setOnClickListener {
-            itemClick.invoke(info)
+            itemClick?.invoke(info)
         }
     }
 

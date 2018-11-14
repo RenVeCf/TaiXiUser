@@ -14,9 +14,10 @@ class PayResultActivity : BaseUIActivity() {
         val STORE = 0
         val FACTORY = 1
 
-        fun launch(activity: Activity, type: Int = FACTORY) {
+        fun launch(activity: Activity, type: Int = FACTORY, orderNo: String) {
             val intent = Intent(activity, PayResultActivity::class.java)
             intent.putExtra("type", type)
+            intent.putExtra("orderNo", orderNo)
             activity.startActivity(intent)
         }
     }
@@ -26,11 +27,14 @@ class PayResultActivity : BaseUIActivity() {
     override fun getContentLayout(): Int = R.layout.activity_pay_result
 
     private val mType: Int by lazy { intent.getIntExtra("type", FACTORY) }
+    private val mOrderNo: String by lazy { intent.getStringExtra("orderNo") }
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
+        tv_order_no.text = "订单编号：$mOrderNo"
+
         if (mType == STORE) {
             tv_order_no.text = "恭喜您！您已经成为总代，将拥有更多的权限！"
             fl_bottom_menu.visibility = View.GONE

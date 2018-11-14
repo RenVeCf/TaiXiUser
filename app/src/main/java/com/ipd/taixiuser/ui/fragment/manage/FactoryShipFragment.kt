@@ -44,9 +44,9 @@ class FactoryShipFragment : ListFragment<BaseResult<FactoryShipBean>, ProductBea
     }
 
     override fun isNoMoreData(result: BaseResult<FactoryShipBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.goods == null)) {
+        if (page == INIT_PAGE && (result.data == null || result.data.goods == null)) {
             return EMPTY_DATA
-        } else if (result == null || result.data.goods == null) {
+        } else if (result.data == null || result.data.goods == null) {
             return NO_MORE_DATA
         }
         return NORMAL

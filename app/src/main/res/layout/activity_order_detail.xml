@@ -113,7 +113,7 @@
                 <TextView
                     android:id="@+id/tv_order_price"
                     style="@style/SmallTextStyle"
-                    android:text="￥ 6000.00"
+                    android:text="￥ 0.00"
                     android:textColor="@color/LightGrey"
                     app:layout_constraintRight_toRightOf="parent" />
 

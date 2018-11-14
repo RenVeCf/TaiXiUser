@@ -5,11 +5,13 @@ public class TeamGroupBean {
     public String teamName;
     public String num;
     public String monthnum;
+    public int proxy;
 
-    public TeamGroupBean(int res, String teamName, String num) {
+    public TeamGroupBean(int res, String teamName, String num,int proxy) {
         this.res = res;
         this.teamName = teamName;
         this.num = num;
+        this.proxy = proxy;
     }
 
     public TeamGroupBean() {

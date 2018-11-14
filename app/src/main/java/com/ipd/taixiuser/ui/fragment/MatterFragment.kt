@@ -31,9 +31,9 @@ class MatterFragment : ListFragment<BaseResult<ListResult<MatterBean>>, MatterBe
     }
 
     override fun isNoMoreData(result: BaseResult<ListResult<MatterBean>>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.data.isEmpty())) {
+        if (page == INIT_PAGE && (result.data == null || result.data.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.data.isEmpty()) {
+        } else if (result.data == null || result.data.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL

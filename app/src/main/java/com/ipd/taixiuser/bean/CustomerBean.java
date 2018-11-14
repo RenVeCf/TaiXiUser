@@ -1,18 +1,20 @@
 package com.ipd.taixiuser.bean;
 
-public class CustomerBean {
+import java.io.Serializable;
+
+public class CustomerBean implements Serializable {
 
     /**
      * id : 4
-     * username : 
-     * nickname : 
+     * username :
+     * nickname :
      * phone : 18356635200
      * password : t3566060fd4f142287a23d0103b411f1
      * avatar : /avatar/avatar.png
-     * weixin : 
-     * area : 
+     * weixin :
+     * area :
      * proxy : 0
-     * remark : 
+     * remark :
      * balance : 0
      * user_token : 302AF592C5D71B91E9C3D5FDBDE56E06
      * last_login_time : 1538019474
@@ -45,6 +47,4 @@ public class CustomerBean {
     public String proxyname;
 
 
-
-    
 }

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.OrderBean
-import com.ipd.taixiuser.bean.ProductBean
 import kotlinx.android.synthetic.main.item_order.view.*
 
 /**
@@ -26,9 +25,14 @@ class OrderAdapter(val context: Context, private val list: List<OrderBean>?, pri
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        holder.itemView.product_recycler_view.adapter = ProductAdapter(context, listOf(ProductBean(), ProductBean(), ProductBean()), {
+        holder.itemView.tv_order_no.text = "订单编号:${info.ordercode}"
+        holder.itemView.tv_order_date.text = info.ctime
+        holder.itemView.tv_order_price.text = "￥ ${info.expence}"
+
+
+        holder.itemView.product_recycler_view.adapter = OrderProductAdapter(context, info.fox, listOf(info.goods)) {
             itemClick.invoke(info)
-        })
+        }
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

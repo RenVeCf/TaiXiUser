@@ -21,9 +21,9 @@ class EarningsFragment : ListFragment<BaseResult<EarningParentBean>, EarningsBea
     }
 
     override fun isNoMoreData(result: BaseResult<EarningParentBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.list.isEmpty())) {
+        if (page == INIT_PAGE && (result.data == null || result.data.list.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.list.isEmpty()) {
+        } else if (result.data == null || result.data.list.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL

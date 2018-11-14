@@ -126,8 +126,8 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
         toastShow(errMsg)
     }
 
-    override fun paySuccess() {
-        PayResultActivity.launch(mActivity)
+    override fun paySuccess(orderNo: String) {
+        PayResultActivity.launch(mActivity, orderNo = orderNo)
         finish()
     }
 

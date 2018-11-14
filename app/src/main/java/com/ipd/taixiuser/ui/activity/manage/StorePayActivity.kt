@@ -119,9 +119,9 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
         showError(errMsg)
     }
 
-    override fun paySuccess() {
+    override fun paySuccess(orderNo: String) {
         if (mInfo?.statue == 1) {
-            PayResultActivity.launch(mActivity, PayResultActivity.STORE)
+            PayResultActivity.launch(mActivity, PayResultActivity.STORE,orderNo)
             finish()
         } else {
             toastShow("支付成功")

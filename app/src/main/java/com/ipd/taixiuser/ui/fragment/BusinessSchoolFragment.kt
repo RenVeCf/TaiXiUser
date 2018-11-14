@@ -34,9 +34,9 @@ class BusinessSchoolFragment : ListFragment<BaseResult<List<BusinessSchoolBean>>
     }
 
     override fun isNoMoreData(result: BaseResult<List<BusinessSchoolBean>>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.isEmpty())) {
+        if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.isEmpty()) {
+        } else if (result.data == null || result.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL

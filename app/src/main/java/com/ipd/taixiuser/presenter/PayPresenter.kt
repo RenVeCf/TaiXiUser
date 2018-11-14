@@ -1,7 +1,6 @@
 package com.ipd.taixiuser.presenter
 
 import com.ipd.taixiuser.bean.BaseResult
-import com.ipd.taixiuser.bean.ProductDetailBean
 import com.ipd.taixiuser.model.BasicModel
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
@@ -12,12 +11,12 @@ open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel
         mModel = BasicModel()
     }
 
-    fun balancePay(status: String, productId: Int, fox: Int, receiveId: String, receiveName: String, receivePhone: String, receiveArea: String, receiveAddress: String,expressFee:String = "0") {
-        mModel?.getNormalRequestData(ApiManager.getService().balancePay(GlobalParam.getUserIdOrJump(), status, productId, fox, receiveId, receiveName, receivePhone, receiveArea, receiveAddress,expressFee),
-                object : Response<BaseResult<ProductDetailBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<ProductDetailBean>) {
+    fun balancePay(status: String, productId: Int, fox: Int, receiveId: String, receiveName: String, receivePhone: String, receiveArea: String, receiveAddress: String, expressFee: String = "0") {
+        mModel?.getNormalRequestData(ApiManager.getService().balancePay(GlobalParam.getUserIdOrJump(), status, productId, fox, receiveId, receiveName, receivePhone, receiveArea, receiveAddress, expressFee),
+                object : Response<BaseResult<String>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 200) {
-                            mView?.paySuccess()
+                            mView?.paySuccess(result.data)
                         } else {
                             mView?.payFail(result.msg)
                         }
@@ -28,7 +27,7 @@ open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel
 
 
     interface IPayView {
-        fun paySuccess()
+        fun paySuccess(orderNo: String)
         fun payFail(errMsg: String)
     }
 

@@ -9,13 +9,15 @@ import com.ipd.taixiuser.ui.fragment.manage.ProxyListFragment
 
 class ProxyListActivity : BaseUIActivity() {
     companion object {
-        fun launch(activity: Activity) {
+        fun launch(activity: Activity, proxy: Int, teamName: String) {
             val intent = Intent(activity, ProxyListActivity::class.java)
+            intent.putExtra("proxy", proxy)
+            intent.putExtra("teamName", teamName)
             activity.startActivity(intent)
         }
     }
 
-    override fun getToolbarTitle(): String = "代理"
+    override fun getToolbarTitle(): String = intent.getStringExtra("teamName")
 
     override fun getContentLayout(): Int = R.layout.activity_container
 
@@ -23,8 +25,9 @@ class ProxyListActivity : BaseUIActivity() {
         initToolbar()
     }
 
+    private val mProxy: Int by lazy { intent.getIntExtra("proxy", -1) }
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, ProxyListFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, ProxyListFragment.newInstance(mProxy)).commit()
     }
 
     override fun initListener() {

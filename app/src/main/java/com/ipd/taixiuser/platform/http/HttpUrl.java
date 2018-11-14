@@ -35,6 +35,11 @@ public interface HttpUrl {
     String MINE_CUSTOMER = "manage/mycustomer";
     String NEW_CUSTOMER = "manage/mycustomer/add";
     String CUSTOMER_INFO = "manage/mycustomer/info";
+    String MINE_TEAM_LIST = "manage/myteam/info";
+    String TRANSFER_CUSTOMER_AUTH = "manage/transfer";
+    String ACCEPT_USER_INFO = "manage/user/info";
+    String CONFIRM_TRANSFER = "manage/transfer/customer";
+    String MY_AUTH = "manage/my/auth";
 
     String STORE_LIST = "manage/purchase";
     String EARNINGS_LIST = "manage/profit";
@@ -51,8 +56,14 @@ public interface HttpUrl {
     String FACTORY_SHIP = "factory/generation";
     String EXPRESS_FEE = "factory/generation/freight";
 
-
     String BALANCE_PAY = "pay/balance";
+
+    //order
+    String ORDER_LIST = "factory/deliver/goods";
+    String ORDER_DETAIL = "factory/deliver/goods/info";
+    String CANCEL_OR_DELETE_ORDER = "factory/del/deliver/goods";
+    String EXPRESS_INFO = "factory/look/logistics";
+
 
 
     //mine

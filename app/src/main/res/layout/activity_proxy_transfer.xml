@@ -24,11 +24,12 @@
                 android:text="接受人账号" />
 
             <EditText
-                android:id="@+id/et_customer_name"
+                android:id="@+id/et_customer_account"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
+                android:inputType="number"
                 android:hint="请输入接受人账号"
-                android:maxLength="16"
+                android:maxLength="11"
                 android:singleLine="true" />
 
         </LinearLayout>

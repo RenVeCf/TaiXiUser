@@ -28,9 +28,9 @@ class StockRecordFragment : ListFragment<BaseResult<StockRecordParentBean>, Stoc
     }
 
     override fun isNoMoreData(result: BaseResult<StockRecordParentBean>): Int {
-        if (page == INIT_PAGE && (result == null || result.data.data.isEmpty())) {
+        if (page == INIT_PAGE && (result.data == null || result.data.data.isEmpty())) {
             return EMPTY_DATA
-        } else if (result == null || result.data.data.isEmpty()) {
+        } else if (result.data == null || result.data.data.isEmpty()) {
             return NO_MORE_DATA
         }
         return NORMAL
