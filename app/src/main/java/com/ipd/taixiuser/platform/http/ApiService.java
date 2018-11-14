@@ -21,6 +21,9 @@ import com.ipd.taixiuser.bean.ListResult;
 import com.ipd.taixiuser.bean.LoginBean;
 import com.ipd.taixiuser.bean.MatterBean;
 import com.ipd.taixiuser.bean.MatterDetailBean;
+import com.ipd.taixiuser.bean.MoveStockBean;
+import com.ipd.taixiuser.bean.MoveStockHistoryBean;
+import com.ipd.taixiuser.bean.MoveStockInfoBean;
 import com.ipd.taixiuser.bean.OrderBean;
 import com.ipd.taixiuser.bean.OrderDetailBean;
 import com.ipd.taixiuser.bean.ProductBean;
@@ -212,6 +215,10 @@ public interface ApiService {
     Observable<BaseResult<WebBean>> myAuth(@Field("user_id") String user_id);
 
     @FormUrlEncoded
+    @POST(HttpUrl.PROMOTE)
+    Observable<BaseResult<UserInfoBean>> promote(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
     @POST(HttpUrl.RETAIL)
     Observable<BaseResult<ProductBean>> retail(@Field("user_id") String user_id,
                                                @Field("consignee") String consignee,
@@ -252,6 +259,26 @@ public interface ApiService {
     Observable<BaseResult<ExpressFeeBean>> expressFee(@Field("user_id") String user_id,
                                                       @Field("fox") int fox,
                                                       @Field("area") String area);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MOVE_STOCK_PRODUCT)
+    Observable<BaseResult<List<MoveStockBean>>> moveStockProduct(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MOVE_STOCK_CUSTOMER_INFO)
+    Observable<BaseResult<MoveStockInfoBean>> moveStockCustomerInfo(@Field("user_id") int user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CONFIRM_MOVE_STOCK)
+    Observable<BaseResult<CustomerBean>> confirmMoveStock(@Field("user_id") String user_id,
+                                                          @Field("goods_id") int goods_id,
+                                                          @Field("receiver_id") int receiver_id,
+                                                          @Field("fox") int fox);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MOVE_STOCK_HISTORY)
+    Observable<BaseResult<List<MoveStockHistoryBean>>> moveStockHistory(@Field("user_id") String user_id,
+                                                                        @Field("statue") int statue);
 
     /**
      * order

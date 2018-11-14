@@ -7,12 +7,13 @@ import com.ipd.taixiuser.R
 
 object PromoteInfo {
     const val RETAIL = 0
-    const val VIP = 1
-    const val PROXY = 2
-    const val LEADER_PROXY = 3
-    const val COMPANY = 4
-    const val AREA_CEO = 5
-    const val SHAREHOLDER = 6
+    const val GIFT_BOX = 1
+    const val VIP = 2
+    const val PROXY = 3
+    const val LEADER_PROXY = 4
+    const val COMPANY = 5
+    const val AREA_CEO = 6
+    const val SHAREHOLDER = 7
 
 
     fun getLevelByResId(resId: Int): Int {
@@ -23,6 +24,7 @@ object PromoteInfo {
             R.id.ll_leader_proxy -> LEADER_PROXY
             R.id.ll_proxy -> PROXY
             R.id.ll_vip -> VIP
+            R.id.ll_gift_box -> GIFT_BOX
             else -> RETAIL
         }
     }
@@ -52,6 +54,10 @@ object PromoteInfo {
             R.id.ll_vip -> {
                 val textView = view.getChildAt(0) as TextView
                 setStyleByLevel(context, textView, level, VIP)
+            }
+            R.id.ll_gift_box -> {
+                val textView = view.getChildAt(0) as TextView
+                setStyleByLevel(context, textView, level, GIFT_BOX)
             }
             else -> {
                 val textView = view.getChildAt(0) as TextView

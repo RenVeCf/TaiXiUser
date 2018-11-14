@@ -80,7 +80,7 @@ class UserInfoActivity : BaseUIActivity(), UserPresenter.IUserView {
         et_customer_name.setText(info.username)
         et_customer_weixin.setText(info.weixin)
         et_customer_phone.text = info.phone
-        tv_level.text = StringUtils.getLevelById(info.proxy)
+        tv_level.text = info.proxyname
         tv_leader.text = info.posname
         tv_city.text = info.area
         tv_address.setText(info.address)

@@ -40,6 +40,7 @@ public interface HttpUrl {
     String ACCEPT_USER_INFO = "manage/user/info";
     String CONFIRM_TRANSFER = "manage/transfer/customer";
     String MY_AUTH = "manage/my/auth";
+    String PROMOTE = "manage/my/authorization";
 
     String STORE_LIST = "manage/purchase";
     String EARNINGS_LIST = "manage/profit";
@@ -51,6 +52,11 @@ public interface HttpUrl {
 
     String REPLENISH_PRODUCT_LIST = "manage/replenishment/list";
     String REPLENISH = "manage/replenishment";
+
+    String MOVE_STOCK_PRODUCT = "manage/shifting/silo";
+    String MOVE_STOCK_CUSTOMER_INFO = "manage/shift";
+    String CONFIRM_MOVE_STOCK = "manage/shiftsilo";
+    String MOVE_STOCK_HISTORY = "manage/shiftsilolog";
 
 
     String FACTORY_SHIP = "factory/generation";

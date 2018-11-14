@@ -6,7 +6,6 @@
     android:layout_marginBottom="5dp"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/base_padding"
     android:paddingTop="@dimen/base_padding">
 
     <TextView
@@ -49,15 +48,19 @@
     <View
         android:id="@+id/view_line2"
         style="@style/ViewLine"
+        android:layout_marginTop="@dimen/small_padding"
         app:layout_constraintTop_toBottomOf="@id/product_recycler_view" />
 
     <TextView
         android:id="@+id/tv_order_hint"
         style="@style/BaseTextStyle"
         android:layout_marginTop="@dimen/base_padding"
+        android:paddingBottom="@dimen/base_padding"
         android:text="已完成"
+        android:visibility="gone"
         app:layout_constraintRight_toRightOf="@id/tv_operation_date"
-        app:layout_constraintTop_toBottomOf="@id/view_line2" />
+        app:layout_constraintTop_toBottomOf="@id/view_line2"
+        app:layout_goneMarginTop="0dp" />
 
 
 </android.support.constraint.ConstraintLayout>

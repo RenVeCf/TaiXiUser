@@ -11,8 +11,9 @@ import com.ipd.taixiuser.ui.fragment.manage.MoveStockProductFragment
 
 class MoveStockProductActivity : BaseUIActivity() {
     companion object {
-        fun launch(activity: Activity) {
+        fun launch(activity: Activity, customerId: Int) {
             val intent = Intent(activity, MoveStockProductActivity::class.java)
+            intent.putExtra("customerId", customerId)
             activity.startActivity(intent)
         }
     }
@@ -25,8 +26,9 @@ class MoveStockProductActivity : BaseUIActivity() {
         initToolbar()
     }
 
+    private val mCustomerId: Int by lazy { intent.getIntExtra("customerId", -1) }
     override fun loadData() {
-        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MoveStockProductFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fl_container, MoveStockProductFragment.newInstance(mCustomerId)).commit()
     }
 
     override fun initListener() {

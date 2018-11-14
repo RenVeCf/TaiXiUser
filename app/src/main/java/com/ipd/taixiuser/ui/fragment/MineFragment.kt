@@ -81,7 +81,7 @@ class MineFragment : BaseUIFragment(), UserInfoPresenter.IUserInfoView {
         showContent()
         ImageLoader.loadAvatar(mActivity, userInfo.avatar, mContentView.civ_avatar)
         mContentView.tv_username.text = userInfo.username
-        mContentView.tv_proxy.text = "${StringUtils.getLevelById(userInfo.proxy.toString())}(${userInfo.nickname})"
+        mContentView.tv_proxy.text = "${userInfo.proxyname}(${userInfo.nickname})"
 
     }
 

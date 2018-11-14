@@ -38,23 +38,25 @@ class PromoteLayout : ConstraintLayout {
     }
 
     private var mCurLevel = PromoteInfo.COMPANY
-
-    override fun onFinishInflate() {
-        super.onFinishInflate()
-        for (index in 0 until childCount) {
-            PromoteInfo.setStyleByLevel(context, getChildAt(index) as ViewGroup, mCurLevel)
-        }
+    fun setCurLevel(level: Int) {
+        mCurLevel = level
+        invalidate()
     }
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //连线
-        drawLine(canvas, getLinePoint(ll_retail, ll_vip), mCurLevel >= PromoteInfo.getLevelByResId(ll_vip.id))
+        drawLine(canvas, getLinePoint(ll_retail, ll_gift_box), mCurLevel >= PromoteInfo.getLevelByResId(ll_vip.id))
+        drawLine(canvas, getLinePoint(ll_gift_box, ll_vip), mCurLevel >= PromoteInfo.getLevelByResId(ll_gift_box.id))
         drawLine(canvas, getLinePoint(ll_vip, ll_proxy), mCurLevel >= PromoteInfo.getLevelByResId(ll_proxy.id))
         drawLine(canvas, getLinePoint(ll_proxy, ll_leader_proxy), mCurLevel >= PromoteInfo.getLevelByResId(ll_leader_proxy.id))
         drawLine(canvas, getLinePoint(ll_leader_proxy, ll_company), mCurLevel >= PromoteInfo.getLevelByResId(ll_company.id))
         drawLine(canvas, getLinePoint(ll_company, ll_area_ceo), mCurLevel == PromoteInfo.getLevelByResId(ll_area_ceo.id))
         drawLine(canvas, getLinePoint(ll_company, ll_shareholder), mCurLevel == PromoteInfo.getLevelByResId(ll_shareholder.id))
+
+        for (index in 0 until childCount) {
+            PromoteInfo.setStyleByLevel(context, getChildAt(index) as ViewGroup, mCurLevel)
+        }
     }
 
     private fun drawLine(canvas: Canvas?, linePoint: LinePoint, isLight: Boolean) {

@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.adapter.MoveStockHistoryAdapter
 import com.ipd.taixiuser.bean.BaseResult
-import com.ipd.taixiuser.bean.OrderBean
+import com.ipd.taixiuser.bean.MoveStockHistoryBean
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import rx.Observable
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class MoveStockHistoryFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>() {
+class MoveStockHistoryFragment : ListFragment<BaseResult<List<MoveStockHistoryBean>>, MoveStockHistoryBean>() {
 
     companion object {
         fun newInstance(actionType: Int): MoveStockHistoryFragment {
@@ -26,18 +28,11 @@ class MoveStockHistoryFragment : ListFragment<BaseResult<List<OrderBean>>, Order
 
     private val mActionType: Int by lazy { arguments?.getInt("actionType", 0) ?: 0 }
 
-    override fun loadListData(): Observable<BaseResult<List<OrderBean>>> {
-        return Observable.timer(2000L, TimeUnit.MILLISECONDS)
-                .map {
-                    val list = ArrayList<OrderBean>()
-                    for (index in 0 until 10) {
-                        list.add(OrderBean())
-                    }
-                    BaseResult(200, list.toList())
-                }
+    override fun loadListData(): Observable<BaseResult<List<MoveStockHistoryBean>>> {
+        return ApiManager.getService().moveStockHistory(GlobalParam.getUserIdOrJump(),mActionType)
     }
 
-    override fun isNoMoreData(result: BaseResult<List<OrderBean>>): Int {
+    override fun isNoMoreData(result: BaseResult<List<MoveStockHistoryBean>>): Int {
         if (page == INIT_PAGE && (result.data == null || result.data.isEmpty())) {
             return EMPTY_DATA
         } else if (result.data == null || result.data.isEmpty()) {
@@ -49,10 +44,10 @@ class MoveStockHistoryFragment : ListFragment<BaseResult<List<OrderBean>>, Order
     private var mAdapter: MoveStockHistoryAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = MoveStockHistoryAdapter(mActivity, data, {
+            mAdapter = MoveStockHistoryAdapter(mActivity, data) {
                 //itemClick
 
-            })
+            }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter
         } else {
@@ -60,7 +55,7 @@ class MoveStockHistoryFragment : ListFragment<BaseResult<List<OrderBean>>, Order
         }
     }
 
-    override fun addData(isRefresh: Boolean, result: BaseResult<List<OrderBean>>) {
+    override fun addData(isRefresh: Boolean, result: BaseResult<List<MoveStockHistoryBean>>) {
         data?.addAll(result?.data ?: arrayListOf())
     }
 

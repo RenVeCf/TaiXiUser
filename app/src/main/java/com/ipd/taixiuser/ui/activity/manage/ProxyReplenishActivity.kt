@@ -75,7 +75,7 @@ class ProxyReplenishActivity : BaseUIActivity() {
                 return@setOnClickListener
             }
 
-            ApiManager.getService().replenish(GlobalParam.getUserIdOrJump(), data.purchasegoods[0].goods_id, num)
+            ApiManager.getService().replenish(GlobalParam.getUserIdOrJump(), data.purchasegoods[0].id, num)
                     .compose(RxScheduler.applyScheduler())
                     .subscribe(object : Response<BaseResult<ProductDetailBean>>(mActivity, true) {
                         override fun _onNext(result: BaseResult<ProductDetailBean>) {
