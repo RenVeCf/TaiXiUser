@@ -154,6 +154,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_cloud_stock_manage" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/tv_move_stock"
                 style="@style/ManageMenuStyle"
                 android:drawableTop="@mipmap/move_stock"

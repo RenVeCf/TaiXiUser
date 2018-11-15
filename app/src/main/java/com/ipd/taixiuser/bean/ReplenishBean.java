@@ -11,8 +11,8 @@ public class ReplenishBean {
     public List<PurchasegoodsBean> purchasegoods;
 
 
-
     public static class PurchasegoodsBean {
+
 
         public int id;
         public int goods_id;
@@ -24,6 +24,14 @@ public class ReplenishBean {
         public int update_time;
         public PosgoodsBean posgoods;
         public String goodsname;
+        public String name;
+        public String img;
+        public String price;
+        public int is_del;
+        public String content;
+        public int unit_id;
+        public int ctime;
+        public int chooseNum = 0;
 
 
         public static class PosgoodsBean {

@@ -4,12 +4,20 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.adapter.FactoryShipAdapter
-import com.ipd.taixiuser.bean.ProductBean
+import com.ipd.taixiuser.adapter.ReplenishAdapter
+import com.ipd.taixiuser.bean.ReplenishBean
+import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.presenter.ReplenishPayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
-import kotlinx.android.synthetic.main.activity_factory_ship_pay.*
+import com.ipd.taixiuser.widget.ChoosePayTypeLayout
+import com.ipd.taixiuser.widget.ProductOperationView
+import kotlinx.android.synthetic.main.activity_leader_replenish_pay.*
+import kotlinx.android.synthetic.main.item_replenish_product.view.*
+import kotlinx.android.synthetic.main.layout_pay_type.*
 
-class LeaderReplenishActivity : BaseUIActivity() {
+class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IReplenishView {
+
     companion object {
         fun launch(activity: Activity) {
             val intent = Intent(activity, LeaderReplenishActivity::class.java)
@@ -21,21 +29,104 @@ class LeaderReplenishActivity : BaseUIActivity() {
 
     override fun getContentLayout(): Int = R.layout.activity_leader_replenish_pay
 
+    private var mPresenter: ReplenishPayPresenter? = null
+    override fun onViewAttach() {
+        super.onViewAttach()
+        mPresenter = ReplenishPayPresenter()
+        mPresenter?.attachView(this, this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        mPresenter?.detachView()
+        mPresenter = null
+    }
+
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
-        product_recycler_view.adapter = FactoryShipAdapter(mActivity, listOf(ProductBean(), ProductBean(), ProductBean(), ProductBean()), {
+        showProgress()
+        mPresenter?.replenishProductList()
+    }
 
-        })
+
+    private fun setContent(data: ReplenishBean) {
+        ImageLoader.loadAvatar(mActivity, data.userinfo.avatar, customer_avatar)
+        tv_customer_name.text = data.userinfo.username
+        tv_customer_level.text = "${data.userinfo.proxyname}(${data.userinfo.nickname})"
+        tv_customer_phone.text = data.userinfo.phone
+
+        product_recycler_view.adapter = ReplenishAdapter(mActivity, data.purchasegoods, object : ProductOperationView.OnCartNumChangeListener {
+            override fun onNumChange(lastNum: Int, num: Int) {
+                //计算总价
+                tv_total_price.text = "￥ ${data.purchasegoods[0].price.toFloat() * num}"
+            }
+
+        }) {
+
+        }
+
+        tv_pay.setOnClickListener {
+            if (data.purchasegoods == null || data.purchasegoods.isEmpty()) {
+                toastShow("暂无可补货的商品")
+                return@setOnClickListener
+            }
+            val num = product_recycler_view.layoutManager.findViewByPosition(0).fox_operation_view.getNum()
+            if (num == 0) {
+                toastShow("补货数量不能为0")
+                return@setOnClickListener
+            }
+            when (pay_type_layout.getPayType()) {
+                ChoosePayTypeLayout.PayType.BALANCE -> {
+                    mPresenter?.balancePay("3", data.purchasegoods[0].id, num, GlobalParam.getUserId(), "", "", "", "")
+                }
+                ChoosePayTypeLayout.PayType.ALIPAY -> {
+
+                }
+                ChoosePayTypeLayout.PayType.WECHAT -> {
+
+                }
+            }
+
+//            ApiManager.getService().replenish(GlobalParam.getUserIdOrJump(), data.purchasegoods[0].id, num)
+//                    .compose(RxScheduler.applyScheduler())
+//                    .subscribe(object : Response<BaseResult<ProductDetailBean>>(mActivity, true) {
+//                        override fun _onNext(result: BaseResult<ProductDetailBean>) {
+//                            if (result.code == 200) {
+//                                toastShow(true, result.msg)
+//                                finish()
+//                            } else {
+//                                toastShow(result.msg)
+//                            }
+//                        }
+//                    })
+
+        }
+
     }
 
     override fun initListener() {
-        tv_pay.setOnClickListener {
-            toastShow(true,"支付成功")
-            finish()
-        }
+
+    }
+
+    override fun loadReplenishInfoSuccess(info: ReplenishBean) {
+        setContent(info)
+        showContent()
+    }
+
+    override fun loadReplenishInfoFail(errMsg: String) {
+        showError(errMsg)
+    }
+
+    override fun paySuccess(orderNo: String) {
+        toastShow(true, "补货成功")
+        finish()
+    }
+
+    override fun payFail(errMsg: String) {
+        toastShow(errMsg)
     }
 
 

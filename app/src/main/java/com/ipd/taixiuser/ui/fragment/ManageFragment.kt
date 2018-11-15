@@ -70,8 +70,8 @@ class ManageFragment : BaseUIFragment() {
         }
         mContentView.tv_replenish.setOnClickListener {
             //补货
-//            LeaderReplenishActivity.launch(mActivity)
-            ProxyReplenishActivity.launch(mActivity)
+            LeaderReplenishActivity.launch(mActivity)
+//            ProxyReplenishActivity.launch(mActivity)
         }
         mContentView.tv_earnings.setOnClickListener {
             //收益
