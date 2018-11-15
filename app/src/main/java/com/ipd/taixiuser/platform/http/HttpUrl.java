@@ -69,6 +69,8 @@ public interface HttpUrl {
     String ORDER_DETAIL = "factory/deliver/goods/info";
     String CANCEL_OR_DELETE_ORDER = "factory/del/deliver/goods";
     String EXPRESS_INFO = "factory/look/logistics";
+    String SALE_AFTER = "apply/sale";
+    String REQUEST_SALE_AFTER = "factory/submission";
 
 
 

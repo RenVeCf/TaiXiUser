@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.utils
 
+import android.text.TextUtils
 import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -64,5 +65,33 @@ object StringUtils {
         }
 
         return d.toString() + ""
+    }
+
+
+    fun fixedPicStr(picStr: String): String {
+        if (TextUtils.isEmpty(picStr)) {
+            return picStr
+        }
+        var fixPicStr = picStr
+        if (fixPicStr.last() == '，') {
+            fixPicStr = fixPicStr.substring(0, fixPicStr.length - 1)
+        }
+        return fixPicStr
+    }
+
+
+    fun splitImages(picStr: String): List<String> {
+        if (TextUtils.isEmpty(picStr)) {
+            return arrayListOf()
+        }
+        var fixPicStr = picStr
+        if (fixPicStr.last() == '，') {
+            fixPicStr = fixPicStr.substring(0, picStr.length - 1)
+        }
+
+        if (fixPicStr.contains("，")) {
+            return fixPicStr.split("，")
+        }
+        return arrayListOf(fixPicStr)
     }
 }

@@ -2,8 +2,8 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:focusableInTouchMode="true"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:focusableInTouchMode="true">
 
 
     <ScrollView
@@ -13,10 +13,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:paddingBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -75,8 +75,8 @@
                     android:id="@+id/tv_receive_detail_address"
                     style="@style/SmallTextStyle"
                     android:layout_width="0dp"
-                    android:layout_marginRight="@dimen/base_padding"
                     android:layout_marginTop="@dimen/small_padding"
+                    android:layout_marginRight="@dimen/base_padding"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="上海 上海市 青浦区 华徐公路888号1号楼2楼IPD"
@@ -87,6 +87,11 @@
                     app:layout_constraintTop_toBottomOf="@id/tv_receive_name" />
 
             </android.support.constraint.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/address_line" />
 
 
             <com.ipd.taixiuser.widget.NotVerticalScrollRecyclerView
@@ -99,8 +104,8 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/white"
                 android:padding="@dimen/base_padding">
 
@@ -127,7 +132,7 @@
                     android:id="@+id/tv_express_fee"
                     style="@style/SmallTextStyle"
                     android:layout_marginTop="@dimen/small_padding"
-                    android:text="￥ 200.00"
+                    android:text="￥ 0.00"
                     android:textColor="@color/LightGrey"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_order_price" />
@@ -141,7 +146,7 @@
                     android:id="@+id/tv_total_price"
                     style="@style/BaseTextStyle"
                     android:layout_marginTop="@dimen/small_padding"
-                    android:text="￥ 6200.00"
+                    android:text="￥ 0.00"
                     android:textColor="@color/red"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_express_fee" />
@@ -161,31 +166,108 @@
                     android:text="订单编号：193727476801"
                     android:textColor="@color/LightGrey" />
 
-                <TextView
-                    android:id="@+id/tv_trade_no"
-                    style="@style/SmallTextStyle"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:text="交易号：20180926738619839"
-                    android:textColor="@color/LightGrey"
-                    app:layout_constraintTop_toBottomOf="@id/tv_order_no" />
+                <LinearLayout
+                    android:id="@+id/ll_order_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_no">
 
-                <TextView
-                    android:id="@+id/tv_order_create_time"
-                    style="@style/SmallTextStyle"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:text="创建时间：2018-09-26 15:45:17"
-                    android:textColor="@color/LightGrey"
-                    app:layout_constraintTop_toBottomOf="@id/tv_trade_no" />
+                    <TextView
+                        android:id="@+id/tv_trade_no"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="交易号：20180926738619839"
+                        android:textColor="@color/LightGrey" />
 
-                <TextView
-                    android:id="@+id/tv_order_deal_time"
-                    style="@style/SmallTextStyle"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:text="成交时间：2018-09-26 16:24:32"
-                    android:textColor="@color/LightGrey"
-                    app:layout_constraintTop_toBottomOf="@id/tv_order_create_time" />
+                    <TextView
+                        android:id="@+id/tv_order_create_time"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="创建时间：2018-09-26 15:45:17"
+                        android:textColor="@color/LightGrey"
+                        app:layout_constraintTop_toBottomOf="@id/tv_trade_no" />
 
+                    <TextView
+                        android:id="@+id/tv_order_deal_time"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="成交时间：2018-09-26 16:24:32"
+                        android:textColor="@color/LightGrey"
+                        app:layout_constraintTop_toBottomOf="@id/tv_order_create_time" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_return_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/tv_order_no">
+
+                    <TextView
+                        android:id="@+id/tv_return_type"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="退货方式：退货"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        android:id="@+id/tv_return_num"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="退回数量：1箱"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        android:id="@+id/tv_return_reason"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="退回原因：佛挡杀佛是否水电费水电费水电费收到发送到发送到发送到发送到佛挡杀佛是否水电费水电费水电费收到发送到发送到发送到发送到"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        android:id="@+id/tv_return_status"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="退货状态：已拒绝"
+                        android:textColor="@color/LightGrey" />
+
+                    <TextView
+                        android:id="@+id/tv_reject_reason"
+                        style="@style/SmallTextStyle"
+                        android:layout_marginTop="@dimen/small_padding"
+                        android:text="拒绝原因：已拒绝"
+                        android:textColor="@color/LightGrey" />
+
+                </LinearLayout>
             </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/ll_return_pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SmallTextStyle"
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:paddingLeft="@dimen/base_padding"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="退货图片"
+                    android:textColor="@color/LightGrey" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/return_pic_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                    app:spanCount="3" />
+
+            </LinearLayout>
 
 
         </LinearLayout>
@@ -199,8 +281,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingBottom="@dimen/small_padding"
         android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
@@ -208,10 +290,10 @@
             style="@style/BaseTextStyle"
             android:layout_gravity="center"
             android:background="@drawable/shape_account_btn"
-            android:paddingBottom="8dp"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:paddingTop="8dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="8dp"
             android:text="取消货单"
             android:textColor="@color/white"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -224,10 +306,10 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/base_padding"
             android:background="@drawable/shape_account_btn"
-            android:paddingBottom="8dp"
             android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:paddingTop="8dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="8dp"
             android:text="取消货单"
             android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="@id/btn_operation1"

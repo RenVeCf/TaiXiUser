@@ -163,14 +163,15 @@
         <TextView
             android:id="@+id/tv_total_price"
             style="@style/TitleTextStyle"
-            android:text="￥ 6048.00"
+            android:text="￥ 0.00"
             android:textColor="@color/red" />
 
         <TextView
+            android:id="@+id/tv_express_fee"
             style="@style/BaseTextStyle"
             android:layout_marginLeft="@dimen/small_padding"
             android:layout_weight="1"
-            android:text="(含运费200元)"
+            android:text="(含运费0元)"
             android:textColor="@color/LightGrey" />
 
         <TextView

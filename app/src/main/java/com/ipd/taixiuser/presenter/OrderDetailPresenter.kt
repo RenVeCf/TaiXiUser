@@ -8,6 +8,7 @@ import com.ipd.taixiuser.model.BasicModel
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.utils.OrderUtils
 
 class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView, BasicModel>() {
     override fun initModel() {
@@ -32,14 +33,27 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
                 })
     }
 
-    fun cancelOrder(mOrderId: Int, statue: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().cancelOrder(GlobalParam.getUserIdOrJump(), mOrderId, statue),
+    fun cancelOrder(mOrderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().cancelOrder(GlobalParam.getUserIdOrJump(), mOrderId, OrderUtils.CANCELED),
                 object : Response<BaseResult<OrderDetailBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<OrderDetailBean>) {
                         if (result.code == 200) {
-                            mView?.cancelOrDeleteSuccess()
+                            mView?.cancelSuccess()
                         } else {
-                            mView?.cancelOrDeleteFail(result.msg)
+                            mView?.cancelFail(result.msg)
+                        }
+                    }
+                })
+    }
+
+    fun confirmReceive(mOrderId: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().cancelOrder(GlobalParam.getUserIdOrJump(), mOrderId, OrderUtils.FINISH),
+                object : Response<BaseResult<OrderDetailBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<OrderDetailBean>) {
+                        if (result.code == 200) {
+                            mView?.confirmReceiveSuccess()
+                        } else {
+                            mView?.confirmReceiveFail(result.msg)
                         }
                     }
                 })
@@ -50,9 +64,9 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
                 object : Response<BaseResult<OrderDetailBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<OrderDetailBean>) {
                         if (result.code == 200) {
-                            mView?.cancelOrDeleteSuccess()
+                            mView?.deleteSuccess()
                         } else {
-                            mView?.cancelOrDeleteFail(result.msg)
+                            mView?.deleteFail(result.msg)
                         }
                     }
                 })
@@ -63,9 +77,9 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
                 object : Response<BaseResult<ExpressInfoBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<ExpressInfoBean>) {
                         if (result.code == 200) {
-                            mView?.cancelOrDeleteSuccess()
+                            mView?.lookExpressSuccess()
                         } else {
-                            mView?.cancelOrDeleteFail(result.msg)
+                            mView?.lookExpressFail(result.msg)
                         }
                     }
                 })
@@ -75,8 +89,14 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
     interface IOrderDetailView {
         fun loadOrderDetailSuccess(info: OrderDetailBean)
         fun loadOrderDerailFail(errMsg: String)
-        fun cancelOrDeleteSuccess()
-        fun cancelOrDeleteFail(errMsg: String)
+        fun cancelSuccess()
+        fun cancelFail(errMsg: String)
+        fun deleteSuccess()
+        fun deleteFail(errMsg: String)
+        fun lookExpressSuccess()
+        fun lookExpressFail(errMsg: String)
+        fun confirmReceiveSuccess()
+        fun confirmReceiveFail(errMsg: String)
     }
 
 

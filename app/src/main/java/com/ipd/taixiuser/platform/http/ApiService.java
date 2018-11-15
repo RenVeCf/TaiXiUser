@@ -31,6 +31,7 @@ import com.ipd.taixiuser.bean.ProductDetailBean;
 import com.ipd.taixiuser.bean.QuestionBean;
 import com.ipd.taixiuser.bean.RegisterBean;
 import com.ipd.taixiuser.bean.ReplenishBean;
+import com.ipd.taixiuser.bean.SaleAfterBean;
 import com.ipd.taixiuser.bean.StockRecordParentBean;
 import com.ipd.taixiuser.bean.SystemMessageBean;
 import com.ipd.taixiuser.bean.TeamGroupBean;
@@ -332,6 +333,20 @@ public interface ApiService {
     @POST(HttpUrl.EXPRESS_INFO)
     Observable<BaseResult<ExpressInfoBean>> expressInfo(@Field("user_id") String user_id,
                                                         @Field("order_id") int order_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.SALE_AFTER)
+    Observable<BaseResult<List<SaleAfterBean>>> salesAfter(@Field("user_id") String user_id,
+                                                           @Field("ordercode") String ordercode);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.REQUEST_SALE_AFTER)
+    Observable<BaseResult<SaleAfterBean>> requestSalesAfter(@Field("user_id") String user_id,
+                                                            @Field("ordercode") String ordercode,
+                                                            @Field("returntype") String returntype,
+                                                            @Field("fox") String fox,
+                                                            @Field("reason") String reason,
+                                                            @Field("img") String img);
 
     /**
      * pay

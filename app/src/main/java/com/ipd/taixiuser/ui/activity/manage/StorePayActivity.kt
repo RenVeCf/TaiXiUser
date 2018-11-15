@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taixiuser.R
+import com.ipd.taixiuser.bean.ExpressFeeBean
 import com.ipd.taixiuser.bean.ProductDetailBean
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.global.GlobalParam
@@ -14,11 +15,11 @@ import com.ipd.taixiuser.presenter.StorePayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.CityUtils
+import com.ipd.taixiuser.widget.ProductOperationView
 import kotlinx.android.synthetic.main.activity_store_pay.*
 import kotlinx.android.synthetic.main.item_store_product_pay.*
 
 class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
-
     companion object {
         fun launch(activity: Activity, productId: Int) {
             val intent = Intent(activity, StorePayActivity::class.java)
@@ -64,10 +65,12 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
             //城市
             CityUtils.getInstance().showSelectDialog(mActivity) { province, city, area ->
                 tv_receive_city.text = "${province.title}/${city.title}/${area.title}"
+                mPresenter?.loadExpressFee(product_operation_view.getNum(), tv_receive_city.text.toString().trim())
             }
         }
     }
 
+    private var mExpressFee = 0f
     private var mInfo: ProductDetailBean? = null
     override fun loadProductSuccess(info: ProductDetailBean) {
         mInfo = info
@@ -78,6 +81,16 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
         }
 
         product_operation_view.setMinNum(1)
+        product_operation_view.setOnCartNumChangeListener(object : ProductOperationView.OnCartNumChangeListener {
+            override fun onNumChange(lastNum: Int, num: Int) {
+                tv_total_price.text = "￥ ${info.price.toFloat() * num + mExpressFee}"
+                val city = tv_receive_city.text.toString().trim()
+                if (!TextUtils.isEmpty(city)) {
+                    mPresenter?.loadExpressFee(num, city)
+                }
+
+            }
+        })
 
         ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, iv_product)
         tv_product_name.text = info.name
@@ -119,12 +132,23 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
         showError(errMsg)
     }
 
+    override fun loadExpressFeeSuccess(info: ExpressFeeBean) {
+        mExpressFee = info.freight.toFloat()
+        tv_express_fee.text = "(含运费${info.freight}元)"
+        tv_total_price.text = "￥ ${(mInfo?.price
+                ?: "0").toFloat() * product_operation_view.getNum() + mExpressFee}"
+    }
+
+    override fun loadExpressFeeFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
     override fun paySuccess(orderNo: String) {
         if (mInfo?.statue == 1) {
-            PayResultActivity.launch(mActivity, PayResultActivity.STORE,orderNo)
+            PayResultActivity.launch(mActivity, PayResultActivity.STORE, orderNo)
             finish()
         } else {
-            toastShow("支付成功")
+            toastShow(true,"支付成功")
             finish()
         }
     }

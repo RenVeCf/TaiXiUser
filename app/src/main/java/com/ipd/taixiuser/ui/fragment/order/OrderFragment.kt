@@ -10,6 +10,7 @@ import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import com.ipd.taixiuser.ui.activity.order.OrderDetailActivity
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import rx.Observable
 
@@ -23,6 +24,16 @@ class OrderFragment : ListFragment<BaseResult<List<OrderBean>>, OrderBean>() {
             fragment.arguments = bundle
             return fragment
         }
+    }
+
+    override fun onViewAttach() {
+        super.onViewAttach()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onViewDetach() {
+        super.onViewDetach()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun initView(bundle: Bundle?) {
