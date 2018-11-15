@@ -38,6 +38,8 @@ import com.ipd.taixiuser.bean.UploadResultBean;
 import com.ipd.taixiuser.bean.UserInfoBean;
 import com.ipd.taixiuser.bean.WalletBean;
 import com.ipd.taixiuser.bean.WebBean;
+import com.ipd.taixiuser.bean.WithdrawDetailBean;
+import com.ipd.taixiuser.bean.WithdrawProgressBean;
 
 import java.util.List;
 import java.util.Map;
@@ -280,6 +282,27 @@ public interface ApiService {
     Observable<BaseResult<List<MoveStockHistoryBean>>> moveStockHistory(@Field("user_id") String user_id,
                                                                         @Field("statue") int statue);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.NEW_BANK)
+    Observable<BaseResult<MoveStockHistoryBean>> addBank(@Field("user_id") String user_id,
+                                                         @Field("name") String name,
+                                                         @Field("code") String code,
+                                                         @Field("newbank") String newbank);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.CONFIRM_WITHDRAW)
+    Observable<BaseResult<ApplyWithdrawBean>> confirmWithdraw(@Field("user_id") String user_id,
+                                                              @Field("bank_id") String bank_id,
+                                                              @Field("money") String money);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.WITHDRAW_PROGRESS)
+    Observable<BaseResult<List<WithdrawProgressBean>>> withdrawProgress(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.WITHDRAW_DETAIL)
+    Observable<BaseResult<WithdrawDetailBean>> withdrawDetail(@Field("bankshow_id") int bankshow_id);
+
     /**
      * order
      */
@@ -361,7 +384,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.CUSTOMER_TRANSFER_RECORD)
-    Observable<BaseResult<List<CustomerTransferRecordBean>>> customerTransferRecord(@Field("user_id") String user_id);
+    Observable<BaseResult<List<CustomerTransferRecordBean>>> customerTransferRecord(@Field("user_id") String user_id,
+                                                                                    @Field("statue") int statue);
 
 
     //tools

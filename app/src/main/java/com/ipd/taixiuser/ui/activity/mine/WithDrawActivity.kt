@@ -8,10 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ApplyWithdrawBean
-import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.bean.BankCardBean
+import com.ipd.taixiuser.event.ChooseBankCardEvent
 import com.ipd.taixiuser.presenter.WithdrawPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_apply_withdraw.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 
 class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
@@ -31,12 +34,14 @@ class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
     private var mPresenter: WithdrawPresenter? = null
     override fun onViewAttach() {
         super.onViewAttach()
+        EventBus.getDefault().register(this)
         mPresenter = WithdrawPresenter()
         mPresenter?.attachView(this, this)
     }
 
     override fun onViewDetach() {
         super.onViewDetach()
+        EventBus.getDefault().unregister(this)
         mPresenter?.detachView()
         mPresenter = null
     }
@@ -61,23 +66,25 @@ class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
 
         tv_withdraw.setOnClickListener {
             //确认提现
-            finish()
+            if (mBankInfo == null) {
+                toastShow("请选择提现的银行")
+                return@setOnClickListener
+            }
+            val money = et_withdraw_money.text.toString().trim()
+            mPresenter?.confirmWithdraw(mBankInfo!!.id, money)
         }
 
     }
 
+    private var mBankInfo: BankCardBean? = null
     override fun loadWithdrawInfoSuccess(info: ApplyWithdrawBean) {
         if (info.bankcard == null || info.bankcard.id == 0) {
             cl_bank.visibility = View.GONE
             cl_empty_bank.visibility = View.VISIBLE
 
         } else {
-            cl_bank.visibility = View.VISIBLE
-            cl_empty_bank.visibility = View.GONE
-            ImageLoader.loadNoPlaceHolderImg(mActivity, info.bankcard.newbank.img, iv_bank_icon)
-            tv_bank_name.text = info.bankcard.newbank.bankname
-            tv_bank_no.text = "尾号 ${info.bankcard.tailnumber}"
-            tv_withdraw_info.text = "提现金额（收取${info.bankcard.newbank.charge}%手续费）"
+            mBankInfo = info.bankcard
+            setBankInfo(info.bankcard)
         }
 
         tv_balance.text = "可用余额：${info.balance}元"
@@ -93,6 +100,15 @@ class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
         showError(errMsg)
     }
 
+    override fun withdrawSuccess() {
+        toastShow(true, "申请已提交成功")
+        finish()
+
+    }
+
+    override fun withdrawFail(errMsg: String) {
+        toastShow(errMsg)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_withdraw_progress, menu)
@@ -108,6 +124,23 @@ class WithDrawActivity : BaseUIActivity(), WithdrawPresenter.IWithdrawView {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    @Subscribe
+    fun onMainEvent(event: ChooseBankCardEvent) {
+        val bankCardBean = event.bankCardBean
+        mBankInfo = bankCardBean
+
+        setBankInfo(bankCardBean)
+    }
+
+    private fun setBankInfo(bankInfo: BankCardBean) {
+        cl_bank.visibility = View.VISIBLE
+        cl_empty_bank.visibility = View.GONE
+
+        tv_bank_name.text = bankInfo.newbank
+        tv_bank_no.text = "尾号 ${bankInfo.tailnumber}"
+        tv_withdraw_info.text = "提现金额（收取${bankInfo.charge}%手续费）"
     }
 
 

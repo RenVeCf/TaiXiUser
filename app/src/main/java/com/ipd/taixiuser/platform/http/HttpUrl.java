@@ -80,6 +80,10 @@ public interface HttpUrl {
     String APPLY_WITHDRAW = "my/apply/bankshow";
     String BANK_LIST = "my/bank/card";
     String CUSTOMER_TRANSFER_RECORD = "my/customer/transfer";
+    String NEW_BANK = "my/add/bank/card";
+    String CONFIRM_WITHDRAW = "my/confirm";
+    String WITHDRAW_PROGRESS = "my/bankshowlog";
+    String WITHDRAW_DETAIL = "my/bankshow/info";
 
 
     String EXPLAIN_HTML = "manage/total/generation";

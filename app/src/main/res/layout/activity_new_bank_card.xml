@@ -48,12 +48,29 @@
                 android:text="卡号" />
 
             <EditText
-                android:id="@+id/et_customer_phone"
+                android:id="@+id/et_customer_no"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
                 android:hint="请输入"
                 android:inputType="number"
                 android:maxLength="19"
+                android:singleLine="true" />
+
+        </LinearLayout>
+        <View style="@style/ViewLine" />
+
+        <LinearLayout style="@style/BaseTableStyle">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="所属银行" />
+
+            <EditText
+                android:id="@+id/et_bank_name"
+                style="@style/BaseEditTextStyle"
+                android:gravity="right"
+                android:hint="请输入"
+                android:maxLength="10"
                 android:singleLine="true" />
 
         </LinearLayout>

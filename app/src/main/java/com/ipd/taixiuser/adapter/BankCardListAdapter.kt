@@ -26,8 +26,7 @@ class BankCardListAdapter(val context: Context, private val list: List<BankCardB
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadNoPlaceHolderImg(context, info.newbank.img, holder.itemView.iv_bank_icon)
-        holder.itemView.tv_bank_name.text = info.newbank.bankname
+        holder.itemView.tv_bank_name.text = info.newbank
         holder.itemView.tv_bank_no.text = "尾号 ${info.tailnumber}"
 
         holder.itemView.setOnClickListener {

@@ -22,12 +22,6 @@
             android:background="@color/white"
             android:padding="@dimen/base_padding">
 
-            <ImageView
-                android:id="@+id/iv_bank_icon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:src="@mipmap/bank_icon" />
-
             <TextView
                 android:id="@+id/tv_bank_name"
                 style="@style/BaseTextStyle"
@@ -35,9 +29,10 @@
                 tools:text="中国建设银行"
                 app:layout_constraintBottom_toTopOf="@id/tv_bank_no"
                 app:layout_constraintLeft_toRightOf="@id/iv_bank_icon"
-                app:layout_constraintTop_toTopOf="@id/iv_bank_icon" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:layout_marginTop="@dimen/small_padding"
                 android:id="@+id/tv_bank_no"
                 style="@style/SmallTextStyle"
                 android:text="尾号 7777"

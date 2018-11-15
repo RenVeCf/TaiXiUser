@@ -20,20 +20,22 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/iv_bank_icon"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:src="@mipmap/bank_icon" />
 
             <TextView
+                android:id="@+id/tv_bank_name"
                 style="@style/BaseTextStyle"
-                android:layout_marginLeft="@dimen/base_padding"
                 android:text="中国建设银行" />
 
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/tv_money"
             style="@style/BaseTextStyle"
             android:text="3300.00"
             android:textSize="25sp" />
@@ -61,6 +63,7 @@
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_charge"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
                 android:text="3.30"
@@ -79,6 +82,7 @@
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_withdraw_info"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
                 android:text="中国建设银行（7777）徐梅"
@@ -97,6 +101,7 @@
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_time"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
                 android:text="2018-09-09"
@@ -114,6 +119,7 @@
                 android:textColor="@color/LightGrey" />
 
             <TextView
+                android:id="@+id/tv_status"
                 style="@style/BaseEditTextStyle"
                 android:gravity="right"
                 android:text="处理中"

@@ -8,6 +8,7 @@
     android:padding="@dimen/base_padding">
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/iv_bank_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
@@ -33,6 +34,7 @@
 
 
     <TextView
+        android:id="@+id/tv_status"
         style="@style/BaseTextStyle"
         android:text="处理中"
         android:textColor="@color/LightGrey"

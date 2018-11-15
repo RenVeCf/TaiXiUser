@@ -2,36 +2,23 @@ package com.ipd.taixiuser.bean;
 
 public class BankCardBean {
 
+
     /**
-     * id : 1
-     * user_id : 3
-     * name : 刷卡见不到
-     * code : 1234567890112
-     * newbank_id : 1
-     * tailnumber : 0112
-     * newbank : {"id":1,"bankname":"中国建设银行","img":"/pic/20181025/acb3e4b2fa44372e7844cf084e466288.png","charge":0.01}
+     * id : 5
+     * user_id : 23
+     * name : 刘德华
+     * code : 62448887456654452
+     * newbank : 中国银行
+     * tailnumber : 4452
+     * charge : 0.1
      */
 
     public int id;
     public int user_id;
     public String name;
     public String code;
-    public int newbank_id;
+    public String newbank;
     public String tailnumber;
-    public NewbankBean newbank;
+    public double charge;
 
-    public static class NewbankBean {
-        /**
-         * id : 1
-         * bankname : 中国建设银行
-         * img : /pic/20181025/acb3e4b2fa44372e7844cf084e466288.png
-         * charge : 0.01
-         */
-
-        public int id;
-        public String bankname;
-        public String img;
-        public double charge;
-
-    }
 }

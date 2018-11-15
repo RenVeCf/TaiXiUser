@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.WithdrawProgressBean
+import kotlinx.android.synthetic.main.item_withdraw_progress.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,6 +25,8 @@ class WithdrawProgressAdapter(val context: Context, private val list: List<Withd
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        holder.itemView.tv_bank_no.text = info.showtime
+        holder.itemView.tv_status.text = info.state
 
 
         holder.itemView.setOnClickListener {

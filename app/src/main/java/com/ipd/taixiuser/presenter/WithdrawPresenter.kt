@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.presenter
 
+import android.text.TextUtils
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ApplyWithdrawBean
 import com.ipd.taixiuser.bean.BaseResult
@@ -32,10 +33,33 @@ class WithdrawPresenter : BasePresenter<WithdrawPresenter.IWithdrawView, BasicMo
                 })
     }
 
+    fun confirmWithdraw(bankId: Int, money: String) {
+        if (TextUtils.isEmpty(money)) {
+            mView?.withdrawFail("请输入提现金额")
+            return
+        } else if (money.toInt() < 100) {
+            mView?.withdrawFail("提现金额不能少于100")
+            return
+        }
+
+        mModel?.getNormalRequestData(ApiManager.getService().confirmWithdraw(GlobalParam.getUserId(), bankId.toString(), money),
+                object : Response<BaseResult<ApplyWithdrawBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<ApplyWithdrawBean>) {
+                        if (result.code == 200) {
+                            mView?.withdrawSuccess()
+                        } else {
+                            mView?.withdrawFail(result.msg)
+                        }
+                    }
+                })
+    }
+
 
     interface IWithdrawView {
         fun loadWithdrawInfoSuccess(info: ApplyWithdrawBean)
         fun loadWithdrawInfoFail(errMsg: String)
+        fun withdrawSuccess()
+        fun withdrawFail(errMsg: String)
     }
 
 

@@ -11,7 +11,8 @@
         android:id="@+id/iv_bank_icon"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:src="@mipmap/bank_icon" />
+        android:src="@mipmap/bank_icon"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_bank_name"

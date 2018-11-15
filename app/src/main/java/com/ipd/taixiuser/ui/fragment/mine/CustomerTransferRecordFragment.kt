@@ -11,13 +11,29 @@ import com.ipd.taixiuser.ui.ListFragment
 import rx.Observable
 
 class CustomerTransferRecordFragment : ListFragment<BaseResult<List<CustomerTransferRecordBean>>, CustomerTransferRecordBean>() {
+
+    companion object {
+        fun newInstance(actionType: Int): CustomerTransferRecordFragment {
+            val fragment = CustomerTransferRecordFragment()
+            val bundle = Bundle()
+            bundle.putInt("actionType", actionType)
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+
+    override fun needLazyLoad(): Boolean = true
+
+    private val mActionType: Int by lazy { arguments?.getInt("actionType", 0) ?: 0 }
+
     override fun initView(bundle: Bundle?) {
         super.initView(bundle)
         setLoadMoreEnable(false)
     }
 
     override fun loadListData(): Observable<BaseResult<List<CustomerTransferRecordBean>>> {
-        return ApiManager.getService().customerTransferRecord(GlobalParam.getUserIdOrJump())
+        return ApiManager.getService().customerTransferRecord(GlobalParam.getUserIdOrJump(), mActionType)
     }
 
     override fun isNoMoreData(result: BaseResult<List<CustomerTransferRecordBean>>): Int {
