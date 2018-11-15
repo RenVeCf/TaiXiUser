@@ -48,9 +48,11 @@ import java.util.Map;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -71,7 +73,8 @@ public interface ApiService {
     @POST(HttpUrl.REGISTER)
     Observable<BaseResult<RegisterBean>> register(@Field("phone") String phone,
                                                   @Field("password") String password,
-                                                  @Field("mobile_code") String mobile_code);
+                                                  @Field("mobile_code") String mobile_code,
+                                                  @Field("Invitationcode") String Invitationcode);
 
     @FormUrlEncoded
     @POST(HttpUrl.SMS_CODE)
@@ -364,6 +367,32 @@ public interface ApiService {
                                               @Field("receiver_address") String receiver_address,
                                               @Field("freight") String freight);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.ALIPAY)
+    Observable<BaseResult<String>> aliPay(@Field("user_id") String user_id,
+                                          @Field("statue") String statue,
+                                          @Field("goods_id") int goods_id,
+                                          @Field("fox") int fox,
+                                          @Field("receiver_id") String receiver_id,
+                                          @Field("receiver_name") String receiver_name,
+                                          @Field("receiver_phone") String receiver_phone,
+                                          @Field("receiver_area") String receiver_area,
+                                          @Field("receiver_address") String receiver_address,
+                                          @Field("freight") String freight);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.WECHAT_PAY)
+    Observable<BaseResult<String>> wechatPay(@Field("user_id") String user_id,
+                                             @Field("statue") String statue,
+                                             @Field("goods_id") int goods_id,
+                                             @Field("fox") int fox,
+                                             @Field("receiver_id") String receiver_id,
+                                             @Field("receiver_name") String receiver_name,
+                                             @Field("receiver_phone") String receiver_phone,
+                                             @Field("receiver_area") String receiver_area,
+                                             @Field("receiver_address") String receiver_address,
+                                             @Field("freight") String freight);
+
 
     /**
      * mine
@@ -401,6 +430,10 @@ public interface ApiService {
     @POST(HttpUrl.CUSTOMER_TRANSFER_RECORD)
     Observable<BaseResult<List<CustomerTransferRecordBean>>> customerTransferRecord(@Field("user_id") String user_id,
                                                                                     @Field("statue") int statue);
+
+
+    @GET(HttpUrl.MINE_HTML)
+    Observable<BaseResult<WebBean>> mineHtml(@Query("statue") String statue);
 
 
     //tools

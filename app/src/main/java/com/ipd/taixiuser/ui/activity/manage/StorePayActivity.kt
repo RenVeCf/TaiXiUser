@@ -14,12 +14,16 @@ import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.presenter.StorePayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
+import com.ipd.taixiuser.utils.AlipayUtils
 import com.ipd.taixiuser.utils.CityUtils
+import com.ipd.taixiuser.widget.ChoosePayTypeLayout
 import com.ipd.taixiuser.widget.ProductOperationView
 import kotlinx.android.synthetic.main.activity_store_pay.*
 import kotlinx.android.synthetic.main.item_store_product_pay.*
+import kotlinx.android.synthetic.main.layout_pay_type.*
 
 class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
+
     companion object {
         fun launch(activity: Activity, productId: Int) {
             val intent = Intent(activity, StorePayActivity::class.java)
@@ -121,7 +125,17 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
                     return@setOnClickListener
                 }
             }
-            mPresenter?.balancePay("1", info.id, num, GlobalParam.getUserIdOrJump(), receiveName, receivePhone, receiveCity, receiveDetail)
+            when (pay_type_layout.getPayType()) {
+                ChoosePayTypeLayout.PayType.ALIPAY -> {
+                    mPresenter?.alipay("1", info.id, num, GlobalParam.getUserIdOrJump(), receiveName, receivePhone, receiveCity, receiveDetail)
+                }
+                ChoosePayTypeLayout.PayType.WECHAT -> {
+                    mPresenter?.wechatPay("1", info.id, num, GlobalParam.getUserIdOrJump(), receiveName, receivePhone, receiveCity, receiveDetail)
+                }
+                ChoosePayTypeLayout.PayType.BALANCE -> {
+                    mPresenter?.balancePay("1", info.id, num, GlobalParam.getUserIdOrJump(), receiveName, receivePhone, receiveCity, receiveDetail)
+                }
+            }
 
         }
 
@@ -143,18 +157,40 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
         toastShow(errMsg)
     }
 
+    override fun alipaySuccess(result: String) {
+        AlipayUtils.getInstance().alipayByData(mActivity, result, object : AlipayUtils.OnPayListener {
+            override fun onPaySuccess() {
+                toastShow(true, "支付成功")
+                finish()
+            }
+
+            override fun onPayWait() {
+            }
+
+            override fun onPayFail() {
+                payFail("支付失败")
+            }
+        })
+
+    }
+
     override fun paySuccess(orderNo: String) {
         if (mInfo?.statue == 1) {
             PayResultActivity.launch(mActivity, PayResultActivity.STORE, orderNo)
             finish()
         } else {
-            toastShow(true,"支付成功")
+            toastShow(true, "支付成功")
             finish()
         }
     }
 
     override fun payFail(errMsg: String) {
         toastShow(errMsg)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
     }
 
 

@@ -79,7 +79,8 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
             val phone = et_phone.text.toString().trim()
             val code = et_sms.text.toString().trim()
             val password = et_password.text.toString().trim()
-            mPresenter?.register(phone, password, code)
+            val inviteCode = et_invite_code.text.toString().trim()
+            mPresenter?.register(phone, password, code,inviteCode)
         }
 
 

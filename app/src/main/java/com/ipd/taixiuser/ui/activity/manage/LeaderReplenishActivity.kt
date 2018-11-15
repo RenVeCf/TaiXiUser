@@ -10,6 +10,7 @@ import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.presenter.ReplenishPayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
+import com.ipd.taixiuser.utils.AlipayUtils
 import com.ipd.taixiuser.widget.ChoosePayTypeLayout
 import com.ipd.taixiuser.widget.ProductOperationView
 import kotlinx.android.synthetic.main.activity_leader_replenish_pay.*
@@ -17,7 +18,6 @@ import kotlinx.android.synthetic.main.item_replenish_product.view.*
 import kotlinx.android.synthetic.main.layout_pay_type.*
 
 class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IReplenishView {
-
     companion object {
         fun launch(activity: Activity) {
             val intent = Intent(activity, LeaderReplenishActivity::class.java)
@@ -83,7 +83,7 @@ class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IRepleni
                     mPresenter?.balancePay("3", data.purchasegoods[0].id, num, GlobalParam.getUserId(), "", "", "", "")
                 }
                 ChoosePayTypeLayout.PayType.ALIPAY -> {
-
+                    mPresenter?.alipay("3", data.purchasegoods[0].id, num, GlobalParam.getUserId(), "", "", "", "")
                 }
                 ChoosePayTypeLayout.PayType.WECHAT -> {
 
@@ -127,6 +127,29 @@ class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IRepleni
 
     override fun payFail(errMsg: String) {
         toastShow(errMsg)
+    }
+
+
+    override fun alipaySuccess(result: String) {
+        AlipayUtils.getInstance().alipayByData(mActivity, result, object : AlipayUtils.OnPayListener {
+            override fun onPaySuccess() {
+                toastShow(true, "支付成功")
+                finish()
+            }
+
+            override fun onPayWait() {
+            }
+
+            override fun onPayFail() {
+                payFail("支付失败")
+            }
+        })
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
     }
 
 

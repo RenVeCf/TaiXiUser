@@ -63,6 +63,8 @@ public interface HttpUrl {
     String EXPRESS_FEE = "factory/generation/freight";
 
     String BALANCE_PAY = "pay/balance";
+    String ALIPAY = "pay/alipay";
+    String WECHAT_PAY = "pay/wcpay";
 
     //order
     String ORDER_LIST = "factory/deliver/goods";
@@ -89,6 +91,7 @@ public interface HttpUrl {
 
 
     String EXPLAIN_HTML = "manage/total/generation";
+    String MINE_HTML = "about";
 
 
     //tools

@@ -65,7 +65,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
                 })
     }
 
-    fun register(phone: String, password: String, code: String) {
+    fun register(phone: String, password: String, code: String, inviteCode: String) {
         if (mView !is IRegisterView) return
         val view = mView as IRegisterView
 
@@ -80,7 +80,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
             return
         }
 
-        mModel?.getNormalRequestData(ApiManager.getService().register(phone, password, code),
+        mModel?.getNormalRequestData(ApiManager.getService().register(phone, password, code, inviteCode),
                 object : Response<BaseResult<RegisterBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<RegisterBean>) {
                         if (result.code == 200) {

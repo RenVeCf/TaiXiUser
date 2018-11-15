@@ -12,6 +12,7 @@ import com.ipd.taixiuser.bean.ProductBean
 import com.ipd.taixiuser.event.ChooseCustomerEvent
 import com.ipd.taixiuser.presenter.FactoryPayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
+import com.ipd.taixiuser.utils.AlipayUtils
 import com.ipd.taixiuser.widget.ChoosePayTypeLayout
 import kotlinx.android.synthetic.main.activity_factory_ship_pay.*
 import kotlinx.android.synthetic.main.layout_pay_type.*
@@ -68,6 +69,8 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
 
             when (pay_type_layout.getPayType()) {
                 ChoosePayTypeLayout.PayType.ALIPAY -> {
+                    val productInfo = mProductList[0]
+                    mPresenter?.alipay("2", productInfo.id, productInfo.chooseNum, mCustomerInfo!!.id.toString(), mCustomerInfo!!.username, mCustomerInfo!!.phone, mCustomerInfo!!.area, mCustomerInfo!!.address)
 
                 }
                 ChoosePayTypeLayout.PayType.WECHAT -> {
@@ -133,6 +136,28 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
 
     override fun payFail(errMsg: String) {
         toastShow(errMsg)
+    }
+
+    override fun alipaySuccess(result: String) {
+        AlipayUtils.getInstance().alipayByData(mActivity, result, object : AlipayUtils.OnPayListener {
+            override fun onPaySuccess() {
+                toastShow(true, "支付成功")
+                finish()
+            }
+
+            override fun onPayWait() {
+            }
+
+            override fun onPayFail() {
+                payFail("支付失败")
+            }
+        })
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AlipayUtils.getInstance().release()
     }
 
 
