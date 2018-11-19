@@ -8,6 +8,8 @@ import com.ipd.taixiuser.bean.BannerBean
 import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.HomeActionBean
 import com.ipd.taixiuser.bean.HomeBean
+import com.ipd.taixiuser.platform.global.AuthUtils
+import com.ipd.taixiuser.platform.global.Constant
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.platform.http.Response
@@ -19,6 +21,7 @@ import com.ipd.taixiuser.ui.activity.home.SystemMessageActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.GlideImageLoader
 import com.youth.banner.BannerConfig
+import io.rong.imkit.RongIM
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
@@ -70,7 +73,6 @@ class HomeFragment : BaseUIFragment() {
                             })
 
 
-
                             val list = arrayListOf(
                                     HomeActionBean(R.mipmap.icon_system_msg, data.lastsysnews.num, "系统消息", data.lastsysnews.content),
                                     HomeActionBean(R.mipmap.icon_sec, 0, "泰溪小秘书", "泰溪小秘书随时为您服务"),
@@ -80,10 +82,16 @@ class HomeFragment : BaseUIFragment() {
                                     HomeActionBean(R.mipmap.icon_customer, data.client.clientnum, "客户动态", data.client.client),
                                     HomeActionBean(R.mipmap.icon_question, 0, "常见问题", "")
                             )
-                            mContentView.action_recycler_view.adapter = HomeActionAdapter(mActivity, list, {
+                            mContentView.action_recycler_view.adapter = HomeActionAdapter(mActivity, list) {
+                                if (!AuthUtils.isLoginAndShowDialog(mActivity)){
+                                    return@HomeActionAdapter
+                                }
                                 when (it.title) {
                                     "系统消息" -> {
                                         SystemMessageActivity.launch(mActivity)
+                                    }
+                                    "泰溪小秘书" -> {
+                                        RongIM.getInstance().startCustomerServiceChat(mActivity, Constant.KEFU_ID, "在线客服", null)
                                     }
                                     "交易动态" -> {
                                         HomeActionActivity.launch(mActivity, it.title, 0)
@@ -101,7 +109,7 @@ class HomeFragment : BaseUIFragment() {
                                         QuestionActivity.launch(mActivity)
                                     }
                                 }
-                            })
+                            }
 
 
                         } else {

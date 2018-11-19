@@ -6,6 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.mob.sdk'
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -16,17 +19,77 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "69c60557e454858472f38b41", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+    }
+    signingConfigs {
+        release {
+            storeFile file("../key.keystore")
+            storePassword '123456'
+            keyAlias 'hanyu'
+            keyPassword '123456'
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
     sourceSets.main {
-        jniLibs.srcDirs = ['libs']  // <-- Set your folder here!
+        jni.srcDirs = []  // <-- Set your folder here!
+        jniLibs.srcDirs = ['src/main/libs']  // <-- Set your folder here!
     }
+}
+
+MobSDK {
+    appKey "28d35234df820"
+    appSecret "ff4ef2f88a9caf9019f65caf8f31b2a4"
+
+    ShareSDK {
+        //平台配置信息
+        devInfo {
+            Wechat {
+                appId "wx07b4f0163f6bcc3d"
+                appSecret "95180c9242fa9630bec2ffc8bd7a8927"
+                withShareTicket true
+                miniprogramType 0
+                bypassApproval false
+                enable true
+            }
+            WechatMoments {
+                appId "wx07b4f0163f6bcc3d"
+                appSecret "95180c9242fa9630bec2ffc8bd7a8927"
+                bypassApproval false
+                enable true
+            }
+            QQ {
+                appId "1107959006"
+                appKey "LtqYaJGkesi8KkMq"
+                shareByAppClient true
+                bypassApproval false
+                enable true
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -35,22 +98,22 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
     implementation rootProject.ext.supportLibs
     implementation rootProject.ext.retrofitLibs
     implementation rootProject.ext.glideLibs
     implementation rootProject.ext.eventbusLibs
-
     implementation 'com.github.castorflex.smoothprogressbar:library:1.1.0'
     implementation 'q.rorbin:badgeview:1.1.2'
     implementation 'com.github.razerdp:BasePopup:1.9.4'
     implementation 'com.steelkiwi:cropiwa:1.0.3'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
-
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
     implementation 'com.youth.banner:banner:1.4.10'
     implementation 'com.contrarywind:Android-PickerView:4.1.6'
     implementation 'com.jaredrummler:material-spinner:1.2.5'
+    implementation 'cn.jiguang.sdk:jpush:3.1.6'
+    implementation 'cn.jiguang.sdk:jcore:1.2.5'
 
     implementation project(':jumpboxlibrary')
-
+    implementation project(':IMKit')
 }

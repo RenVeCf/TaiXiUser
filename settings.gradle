@@ -1,1 +1,1 @@
-include ':app',':jumpboxlibrary'
+include ':app', ':jumpboxlibrary', ':IMLib', ':IMKit'

@@ -4,6 +4,9 @@ import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDexApplication
+import cn.jpush.android.api.JPushInterface
+import com.mob.MobSDK
+import io.rong.imkit.RongIM
 import kotlin.properties.Delegates
 
 
@@ -32,6 +35,12 @@ class GlobalApplication : MultiDexApplication() {
         super.onCreate()
         mContext = this@GlobalApplication
 
+        RongIM.init(this)
+
+        JPushInterface.setDebugMode(true)
+        JPushInterface.init(this)
+
+        MobSDK.init(this)
     }
 
 

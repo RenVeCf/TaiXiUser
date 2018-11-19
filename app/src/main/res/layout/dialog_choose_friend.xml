@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_pay_way_bg"
+    android:padding="@dimen/base_padding">
+
+    <LinearLayout
+        android:id="@+id/ll_invite_friends"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_share" />
+
+        <TextView
+            android:id="@+id/icon_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/small_padding"
+            android:text="分享"
+            android:textColor="@color/black"
+            android:textSize="@dimen/base_text_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_share_way"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_invite_friends"
+        android:layout_marginTop="@dimen/big_padding"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/share_wechat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/share_wechat" />
+
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="好友" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_friend"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/share_friend" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="朋友圈" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_qq"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/share_qq" />
+
+            <TextView
+                style="@style/SmallTextStyle"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="QQ好友" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/ll_share_way"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/base_padding"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/pay_close" />
+    </LinearLayout>
+</RelativeLayout>

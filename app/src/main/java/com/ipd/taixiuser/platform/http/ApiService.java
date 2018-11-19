@@ -69,6 +69,20 @@ public interface ApiService {
     Observable<BaseResult<LoginBean>> login(@Field("phone") String phone,
                                             @Field("password") String password);
 
+
+    @FormUrlEncoded
+    @POST(HttpUrl.THIRD_LOGIN)
+    Observable<BaseResult<LoginBean>> thirdLogin(@Field("openid") String openid,
+                                                 @Field("statue") String statue);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BINDING_PHONE)
+    Observable<BaseResult<LoginBean>> bindingPhone(@Field("phone") String phone,
+                                                   @Field("openid") String openid,
+                                                   @Field("statue") int statue);
+
+
     @FormUrlEncoded
     @POST(HttpUrl.REGISTER)
     Observable<BaseResult<RegisterBean>> register(@Field("phone") String phone,
@@ -78,8 +92,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.SMS_CODE)
-    Observable<BaseResult<String>> smsCode(@Field("phone") String phone,
-                                           @Field("type") String type);
+    Observable<BaseResult<LoginBean>> smsCode(@Field("phone") String phone,
+                                              @Field("type") String type);
 
     @FormUrlEncoded
     @POST(HttpUrl.FORGET_PASSWORD)

@@ -7,11 +7,16 @@ public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:8555/api/";
     String IMAGE_URL = "http://121.199.8.244:8555/";
 
+
+    String HTML_REG = SERVER_URL + "reg/index";
+
     //account
     String SMS_CODE = "mobileCode";
     String REGISTER = "reg";
     String LOGIN = "login";
+    String THIRD_LOGIN = "other/login";
     String FORGET_PASSWORD = "forget";
+    String BINDING_PHONE = "other/bind/phone";
 
 
     //home
@@ -73,7 +78,6 @@ public interface HttpUrl {
     String EXPRESS_INFO = "factory/look/logistics";
     String SALE_AFTER = "apply/sale";
     String REQUEST_SALE_AFTER = "factory/submission";
-
 
 
     //mine

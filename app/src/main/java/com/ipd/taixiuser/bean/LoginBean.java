@@ -13,5 +13,6 @@ public class LoginBean {
     public int user_id;
     public String phone;
     public String avatar;
+    public String rongcloud_token;
 
 }

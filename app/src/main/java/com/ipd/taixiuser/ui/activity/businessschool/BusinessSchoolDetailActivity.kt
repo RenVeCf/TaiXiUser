@@ -3,17 +3,23 @@ package com.ipd.taixiuser.ui.activity.businessschool
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.BusinessDetailBean
 import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
 import com.ipd.taixiuser.platform.global.AuthUtils
+import com.ipd.taixiuser.platform.global.Constant
+import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.presenter.BusinessSchoolDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.GlideImageLoader
+import com.ipd.taixiuser.widget.ShareDialog
+import com.ipd.taixiuser.widget.ShareDialogClick
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.activity_business_school.*
 import org.greenrobot.eventbus.EventBus
+import java.util.HashMap
 
 class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPresenter.IBusinessSchoolDetailView {
 
@@ -90,10 +96,35 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPrese
         }
         ll_share.setOnClickListener {
             //分享
-
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(getShareDialogClick(info))
+            dialog.show()
         }
 
         showContent()
+    }
+
+    private fun getShareDialogClick(info: BusinessDetailBean): ShareDialog.ShareDialogOnclickListener {
+        var pic = HttpUrl.IMAGE_URL + info.img
+        return ShareDialogClick()
+                .setShareTitle(info.title)
+                .setShareContent(info.content)
+                .setShareLogoUrl(pic)
+                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                        toastShow(true, "分享成功")
+                    }
+
+                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                        toastShow("分享失败")
+                    }
+
+                    override fun onCancel(platform: Platform?, i: Int) {
+                        toastShow("取消分享")
+                    }
+
+                })
+                .setShareUrl(HttpUrl.HTML_REG)
     }
 
     override fun loadBusinessDetailFail(errMsg: String) {
