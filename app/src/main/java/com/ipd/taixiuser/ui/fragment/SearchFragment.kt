@@ -1,7 +1,6 @@
 package com.ipd.taixiuser.ui.fragment
 
 import android.support.v7.widget.LinearLayoutManager
-import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.MatterAdapter
 import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.ListResult
@@ -9,34 +8,13 @@ import com.ipd.taixiuser.bean.MatterBean
 import com.ipd.taixiuser.platform.global.Constant
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
-import com.ipd.taixiuser.ui.activity.SearchActivity
 import com.ipd.taixiuser.ui.activity.matter.MatterDetailActivity
-import kotlinx.android.synthetic.main.base_toolbar.view.*
-import kotlinx.android.synthetic.main.fragment_matter_list.view.*
 import rx.Observable
 
-class MatterFragment : ListFragment<BaseResult<ListResult<MatterBean>>, MatterBean>() {
-
-    override fun getTitleLayout(): Int {
-        return R.layout.base_toolbar
-    }
-
-    override fun getContentLayout(): Int = R.layout.fragment_matter_list
-
-    override fun initTitle() {
-        super.initTitle()
-        mHeaderView.tv_title.text = "素材"
-    }
-
-    override fun initListener() {
-        super.initListener()
-        mContentView.tv_search.setOnClickListener {
-            SearchActivity.launch(mActivity)
-        }
-    }
+class SearchFragment : ListFragment<BaseResult<ListResult<MatterBean>>, MatterBean>() {
 
     override fun loadListData(): Observable<BaseResult<ListResult<MatterBean>>> {
-        return ApiManager.getService().matterList(page, Constant.PAGE_SIZE)
+        return ApiManager.getService().matterSearch(searchStr, page, Constant.PAGE_SIZE)
     }
 
     override fun isNoMoreData(result: BaseResult<ListResult<MatterBean>>): Int {
@@ -66,5 +44,12 @@ class MatterFragment : ListFragment<BaseResult<ListResult<MatterBean>>, MatterBe
         data?.addAll(result?.data?.data ?: arrayListOf())
     }
 
+
+    private var searchStr: String = ""
+    fun search(searchStr: String) {
+        this.searchStr = searchStr
+        isCreate = true
+        onRefresh()
+    }
 
 }

@@ -139,6 +139,12 @@ public interface ApiService {
                                                               @Field("count") int count);
 
     @FormUrlEncoded
+    @POST(HttpUrl.MATTER_SEARCH)
+    Observable<BaseResult<ListResult<MatterBean>>> matterSearch(@Field("search") String search,
+                                                                @Field("page") int page,
+                                                                @Field("count") int count);
+
+    @FormUrlEncoded
     @POST(HttpUrl.MATTER_DETAIL)
     Observable<BaseResult<MatterDetailBean>> matterDetail(@Field("material_id") int material_id);
 

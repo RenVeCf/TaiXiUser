@@ -28,6 +28,7 @@ public interface HttpUrl {
 
     //matter
     String MATTER_LIST = "material";
+    String MATTER_SEARCH = "material/materialsearch";
     String MATTER_DETAIL = "material/materialinfo";
 
     //businessSchool

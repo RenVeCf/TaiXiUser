@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
+    android:navigationIcon="@mipmap/back"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/base_padding"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingRight="@dimen/base_padding"
+        android:paddingBottom="@dimen/small_padding">
+
+        <EditText
+            android:id="@+id/et_search"
+            style="@style/BaseEditTextStyle"
+            android:layout_width="match_parent"
+            android:background="@drawable/shape_search"
+            android:drawableLeft="@mipmap/search_icon"
+            android:drawablePadding="10dp"
+            android:hint="搜索"
+            android:imeOptions="actionSearch"
+            android:paddingLeft="@dimen/small_padding"
+            android:paddingTop="@dimen/small_padding"
+            android:paddingRight="@dimen/small_padding"
+            android:paddingBottom="@dimen/small_padding"
+            android:singleLine="true" />
+
+    </FrameLayout>
+
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingRight="@dimen/base_padding"
+        android:text="取消" />
+
+
+</LinearLayout>

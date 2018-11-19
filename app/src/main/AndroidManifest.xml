@@ -46,6 +46,7 @@
 
         <!-- matter -->
         <activity android:name=".ui.activity.matter.MatterDetailActivity" />
+        <activity android:name=".ui.activity.SearchActivity" />
 
         <!-- businessSchool -->
         <activity android:name=".ui.activity.businessschool.BusinessSchoolDetailActivity" />

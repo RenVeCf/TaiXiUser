@@ -46,8 +46,8 @@ class PromoteLayout : ConstraintLayout {
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         //连线
-        drawLine(canvas, getLinePoint(ll_retail, ll_gift_box), mCurLevel >= PromoteInfo.getLevelByResId(ll_vip.id))
-        drawLine(canvas, getLinePoint(ll_gift_box, ll_vip), mCurLevel >= PromoteInfo.getLevelByResId(ll_gift_box.id))
+        drawLine(canvas, getLinePoint(ll_retail, ll_gift_box), mCurLevel >= PromoteInfo.getLevelByResId(ll_gift_box.id))
+        drawLine(canvas, getLinePoint(ll_gift_box, ll_vip), mCurLevel >= PromoteInfo.getLevelByResId(ll_vip.id))
         drawLine(canvas, getLinePoint(ll_vip, ll_proxy), mCurLevel >= PromoteInfo.getLevelByResId(ll_proxy.id))
         drawLine(canvas, getLinePoint(ll_proxy, ll_leader_proxy), mCurLevel >= PromoteInfo.getLevelByResId(ll_leader_proxy.id))
         drawLine(canvas, getLinePoint(ll_leader_proxy, ll_company), mCurLevel >= PromoteInfo.getLevelByResId(ll_company.id))

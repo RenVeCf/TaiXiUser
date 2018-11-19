@@ -5,14 +5,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.MatterDetailBean
+import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.presenter.MatterDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.GlideImageLoader
+import com.ipd.taixiuser.widget.ShareDialog
+import com.ipd.taixiuser.widget.ShareDialogClick
 import com.youth.banner.BannerConfig
 import kotlinx.android.synthetic.main.activity_matter.*
+import java.util.*
 
 class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetailView {
 
@@ -55,7 +60,9 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
     override fun initListener() {
     }
 
+    private var mInfo: MatterDetailBean? = null
     override fun loadMatterDetailSuccess(info: MatterDetailBean) {
+        mInfo = info
         showContent()
         banner.setIndicatorGravity(BannerConfig.RIGHT)
                 .setImages(info.banner)
@@ -86,12 +93,38 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
         val id = item.itemId
         if (id == R.id.share) {
             //分享
+            if (mInfo == null) return false
 
-
+            val dialog = ShareDialog(mActivity)
+            dialog.setShareDialogOnClickListener(getShareDialogClick(mInfo!!))
+            dialog.show()
             return true
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun getShareDialogClick(info: MatterDetailBean): ShareDialog.ShareDialogOnclickListener {
+        var pic = HttpUrl.IMAGE_URL + info.img
+        return ShareDialogClick()
+                .setShareTitle(info.title)
+                .setShareContent(info.content)
+                .setShareLogoUrl(pic)
+                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
+                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
+                        toastShow(true, "分享成功")
+                    }
+
+                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
+                        toastShow("分享失败")
+                    }
+
+                    override fun onCancel(platform: Platform?, i: Int) {
+                        toastShow("取消分享")
+                    }
+
+                })
+                .setShareUrl(HttpUrl.HTML_REG)
     }
 
 }
