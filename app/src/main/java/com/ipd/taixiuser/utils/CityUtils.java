@@ -85,10 +85,6 @@ public class CityUtils implements OnWheelChangedListener {
 
     private void setUpData() {
         List<CityBean> province = cityDao.getCityByParentId("0");
-        if (province != null && !province.isEmpty()) {
-            //移除澳门行政区
-            province.remove(province.size() - 1);
-        }
 
         provinceAdapter = new ProvinceWheelAdapter(context, province);
         mViewProvince.setViewAdapter(provinceAdapter);
