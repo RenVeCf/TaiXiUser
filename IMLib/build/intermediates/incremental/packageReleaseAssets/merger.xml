@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/Users/jumpbox/Documents/Kotlin/KotlinStudy/TaiXiUser/IMLib/src/main/assets"/><source path="/Users/jumpbox/Documents/Kotlin/KotlinStudy/TaiXiUser/IMLib/build/generated/assets/shaders/release"/></dataSet><dataSet config="release"><source path="/Users/jumpbox/Documents/Kotlin/KotlinStudy/TaiXiUser/IMLib/src/release/assets"/></dataSet></merger>

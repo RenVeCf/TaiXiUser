@@ -28,7 +28,7 @@ class MatterAdapter(val context: Context, private val list: List<MatterBean>?, p
 
         ImageLoader.loadImgWithPlaceHolder(context, info.img, R.mipmap.matter_img, holder.itemView.iv_product)
         holder.itemView.tv_title.text = info.title
-        holder.itemView.tv_desc.text = info.content
+        holder.itemView.tv_desc.text = info.brief
         holder.itemView.tv_time.text = info.ctime
 
         holder.itemView.setOnClickListener {

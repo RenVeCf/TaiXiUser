@@ -22,6 +22,7 @@ public class BusinessDetailBean {
     public String title;
     public String img;
     public String content;
+    public String brief;
     public String ctime;
     public int read;
     public int collect;

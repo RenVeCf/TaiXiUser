@@ -83,7 +83,6 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
             mPresenter?.register(phone, password, code,inviteCode)
         }
 
-
     }
 
 
@@ -119,7 +118,7 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
         toastShow(errMsg)
     }
 
-    override fun registerSuccess(registerInfo: RegisterBean) {
+    override fun registerSuccess() {
         toastShow(true, "注册成功")
         finish()
     }

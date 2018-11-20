@@ -226,7 +226,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
                 object : Response<BaseResult<RegisterBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<RegisterBean>) {
                         if (result.code == 200) {
-                            view.registerSuccess(result.data)
+                            view.registerSuccess()
                         } else {
                             view.registerFail(result.msg)
                         }
@@ -311,7 +311,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     }
 
     interface IRegisterView : BaseSmsCodeView {
-        fun registerSuccess(registerInfo: RegisterBean)
+        fun registerSuccess()
         fun registerFail(errMsg: String)
     }
 

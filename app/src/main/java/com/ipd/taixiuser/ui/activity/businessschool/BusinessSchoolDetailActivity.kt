@@ -74,7 +74,10 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPrese
 
         tv_matter_title.text = info.title
         tv_time.text = info.ctime
-        tv_content.text = info.content
+//        tv_content.text = info.content
+        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
+
+
         iv_praise.isSelected = info.is_praise == "1"
         iv_collect.isSelected = info.is_collect == "1"
 
@@ -108,7 +111,7 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPrese
         var pic = HttpUrl.IMAGE_URL + info.img
         return ShareDialogClick()
                 .setShareTitle(info.title)
-                .setShareContent(info.content)
+                .setShareContent(info.brief)
                 .setShareLogoUrl(pic)
                 .setCallback(object : ShareDialogClick.MainPlatformActionListener {
                     override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {

@@ -3,6 +3,7 @@ package com.ipd.taixiuser.ui.activity.manage
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.ipd.taixiuser.R
@@ -56,13 +57,17 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
             }
         }
 
+
+        val inputMethodManager = (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager)
         ll_level.setOnClickListener {
+            inputMethodManager.hideSoftInputFromWindow(tv_customer_weixin.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
             val pvOptions = OptionsPickerBuilder(this, OnOptionsSelectListener { options1, option2, options3, v ->
-                tv_level.text = StringUtils.levels[options1]
+                tv_level.text = StringUtils.addCustomerLevels[options1]
             }).setCancelColor(resources.getColor(R.color.black))
                     .setSubmitColor(resources.getColor(R.color.colorPrimaryDark))
                     .build<String>()
-            pvOptions.setPicker(StringUtils.levels, null, null)
+            pvOptions.setPicker(StringUtils.addCustomerLevels, null, null)
             pvOptions.show()
         }
 
@@ -74,7 +79,7 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
             val customerLevel = tv_level.text.toString().trim()
             val customerAddress = et_detail_address.text.toString().trim()
             val customerRemark = tv_customer_remark.text.toString().trim()
-            mPresenter?.addCustomer(customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity,customerAddress)
+            mPresenter?.addCustomer(customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity, customerAddress)
         }
 
     }

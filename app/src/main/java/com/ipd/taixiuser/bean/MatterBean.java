@@ -15,6 +15,7 @@ public class MatterBean {
     public String img;
     public String title;
     public String content;
+    public String brief;
     public String ctime;
     public int is_del;
 

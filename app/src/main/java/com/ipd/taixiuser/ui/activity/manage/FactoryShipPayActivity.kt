@@ -74,7 +74,8 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
 
                 }
                 ChoosePayTypeLayout.PayType.WECHAT -> {
-
+                    val productInfo = mProductList[0]
+                    mPresenter?.wechatPay("2", productInfo.id, productInfo.chooseNum, mCustomerInfo!!.id.toString(), mCustomerInfo!!.username, mCustomerInfo!!.phone, mCustomerInfo!!.area, mCustomerInfo!!.address)
                 }
                 ChoosePayTypeLayout.PayType.BALANCE -> {
                     val productInfo = mProductList[0]

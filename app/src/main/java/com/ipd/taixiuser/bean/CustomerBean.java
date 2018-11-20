@@ -44,6 +44,7 @@ public class CustomerBean implements Serializable {
     public int ctime;
     public int pos_id;
     public int is_del;
+    public int is_activation;
     public String proxyname;
 
 

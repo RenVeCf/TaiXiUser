@@ -29,13 +29,11 @@ class CustomerAdapter(val context: Context, private val list: List<CustomerBean>
 
         ImageLoader.loadAvatar(context, info.avatar, holder.itemView.iv_product)
         holder.itemView.tv_customer_name.text = info.username
-        holder.itemView.tv_level.text = "(${info.proxy})"
+        holder.itemView.tv_level.text = "(${info.proxyname})"
         holder.itemView.tv_customer_remark.text = "备注:${info.remark}"
         holder.itemView.tv_customer_phone.text = info.phone
 
-
-
-
+        holder.itemView.iv_active_status.visibility = if (info.is_activation == 0) View.VISIBLE else View.GONE
 
 
         holder.itemView.setOnClickListener {

@@ -86,7 +86,7 @@ class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IRepleni
                     mPresenter?.alipay("3", data.purchasegoods[0].id, num, GlobalParam.getUserId(), "", "", "", "")
                 }
                 ChoosePayTypeLayout.PayType.WECHAT -> {
-
+                    mPresenter?.wechatPay("3", data.purchasegoods[0].id, num, GlobalParam.getUserId(), "", "", "", "")
                 }
             }
 

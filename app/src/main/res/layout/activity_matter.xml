@@ -43,12 +43,10 @@
                 android:textColor="@color/LightGrey"
                 tools:text="2018-09-09" />
 
-            <TextView
-                android:id="@+id/tv_content"
-                style="@style/BaseTextStyle"
-                android:textColor="@color/LightGrey"
-                android:layout_marginTop="@dimen/small_padding"
-                tools:text="2018-09-09" />
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 

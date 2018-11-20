@@ -18,6 +18,7 @@ public class MatterDetailBean {
     public String img;
     public String title;
     public String content;
+    public String brief;
     public String ctime;
     public int is_del;
     public List<BannerBean> banner;

@@ -23,10 +23,12 @@ class HomeMenuAdapter(val context: Context, private val list: List<HomeBean.Intr
 
     }
 
+    private val mRes = intArrayOf(R.mipmap.menu_business_school, R.mipmap.menu_travel, R.mipmap.menu_health_manage, R.mipmap.menu_e_commerce)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_image)
+        holder.itemView.iv_image.setImageResource(mRes[position])
+//        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_image)
         holder.itemView.tv_title.text = info.title
 
         holder.itemView.setOnClickListener {

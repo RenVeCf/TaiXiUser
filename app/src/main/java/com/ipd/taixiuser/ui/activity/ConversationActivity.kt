@@ -1,16 +1,24 @@
 package com.ipd.taixiuser.ui.activity
 
 import android.os.Bundle
-import android.support.v4.app.FragmentActivity
-import android.view.KeyEvent
 import com.ipd.taixiuser.R
+import com.ipd.taixiuser.ui.BaseUIActivity
 import io.rong.imkit.fragment.ConversationFragment
 
 
-class ConversationActivity : FragmentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.conversation)
+class ConversationActivity : BaseUIActivity() {
+    override fun getToolbarTitle(): String = "在线客服"
+
+    override fun getContentLayout(): Int = R.layout.conversation
+
+    override fun initView(bundle: Bundle?) {
+        initToolbar()
+    }
+
+    override fun loadData() {
+    }
+
+    override fun initListener() {
     }
 
     override fun onBackPressed() {
@@ -20,7 +28,4 @@ class ConversationActivity : FragmentActivity() {
         }
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return super.onKeyDown(keyCode, event)
-    }
 }

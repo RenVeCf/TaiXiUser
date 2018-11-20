@@ -75,7 +75,9 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
 
         tv_matter_title.text = info.title
         tv_time.text = info.ctime
-        tv_content.text = info.content
+//        tv_content.text = info.content
+        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
+
 
     }
 
@@ -108,7 +110,7 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
         var pic = HttpUrl.IMAGE_URL + info.img
         return ShareDialogClick()
                 .setShareTitle(info.title)
-                .setShareContent(info.content)
+                .setShareContent(info.brief)
                 .setShareLogoUrl(pic)
                 .setCallback(object : ShareDialogClick.MainPlatformActionListener {
                     override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
