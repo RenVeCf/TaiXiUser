@@ -9,10 +9,13 @@ import com.ipd.taixiuser.adapter.ProductAdapter
 import com.ipd.taixiuser.bean.CustomerBean
 import com.ipd.taixiuser.bean.ExpressFeeBean
 import com.ipd.taixiuser.bean.ProductBean
+import com.ipd.taixiuser.bean.WechatBean
 import com.ipd.taixiuser.event.ChooseCustomerEvent
+import com.ipd.taixiuser.event.PayResultEvent
 import com.ipd.taixiuser.presenter.FactoryPayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.utils.AlipayUtils
+import com.ipd.taixiuser.utils.WeChatUtils
 import com.ipd.taixiuser.widget.ChoosePayTypeLayout
 import kotlinx.android.synthetic.main.activity_factory_ship_pay.*
 import kotlinx.android.synthetic.main.layout_pay_type.*
@@ -155,10 +158,28 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
         })
     }
 
+    override fun wechatPaySuccess(result: WechatBean) {
+        WeChatUtils.getInstance(mActivity).startPay(result)
+    }
+
+
+    @Subscribe
+    fun onMainEvent(event: PayResultEvent) {
+        when (event.status) {
+            0 -> {
+                toastShow(true, "支付成功")
+                finish()
+            }
+            -1 -> toastShow("支付失败")
+            -2 -> toastShow("取消支付")
+        }
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
         AlipayUtils.getInstance().release()
+        WeChatUtils.getInstance(mActivity).release()
     }
 
 

@@ -1,6 +1,7 @@
 package com.ipd.taixiuser.presenter
 
 import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.WechatBean
 import com.ipd.taixiuser.model.BasicModel
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
@@ -41,10 +42,10 @@ open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel
 
     fun wechatPay(status: String, productId: Int, fox: Int, receiveId: String, receiveName: String, receivePhone: String, receiveArea: String, receiveAddress: String, expressFee: String = "0") {
         mModel?.getNormalRequestData(ApiManager.getService().wechatPay(GlobalParam.getUserIdOrJump(), status, productId, fox, receiveId, receiveName, receivePhone, receiveArea, receiveAddress, expressFee),
-                object : Response<BaseResult<String>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<String>) {
+                object : Response<BaseResult<WechatBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<WechatBean>) {
                         if (result.code == 200) {
-                            mView?.paySuccess(result.data)
+                            mView?.wechatPaySuccess(result.data)
                         } else {
                             mView?.payFail(result.msg)
                         }
@@ -57,7 +58,8 @@ open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel
     interface IPayView {
         fun paySuccess(orderNo: String)
         fun payFail(errMsg: String)
-        fun alipaySuccess(result:String)
+        fun alipaySuccess(result: String)
+        fun wechatPaySuccess(result: WechatBean)
     }
 
 

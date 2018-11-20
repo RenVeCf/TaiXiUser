@@ -39,6 +39,7 @@ import com.ipd.taixiuser.bean.UploadResultBean;
 import com.ipd.taixiuser.bean.UserInfoBean;
 import com.ipd.taixiuser.bean.WalletBean;
 import com.ipd.taixiuser.bean.WebBean;
+import com.ipd.taixiuser.bean.WechatBean;
 import com.ipd.taixiuser.bean.WithdrawDetailBean;
 import com.ipd.taixiuser.bean.WithdrawProgressBean;
 
@@ -402,16 +403,16 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.WECHAT_PAY)
-    Observable<BaseResult<String>> wechatPay(@Field("user_id") String user_id,
-                                             @Field("statue") String statue,
-                                             @Field("goods_id") int goods_id,
-                                             @Field("fox") int fox,
-                                             @Field("receiver_id") String receiver_id,
-                                             @Field("receiver_name") String receiver_name,
-                                             @Field("receiver_phone") String receiver_phone,
-                                             @Field("receiver_area") String receiver_area,
-                                             @Field("receiver_address") String receiver_address,
-                                             @Field("freight") String freight);
+    Observable<BaseResult<WechatBean>> wechatPay(@Field("user_id") String user_id,
+                                                 @Field("statue") String statue,
+                                                 @Field("goods_id") int goods_id,
+                                                 @Field("fox") int fox,
+                                                 @Field("receiver_id") String receiver_id,
+                                                 @Field("receiver_name") String receiver_name,
+                                                 @Field("receiver_phone") String receiver_phone,
+                                                 @Field("receiver_area") String receiver_area,
+                                                 @Field("receiver_address") String receiver_address,
+                                                 @Field("freight") String freight);
 
 
     /**

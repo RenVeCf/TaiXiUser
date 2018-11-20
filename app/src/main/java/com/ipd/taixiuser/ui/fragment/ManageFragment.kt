@@ -11,6 +11,7 @@ import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.BaseUIFragment
 import com.ipd.taixiuser.ui.activity.manage.*
 import com.ipd.taixiuser.ui.activity.web.WebActivity
+import com.ipd.taixiuser.utils.PermissionUtils
 import kotlinx.android.synthetic.main.base_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_manage.view.*
 
@@ -44,17 +45,24 @@ class ManageFragment : BaseUIFragment() {
         }
         mContentView.tv_auth.setOnClickListener {
             //我的授权
-            ApiManager.getService().myAuth(GlobalParam.getUserIdOrJump())
-                    .compose(RxScheduler.applyScheduler())
-                    .subscribe(object : Response<BaseResult<WebBean>>(mActivity, true) {
-                        override fun _onNext(result: BaseResult<WebBean>) {
-                            if (result.code == 200) {
-                                WebActivity.launch(mActivity, WebActivity.URL, result.data.url, "我的授权")
-                            } else {
-                                toastShow(result.msg)
-                            }
-                        }
-                    })
+            PermissionUtils.hasPermission(mActivity) { hasPermission, errMsg ->
+                if (hasPermission) {
+                    ApiManager.getService().myAuth(GlobalParam.getUserIdOrJump())
+                            .compose(RxScheduler.applyScheduler())
+                            .subscribe(object : Response<BaseResult<WebBean>>(mActivity, true) {
+                                override fun _onNext(result: BaseResult<WebBean>) {
+                                    if (result.code == 200) {
+                                        WebActivity.launch(mActivity, WebActivity.URL, result.data.url, "我的授权")
+                                    } else {
+                                        toastShow(result.msg)
+                                    }
+                                }
+                            })
+                } else {
+                    toastShow(errMsg)
+                }
+            }
+
         }
         mContentView.tv_proxy.setOnClickListener {
             //加盟代理
@@ -70,8 +78,15 @@ class ManageFragment : BaseUIFragment() {
         }
         mContentView.tv_replenish.setOnClickListener {
             //补货
-            LeaderReplenishActivity.launch(mActivity)
+            PermissionUtils.hasPermission(mActivity) { hasPermission, errMsg ->
+                if (hasPermission) {
+                    LeaderReplenishActivity.launch(mActivity)
 //            ProxyReplenishActivity.launch(mActivity)
+                } else {
+                    toastShow(errMsg)
+                }
+            }
+
         }
         mContentView.tv_earnings.setOnClickListener {
             //收益
