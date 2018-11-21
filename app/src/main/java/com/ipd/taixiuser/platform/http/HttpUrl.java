@@ -41,6 +41,7 @@ public interface HttpUrl {
     String MINE_CUSTOMER = "manage/mycustomer";
     String NEW_CUSTOMER = "manage/mycustomer/add";
     String CUSTOMER_INFO = "manage/mycustomer/info";
+    String TEAM_STRUCT = "manage/myteam/structure";
     String MINE_TEAM_LIST = "manage/myteam/info";
     String TRANSFER_CUSTOMER_AUTH = "manage/transfer";
     String ACCEPT_USER_INFO = "manage/user/info";

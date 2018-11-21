@@ -56,7 +56,10 @@ class MineTeamActivity : BaseUIActivity() {
 
     }
 
+    private var mTotalNum = -1
+    private var mNewNum = -1
     private fun setContent(data: List<TeamGroupBean>) {
+
         val list = listOf(
                 TeamGroupBean(R.mipmap.icon_retail, "零售", data[0].num, data[0].proxy),
                 TeamGroupBean(R.mipmap.icon_gift_box, "礼盒装", data[1].num, data[1].proxy),
@@ -68,9 +71,11 @@ class MineTeamActivity : BaseUIActivity() {
                 TeamGroupBean(R.mipmap.icon_shareholder, "分红股东", data[7].num, data[7].proxy)
         )
         group_recycler_view.adapter = TeamGroupAdapter(mActivity, list) {
-            ProxyListActivity.launch(mActivity, it.proxy,it.teamName)
+            ProxyListActivity.launch(mActivity, it.proxy, it.teamName)
         }
 
+        mNewNum = data[8].monthnum.toInt()
+        mTotalNum = data[9].num.toInt()
         tv_month_team.text = data[8].monthnum.toString()
         tv_team_total.text = data[9].num.toString()
 
@@ -89,6 +94,8 @@ class MineTeamActivity : BaseUIActivity() {
         val id = item.itemId
         if (id == R.id.team_struct) {
             //团队结构图
+            if (mTotalNum == -1 || mNewNum == -1) return false
+            TeamStructActivity.launch(mActivity, mTotalNum, mNewNum)
             return true
         }
 

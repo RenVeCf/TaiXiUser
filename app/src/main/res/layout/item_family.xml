@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minWidth="80dp"
+    android:minHeight="100dp"
+    android:orientation="vertical">
+
+    <com.ipd.jumpbox.jumpboxlibrary.widget.CircleImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:padding="2dp"
+        android:src="@mipmap/avatar_default" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/BaseTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:textSize="11sp"
+        android:maxLines="1"
+        tools:text="囧恩" />
+
+    <TextView
+        android:id="@+id/tv_call"
+        style="@style/SmallTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="9sp"
+        android:textColor="@color/LightGrey"
+        tools:text="配偶配偶" />
+
+    <TextView
+        android:id="@+id/tv_num"
+        style="@style/SmallTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/shape_team_struct"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textSize="9sp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:minWidth="50dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/white"
+        tools:text="1人" />
+
+</LinearLayout>

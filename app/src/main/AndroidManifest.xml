@@ -77,6 +77,7 @@
         <activity android:name=".ui.activity.manage.ProxyReplenishActivity" />
         <activity android:name=".ui.activity.manage.JoinProxyActivity" />
         <activity android:name=".ui.activity.manage.PromoteActivity" />
+        <activity android:name=".ui.activity.manage.TeamStructActivity" />
 
         <!-- order -->
         <activity android:name=".ui.activity.order.OrderActivity" />

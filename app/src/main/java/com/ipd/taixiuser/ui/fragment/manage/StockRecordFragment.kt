@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.ui.fragment.manage
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.StockRecordAdapter
@@ -15,6 +16,11 @@ import rx.Observable
 class StockRecordFragment : ListFragment<BaseResult<StockRecordParentBean>, StockRecordBean>() {
 
     override fun getContentLayout(): Int = R.layout.fragment_stock_record_list
+
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        setLoadMoreEnable(false)
+    }
 
     override fun loadListData(): Observable<BaseResult<StockRecordParentBean>> {
         return ApiManager.getService().stockRecordList(GlobalParam.getUserIdOrJump())

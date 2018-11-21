@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.ui.fragment.manage
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.EarningsAdapter
@@ -16,6 +17,11 @@ class EarningsFragment : ListFragment<BaseResult<EarningParentBean>, EarningsBea
 
     override fun getContentLayout(): Int = R.layout.fragment_stock_record_list
 
+    override fun initView(bundle: Bundle?) {
+        super.initView(bundle)
+        setLoadMoreEnable(false)
+    }
+
     override fun loadListData(): Observable<BaseResult<EarningParentBean>> {
         return ApiManager.getService().earningsList(GlobalParam.getUserIdOrJump())
     }
@@ -31,7 +37,7 @@ class EarningsFragment : ListFragment<BaseResult<EarningParentBean>, EarningsBea
 
     override fun loadListDataSuccess(isRefresh: Boolean, result: BaseResult<EarningParentBean>) {
         super.loadListDataSuccess(isRefresh, result)
-        if (mActivity is EarningsActivity){
+        if (mActivity is EarningsActivity) {
             (mActivity as EarningsActivity).setPriceInfo(result)
         }
     }

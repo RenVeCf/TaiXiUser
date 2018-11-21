@@ -213,7 +213,7 @@ class OrderDetailActivity : BaseUIActivity(), OrderUtils.OrderDetailBtnClickList
                 btn_operation1.text = "查看物流"
                 btn_operation1.visibility = View.VISIBLE
                 btn_operation1.setOnClickListener {
-                    mPresenter?.deleteOrder(mOrderId)
+                    mPresenter?.expressInfo(mOrderId)
                 }
                 btn_operation2.text = "申请售后"
                 btn_operation2.visibility = View.VISIBLE

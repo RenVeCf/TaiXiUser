@@ -123,10 +123,22 @@ class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPay
 
     private fun setTotalPrice(expressFee: Float) {
         var totalPrice = expressFee
-        mProductList.forEach {
-            totalPrice += it.price.toFloat() * it.chooseNum
-        }
+//        mProductList.forEach {
+//            totalPrice += it.price.toFloat() * it.chooseNum
+//        }
         tv_total_price.text = "￥ $totalPrice"
+        if (totalPrice == 0f) {
+            tv_pay.text = "确认"
+            ll_alipay.visibility = View.GONE
+            ll_wechat.visibility = View.GONE
+            pay_type_layout.switchPayType(ChoosePayTypeLayout.PayType.BALANCE)
+
+        } else {
+            tv_pay.text = "支付"
+            ll_alipay.visibility = View.VISIBLE
+            ll_wechat.visibility = View.VISIBLE
+        }
+
     }
 
     override fun loadExpressFeeFail(errMsg: String) {

@@ -28,7 +28,7 @@ class StockRecordAdapter(val context: Context, private val list: List<StockRecor
         holder.itemView.tv_consume_name.text = info.title
         holder.itemView.tv_record_desc.text = info.content
         holder.itemView.tv_record_date.text = info.ctime
-        holder.itemView.tv_record_num.text = "${info.fox}${info.unit}"
+        holder.itemView.tv_record_num.text = "${info.fox}"
 
 
         holder.itemView.setOnClickListener {

@@ -21,7 +21,7 @@ class ChoosePayTypeLayout : LinearLayout {
 
 
     private fun init() {
-        switchPayType(PayType.ALIPAY)
+        switchPayType(PayType.BALANCE)
         ll_alipay.setOnClickListener {
             if (getPayType() == PayType.ALIPAY) return@setOnClickListener
             switchPayType(PayType.ALIPAY)
@@ -41,7 +41,7 @@ class ChoosePayTypeLayout : LinearLayout {
         init()
     }
 
-    private fun switchPayType(payType: Int) {
+    fun switchPayType(payType: Int) {
         cb_alipay.isChecked = payType == PayType.ALIPAY
         cb_wechat.isChecked = payType == PayType.WECHAT
         cb_balance.isChecked = payType == PayType.BALANCE

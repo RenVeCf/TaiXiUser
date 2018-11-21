@@ -35,6 +35,7 @@ import com.ipd.taixiuser.bean.SaleAfterBean;
 import com.ipd.taixiuser.bean.StockRecordParentBean;
 import com.ipd.taixiuser.bean.SystemMessageBean;
 import com.ipd.taixiuser.bean.TeamGroupBean;
+import com.ipd.taixiuser.bean.TeamStructBean;
 import com.ipd.taixiuser.bean.UploadResultBean;
 import com.ipd.taixiuser.bean.UserInfoBean;
 import com.ipd.taixiuser.bean.WalletBean;
@@ -176,6 +177,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpUrl.MINE_CUSTOMER)
     Observable<BaseResult<List<CustomerBean>>> mineCustomer(@Field("user_id") String user_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.TEAM_STRUCT)
+    Observable<BaseResult<TeamStructBean>> teamStruct(@Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.NEW_CUSTOMER)

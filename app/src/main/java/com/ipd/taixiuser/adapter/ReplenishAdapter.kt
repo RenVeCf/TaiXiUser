@@ -29,7 +29,7 @@ class ReplenishAdapter(val context: Context, private val list: List<ReplenishBea
 
         ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
         holder.itemView.tv_title.text = info.name
-        holder.itemView.tv_product_desc.text = "库存：${info.fox}箱"
+        holder.itemView.tv_product_desc.text = "库存：${info.posgoods.fox}箱"
         holder.itemView.fox_operation_view.setNum(info.chooseNum)
         holder.itemView.fox_operation_view.setOnCartNumChangeListener(object : ProductOperationView.OnCartNumChangeListener {
             override fun onNumChange(lastNum: Int, num: Int) {
