@@ -72,6 +72,7 @@ public interface HttpUrl {
     String BALANCE_PAY = "pay/balance";
     String ALIPAY = "pay/alipay";
     String WECHAT_PAY = "pay/wcpay";
+    String OF_THE_PUBLIC_PAY = "pay/order";
 
     //order
     String ORDER_LIST = "factory/deliver/goods";

@@ -117,6 +117,47 @@
 
             <include layout="@layout/layout_pay_type" />
 
+
+            <LinearLayout
+                android:visibility="gone"
+                android:background="@color/white"
+                android:id="@+id/ll_of_the_public"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_padding"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/base_padding"
+                android:paddingBottom="@dimen/small_padding"
+                android:paddingTop="@dimen/small_padding">
+
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@mipmap/pay_alipay" />
+
+                <TextView
+                    style="@style/BaseTextStyle"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/small_padding"
+                    android:layout_weight="1"
+                    android:text="对公支付" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cb_of_the_public"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/selector_checkbox"
+                    android:clickable="false"
+                    android:checked="true"
+                    android:enabled="false"
+                    android:focusable="false" />
+
+            </LinearLayout>
+
+            <View style="@style/ViewLine" />
+
             <LinearLayout
                 android:id="@+id/ll_permission"
                 android:layout_width="match_parent"

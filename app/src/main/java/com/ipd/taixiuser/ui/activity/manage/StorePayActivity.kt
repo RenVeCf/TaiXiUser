@@ -8,6 +8,7 @@ import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ExpressFeeBean
+import com.ipd.taixiuser.bean.OfTheBankBean
 import com.ipd.taixiuser.bean.ProductDetailBean
 import com.ipd.taixiuser.bean.WechatBean
 import com.ipd.taixiuser.event.PayResultEvent
@@ -86,6 +87,12 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
             //特殊商品
             product_operation_view.visibility = View.GONE
             ll_receive_info.visibility = View.GONE
+        } else if (info.statue == 2) {
+            //特殊商品
+            product_operation_view.visibility = View.GONE
+            ll_receive_info.visibility = View.GONE
+            pay_type_layout.visibility = View.GONE
+            ll_of_the_public.visibility = View.VISIBLE
         }
 
         product_operation_view.setMinNum(1)
@@ -113,6 +120,12 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
             val receivePhone = et_receive_phone.text.toString().trim()
             val receiveCity = tv_receive_city.text.toString().trim()
             val receiveDetail = et_receive_detail.text.toString().trim()
+
+            if (info.statue == 2) {
+                //对公支付
+                mPresenter?.ofThePublicPay(info.id, num)
+                return@setOnClickListener
+            }
 
             if (info.statue != 1) {
                 if (TextUtils.isEmpty(receiveName)) {
@@ -159,6 +172,11 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
 
     override fun loadExpressFeeFail(errMsg: String) {
         toastShow(errMsg)
+    }
+
+    override fun ofThePublicPaySuccess(result: OfTheBankBean) {
+        OfThePublicSuccessActivity.launch(mActivity,result)
+        finish()
     }
 
     override fun alipaySuccess(result: String) {

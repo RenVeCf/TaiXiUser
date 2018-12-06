@@ -24,6 +24,7 @@ import com.ipd.taixiuser.bean.MatterDetailBean;
 import com.ipd.taixiuser.bean.MoveStockBean;
 import com.ipd.taixiuser.bean.MoveStockHistoryBean;
 import com.ipd.taixiuser.bean.MoveStockInfoBean;
+import com.ipd.taixiuser.bean.OfTheBankBean;
 import com.ipd.taixiuser.bean.OrderBean;
 import com.ipd.taixiuser.bean.OrderDetailBean;
 import com.ipd.taixiuser.bean.ProductBean;
@@ -418,6 +419,13 @@ public interface ApiService {
                                                  @Field("receiver_area") String receiver_area,
                                                  @Field("receiver_address") String receiver_address,
                                                  @Field("freight") String freight);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.OF_THE_PUBLIC_PAY)
+    Observable<BaseResult<OfTheBankBean>> ofThePublicPay(@Field("user_id") String user_id,
+                                                         @Field("goods_id") int goods_id,
+                                                         @Field("fox") int fox);
 
 
     /**

@@ -67,7 +67,7 @@ class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPrese
                 .setImages(info.banner)
                 .setImageLoader(GlideImageLoader())
                 .setOnBannerListener {
-                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
+//                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
                 }
                 .start()
 

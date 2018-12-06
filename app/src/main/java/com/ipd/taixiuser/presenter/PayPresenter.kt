@@ -1,6 +1,7 @@
 package com.ipd.taixiuser.presenter
 
 import com.ipd.taixiuser.bean.BaseResult
+import com.ipd.taixiuser.bean.OfTheBankBean
 import com.ipd.taixiuser.bean.WechatBean
 import com.ipd.taixiuser.model.BasicModel
 import com.ipd.taixiuser.platform.global.GlobalParam
@@ -10,6 +11,20 @@ import com.ipd.taixiuser.platform.http.Response
 open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel>() {
     override fun initModel() {
         mModel = BasicModel()
+    }
+
+    fun ofThePublicPay(productId: Int, fox: Int) {
+        mModel?.getNormalRequestData(ApiManager.getService().ofThePublicPay(GlobalParam.getUserIdOrJump(), productId, fox),
+                object : Response<BaseResult<OfTheBankBean>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<OfTheBankBean>) {
+                        if (result.code == 200) {
+                            mView?.ofThePublicPaySuccess(result.data)
+                        } else {
+                            mView?.payFail(result.msg)
+                        }
+                    }
+
+                })
     }
 
     fun balancePay(status: String, productId: Int, fox: Int, receiveId: String, receiveName: String, receivePhone: String, receiveArea: String, receiveAddress: String, expressFee: String = "0") {
@@ -56,6 +71,7 @@ open class PayPresenter<T : PayPresenter.IPayView> : BasePresenter<T, BasicModel
 
 
     interface IPayView {
+        fun ofThePublicPaySuccess(result: OfTheBankBean)
         fun paySuccess(orderNo: String)
         fun payFail(errMsg: String)
         fun alipaySuccess(result: String)

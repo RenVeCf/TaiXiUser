@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.ReplenishAdapter
+import com.ipd.taixiuser.bean.OfTheBankBean
 import com.ipd.taixiuser.bean.ReplenishBean
 import com.ipd.taixiuser.bean.WechatBean
 import com.ipd.taixiuser.event.PayResultEvent
@@ -22,6 +23,10 @@ import kotlinx.android.synthetic.main.layout_pay_type.*
 import org.greenrobot.eventbus.Subscribe
 
 class LeaderReplenishActivity : BaseUIActivity(), ReplenishPayPresenter.IReplenishView {
+    override fun ofThePublicPaySuccess(result: OfTheBankBean) {
+
+    }
+
     companion object {
         fun launch(activity: Activity) {
             val intent = Intent(activity, LeaderReplenishActivity::class.java)

@@ -26,7 +26,13 @@
             </intent-filter>
         </activity-alias>
 
-        <activity android:name=".ui.SplashActivity" />
+        <activity
+            android:name=".ui.SplashActivity"
+            android:theme="@style/FullScreenStyle" />
+
+        <activity
+            android:name=".ui.WelcomeActivity"
+            android:theme="@style/FullScreenStyle" />
 
         <activity
             android:name=".MainActivity"
@@ -78,6 +84,7 @@
         <activity android:name=".ui.activity.manage.JoinProxyActivity" />
         <activity android:name=".ui.activity.manage.PromoteActivity" />
         <activity android:name=".ui.activity.manage.TeamStructActivity" />
+        <activity android:name=".ui.activity.manage.OfThePublicSuccessActivity" />
 
         <!-- order -->
         <activity android:name=".ui.activity.order.OrderActivity" />
@@ -126,7 +133,7 @@
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
         <!-- 微信分享回调 -->
         <activity

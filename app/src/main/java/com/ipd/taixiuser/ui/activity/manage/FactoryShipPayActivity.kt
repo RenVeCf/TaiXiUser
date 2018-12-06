@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.adapter.ProductAdapter
-import com.ipd.taixiuser.bean.CustomerBean
-import com.ipd.taixiuser.bean.ExpressFeeBean
-import com.ipd.taixiuser.bean.ProductBean
-import com.ipd.taixiuser.bean.WechatBean
+import com.ipd.taixiuser.bean.*
 import com.ipd.taixiuser.event.ChooseCustomerEvent
 import com.ipd.taixiuser.event.PayResultEvent
 import com.ipd.taixiuser.presenter.FactoryPayPresenter
@@ -23,6 +20,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
 class FactoryShipPayActivity : BaseUIActivity(), FactoryPayPresenter.IFactoryPayView {
+    override fun ofThePublicPaySuccess(result: OfTheBankBean) {
+
+    }
 
     companion object {
         fun launch(activity: Activity, list: ArrayList<ProductBean>) {

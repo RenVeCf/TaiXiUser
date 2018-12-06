@@ -1,12 +1,13 @@
 package com.ipd.taixiuser.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import com.ipd.taixiuser.MainActivity
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.platform.global.GlobalApplication
+import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.RxScheduler
+import com.ipd.taixiuser.ui.activity.account.LoginActivity
 import rx.Observable
 import rx.Subscriber
 import java.io.File
@@ -54,7 +55,15 @@ class SplashActivity : BaseActivity() {
                     }
 
                     override fun onCompleted() {
-                        MainActivity.launch(mActivity)
+                        if (GlobalParam.getFirstEnter()) {
+                            WelcomeActivity.launch(mActivity)
+                        } else {
+                            if (GlobalParam.isLogin()) {
+                                MainActivity.launch(mActivity)
+                            } else {
+                                LoginActivity.launch(mActivity)
+                            }
+                        }
                         finish()
                     }
 

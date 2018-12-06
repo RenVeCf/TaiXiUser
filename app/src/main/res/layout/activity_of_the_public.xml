@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/base_padding"
+        android:background="@drawable/shape_box_white_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="17dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/pay_success" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginTop="10dp"
+            android:text="提交成功"
+            android:textSize="18sp" />
+
+        <TextView
+            style="@style/BaseTextStyle"
+            android:layout_marginTop="5dp"
+            android:text="请您尽快将订单金额转入如下账号:"
+            android:textColor="@color/LightGrey" />
+
+        <LinearLayout
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="公司名称："
+                android:textColor="@color/LightGrey" />
+
+            <TextView
+                android:id="@+id/tv_company_name"
+                style="@style/BaseTextStyle"
+                android:text="上海涵予信息科技有限公司"
+                android:textColor="@color/orange" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="开户行："
+                android:textColor="@color/LightGrey" />
+
+            <TextView
+                android:id="@+id/tv_bank_address"
+                style="@style/BaseTextStyle"
+                android:text="上海涵予信息科技有限公司"
+                android:textColor="@color/orange" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:paddingLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/BaseTextStyle"
+                android:text="公司账号："
+                android:textColor="@color/LightGrey" />
+
+            <TextView
+                android:id="@+id/tv_bank_account"
+                style="@style/BaseTextStyle"
+                android:text="上海涵予信息科技有限公司"
+                android:textColor="@color/orange" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
