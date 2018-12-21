@@ -1,34 +1,38 @@
 package com.ipd.taixiuser.bean;
 
-import java.util.List;
-
 public class BusinessDetailBean {
 
+
     /**
-     * id : 1
-     * title : 青汁怎么查真伪
-     * img : /pic/20180928/c61b2d0a99147472d0ed5ebf9a4e9284.png
-     * content : 氨甲苯酸的骄傲不是大部分几哈奥术爆发很骄傲不到法律
-     * ctime : 2018-10-15
+     * id : 3
+     * title : 泰溪介绍11
+     * img : /pic/20181130/b3af7abebd27df46a6f3a48a87bc1174.png
+     * brief : 艾灸盒深V大汉军
+     * uploadtype : 1
+     * url : /audio_video/20181213/20181213200043.mp3
+     * content : <p>啥办法吧氨甲环酸放假啊</p><p>把发加班费骄傲和加上部分</p><p>啊建设步伐就哈办法见哈珀圣诞节啊</p><p>爱空间不是带节哀顺变发酵啊收不到卡萨丁</p><p>把刷卡见不到空间啊</p>
+     * primary_directory_id : 1
+     * update_time : 0
+     * ctime : 1543563968
      * read : 0
-     * collect : 1
-     * praise : 2
-     * is_collect : 1
-     * is_praise : 1
-     * banner : [{"id":1,"img":"/pic/20180928/c61b2d0a99147472d0ed5ebf9a4e9284.png","business_id":1},{"id":2,"img":"/pic/20180928/c61b2d0a99147472d0ed5ebf9a4e9284.png","business_id":1},{"id":3,"img":"/pic/20180928/c61b2d0a99147472d0ed5ebf9a4e9284.png","business_id":1}]
+     * collect : 0
+     * praise : 0
+     * h5url : http://www.taixi.com/api/business/directory/h5?id=3
      */
 
     public int id;
     public String title;
     public String img;
-    public String content;
     public String brief;
+    public int uploadtype;
+    public String url;
+    public String content;
+    public int primary_directory_id;
+    public int update_time;
     public String ctime;
     public int read;
     public int collect;
     public int praise;
-    public String is_collect;
-    public String is_praise;
-    public List<BannerBean> banner;
+    public String h5url;
 
 }

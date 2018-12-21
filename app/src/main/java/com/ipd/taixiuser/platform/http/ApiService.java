@@ -6,7 +6,12 @@ import com.ipd.taixiuser.bean.ApplyWithdrawBean;
 import com.ipd.taixiuser.bean.BankCardBean;
 import com.ipd.taixiuser.bean.BaseResult;
 import com.ipd.taixiuser.bean.BusinessDetailBean;
+import com.ipd.taixiuser.bean.BusinessDirectoryBean;
+import com.ipd.taixiuser.bean.BusinessNoteBean;
 import com.ipd.taixiuser.bean.BusinessSchoolBean;
+import com.ipd.taixiuser.bean.BusinessSchoolCategoryBean;
+import com.ipd.taixiuser.bean.BusinessSchoolTabBean;
+import com.ipd.taixiuser.bean.BusinessTalkBean;
 import com.ipd.taixiuser.bean.CollectBusinessSchoolBean;
 import com.ipd.taixiuser.bean.CustomerBean;
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
@@ -21,6 +26,7 @@ import com.ipd.taixiuser.bean.ListResult;
 import com.ipd.taixiuser.bean.LoginBean;
 import com.ipd.taixiuser.bean.MatterBean;
 import com.ipd.taixiuser.bean.MatterDetailBean;
+import com.ipd.taixiuser.bean.MatterResultBean;
 import com.ipd.taixiuser.bean.MoveStockBean;
 import com.ipd.taixiuser.bean.MoveStockHistoryBean;
 import com.ipd.taixiuser.bean.MoveStockInfoBean;
@@ -138,8 +144,14 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST(HttpUrl.MATTER_LIST)
-    Observable<BaseResult<ListResult<MatterBean>>> matterList(@Field("page") int page,
-                                                              @Field("count") int count);
+    Observable<BaseResult<MatterResultBean>> matterList(@Field("page") int page,
+                                                        @Field("count") int count);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.MATTER_LIST)
+    Observable<BaseResult<MatterResultBean>> matterList(@Field("page") int page,
+                                                        @Field("count") int count,
+                                                        @Field("type_id") int type_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.MATTER_SEARCH)
@@ -154,16 +166,64 @@ public interface ApiService {
     /**
      * businessSchool
      */
+    @POST(HttpUrl.BUSINESS_CATEGORY)
+    Observable<BaseResult<List<BusinessSchoolCategoryBean>>> businessSchoolCategory();
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_TABS)
+    Observable<BaseResult<List<BusinessSchoolTabBean>>> businessSchoolTabs(@Field("type_id") int type_id);
+
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_LIST)
-    Observable<BaseResult<List<BusinessSchoolBean>>> businessSchoolList(@Field("page") int page,
-                                                                        @Field("count") int count);
+    Observable<BaseResult<ListResult<BusinessSchoolBean>>> businessSchoolList(@Field("page") int page,
+                                                                              @Field("type_id") int type_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_DIRECTORY)
+    Observable<BaseResult<List<BusinessDirectoryBean>>> businessDirectory(@Field("primary_directory_id") int primary_directory_id);
 
 
     @FormUrlEncoded
-    @POST(HttpUrl.BUSINESS_DETAIL)
-    Observable<BaseResult<BusinessDetailBean>> businessSchoolDetail(@Field("user_id") String user_id,
-                                                                    @Field("business_id") int business_id);
+    @POST(HttpUrl.BUSINESS_TALK)
+    Observable<BaseResult<List<BusinessTalkBean>>> businessTalk(@Field("primary_directory_id") int primary_directory_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_NOTE)
+    Observable<BaseResult<List<BusinessNoteBean>>> businessNote(@Field("user_id") String user_id,
+                                                                @Field("primary_directory_id") int primary_directory_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_TALK_REPLY)
+    Observable<BaseResult<BusinessTalkBean>> businessTalkReply(@Field("user_id") String user_id,
+                                                               @Field("primary_directory_id") int primary_directory_id,
+                                                               @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_TALK_REPLY)
+    Observable<BaseResult<BusinessTalkBean>> businessTalkReplySecond(@Field("user_id") String user_id,
+                                                                     @Field("pid") int pid,
+                                                                     @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_NOTE_ADD)
+    Observable<BaseResult<BusinessTalkBean>> businessNoteAdd(@Field("user_id") String user_id,
+                                                             @Field("primary_directory_id") int primary_directory_id,
+                                                             @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_NOTE_EDIT)
+    Observable<BaseResult<BusinessTalkBean>> businessNoteEdit(@Field("notes_id") int notes_id,
+                                                              @Field("content") String content);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_NOTE_DELETE)
+    Observable<BaseResult<BusinessTalkBean>> businessNoteDelete(@Field("notes_id") int notes_id);
+
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_DIRECTORY_DETAIL)
+    Observable<BaseResult<BusinessDetailBean>> businessSchoolDirectoryDetail(@Field("user_id") String user_id,
+                                                                             @Field("primary_directory_id") int primary_directory_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_PRAISE_OR_COLLECT)

@@ -17,4 +17,5 @@
 
 
     <dimen name="refresh_header_height_twitter">80dp</dimen>
+    <dimen name="talk_avatar_size">60dp</dimen>
 </resources>

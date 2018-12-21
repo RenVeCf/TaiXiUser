@@ -70,7 +70,7 @@ class MainActivity : BaseActivity() {
 
 
     private var homeFragment: HomeFragment? = null
-    private var matterFragment: MatterFragment? = null
+    private var matterFragment: MatterIndexFragment? = null
     private var manageFragment: ManageFragment? = null
     private var businessSchoolFragment: BusinessSchoolFragment? = null
     private var mineFragment: MineFragment? = null
@@ -91,7 +91,7 @@ class MainActivity : BaseActivity() {
                 transaction.show(homeFragment)
             }
             1 -> if (matterFragment == null) {
-                matterFragment = MatterFragment()
+                matterFragment = MatterIndexFragment()
                 transaction.add(R.id.fl_container, matterFragment)
             } else {
                 transaction.show(matterFragment)
@@ -146,7 +146,7 @@ class MainActivity : BaseActivity() {
         if (fragment == null) return
         when (fragment) {
             is HomeFragment -> homeFragment = fragment
-            is MatterFragment -> matterFragment = fragment
+            is MatterIndexFragment -> matterFragment = fragment
             is ManageFragment -> manageFragment = fragment
             is BusinessSchoolFragment -> businessSchoolFragment = fragment
             is MineFragment -> mineFragment = fragment

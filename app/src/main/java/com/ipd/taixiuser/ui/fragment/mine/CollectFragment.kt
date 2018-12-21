@@ -50,7 +50,7 @@ class CollectFragment : ListFragment<BaseResult<List<CollectBusinessSchoolBean>>
         if (mAdapter == null) {
             mAdapter = CollectBusinessSchoolAdapter(mActivity, data) {
                 //itemClick
-                BusinessSchoolDetailActivity.launch(mActivity, it.id)
+                BusinessSchoolDetailActivity.launch(mActivity, it.title, it.id)
             }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)
             recycler_view.adapter = mAdapter

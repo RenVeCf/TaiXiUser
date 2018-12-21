@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/fragment_list"/>
+    </FrameLayout>
+    
+    <LinearLayout
+        android:gravity="center"
+        android:background="@color/white"
+        android:paddingTop="@dimen/small_padding"
+        android:paddingBottom="@dimen/small_padding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+            android:id="@+id/tv_talk"
+            style="@style/TitleTextStyle"
+            android:text="我要提问"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_talk_btn"
+            />
+    </LinearLayout>
+    
+    
+
+</LinearLayout>

@@ -51,11 +51,21 @@
         <activity android:name=".ui.activity.home.HomeActionActivity" />
 
         <!-- matter -->
-        <activity android:name=".ui.activity.matter.MatterDetailActivity" />
+        <activity
+            android:name=".ui.activity.matter.MatterDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.SearchActivity" />
 
         <!-- businessSchool -->
-        <activity android:name=".ui.activity.businessschool.BusinessSchoolDetailActivity" />
+        <activity android:name=".ui.activity.businessschool.BusinessSchoolIndexActivity" />
+        <activity android:name=".ui.activity.businessschool.PublishBusinessTalkActivity" />
+        <activity android:name=".ui.activity.businessschool.PublishBusinessNoteActivity" />
+        <activity android:name=".ui.activity.businessschool.BusinessDirectoryDetailActivity" />
+        <activity
+            android:name=".ui.activity.businessschool.BusinessSchoolDetailActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
 
         <!-- manage -->
         <activity android:name=".ui.activity.manage.MineCustomerActivity" />

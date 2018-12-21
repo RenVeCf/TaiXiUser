@@ -1,4 +1,4 @@
-package com.ipd.taixiuser.ui.activity.matter
+package com.ipd.taixiuser.ui.activity.businessschool
 
 import android.app.Activity
 import android.content.Intent
@@ -9,79 +9,55 @@ import android.view.View
 import cn.jzvd.Jzvd
 import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.MatterDetailBean
+import com.ipd.taixiuser.bean.BusinessDirectoryBean
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.http.HttpUrl
-import com.ipd.taixiuser.presenter.MatterDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
-import com.ipd.taixiuser.utils.GlideImageLoader
 import com.ipd.taixiuser.widget.ShareDialog
 import com.ipd.taixiuser.widget.ShareDialogClick
-import com.youth.banner.BannerConfig
-import kotlinx.android.synthetic.main.activity_matter.*
+import kotlinx.android.synthetic.main.activity_business_directory_detail.*
 import java.util.*
 
-class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetailView {
+class BusinessDirectoryDetailActivity : BaseUIActivity() {
+
 
     companion object {
-        fun launch(activity: Activity, matterId: Int) {
-            val intent = Intent(activity, MatterDetailActivity::class.java)
-            intent.putExtra("matterId", matterId)
+        fun launch(activity: Activity, info: BusinessDirectoryBean) {
+            val intent = Intent(activity, BusinessDirectoryDetailActivity::class.java)
+            val bundle = Bundle()
+            bundle.putSerializable("info", info)
+            intent.putExtras(bundle)
             activity.startActivity(intent)
         }
     }
 
-    private val mMatterId: Int by lazy { intent.getIntExtra("matterId", 0) }
-    override fun getToolbarTitle(): String = "素材详情"
+    private val mInfo: BusinessDirectoryBean by lazy { intent.extras.getSerializable("info") as BusinessDirectoryBean }
+    override fun getToolbarTitle(): String = mInfo.title
 
-    override fun getContentLayout(): Int = R.layout.activity_matter
-
-    private var mPresenter: MatterDetailPresenter? = null
-    override fun onViewAttach() {
-        super.onViewAttach()
-        mPresenter = MatterDetailPresenter()
-        mPresenter?.attachView(this, this)
-    }
-
-    override fun onViewDetach() {
-        super.onViewDetach()
-        mPresenter?.detachView()
-        mPresenter = null
-    }
+    override fun getContentLayout(): Int = R.layout.activity_business_directory_detail
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
     override fun loadData() {
-        showProgress()
-        mPresenter?.loadMatterDetail(mMatterId)
-
+        setContent(mInfo)
     }
+
 
     override fun initListener() {
+
+
     }
 
-    private var mInfo: MatterDetailBean? = null
-    override fun loadMatterDetailSuccess(info: MatterDetailBean) {
-        mInfo = info
-        showContent()
+    private fun setContent(info: BusinessDirectoryBean) {
         when (info.uploadtype) {
             0 -> {//图片
                 banner.visibility = View.VISIBLE
                 video_player.visibility = View.GONE
-                banner.setIndicatorGravity(BannerConfig.RIGHT)
-                        .setImages(info.banner)
-                        .setImageLoader(GlideImageLoader())
-                        .setOnBannerListener {
-                            //                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
-                        }
-                        .start()
+                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, banner)
 
             }
-//            1 -> {//音频
-//
-//            }
             1, 2 -> {//视频
                 banner.visibility = View.GONE
                 video_player.visibility = View.VISIBLE
@@ -93,12 +69,8 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
         tv_matter_title.text = info.title
         tv_time.text = info.ctime
         web_view.loadData(info.content, "text/html; charset=UTF-8", null)
-    }
 
-    override fun loadMatterDetailFail(errMsg: String) {
-        showError(errMsg)
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_share, menu)
@@ -120,7 +92,7 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getShareDialogClick(info: MatterDetailBean): ShareDialog.ShareDialogOnclickListener {
+    private fun getShareDialogClick(info: BusinessDirectoryBean): ShareDialog.ShareDialogOnclickListener {
         var pic = HttpUrl.IMAGE_URL + info.img
         return ShareDialogClick()
                 .setShareTitle(info.title)

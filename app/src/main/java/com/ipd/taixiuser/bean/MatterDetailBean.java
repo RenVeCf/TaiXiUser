@@ -22,5 +22,11 @@ public class MatterDetailBean {
     public String ctime;
     public int is_del;
     public List<BannerBean> banner;
+    public int type_id;
+    public String url;
+    public String images;
+    public int uploadtype;
+    public int update_time;
+    public int forwardnum;
 
 }

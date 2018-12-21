@@ -3,148 +3,94 @@ package com.ipd.taixiuser.ui.activity.businessschool
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import cn.sharesdk.framework.Platform
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentPagerAdapter
+import android.view.View
+import cn.jzvd.Jzvd
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.BusinessDetailBean
-import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
-import com.ipd.taixiuser.platform.global.AuthUtils
-import com.ipd.taixiuser.platform.global.Constant
+import com.ipd.taixiuser.bean.BusinessDirectoryBean
+import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.http.HttpUrl
-import com.ipd.taixiuser.presenter.BusinessSchoolDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
-import com.ipd.taixiuser.ui.activity.web.WebActivity
-import com.ipd.taixiuser.utils.GlideImageLoader
-import com.ipd.taixiuser.widget.ShareDialog
-import com.ipd.taixiuser.widget.ShareDialogClick
-import com.youth.banner.BannerConfig
+import com.ipd.taixiuser.ui.fragment.businessschool.BusinessSchoolDirectoryFragment
+import com.ipd.taixiuser.ui.fragment.businessschool.BusinessSchoolNoteFragment
+import com.ipd.taixiuser.ui.fragment.businessschool.BusinessSchoolTalkFragment
 import kotlinx.android.synthetic.main.activity_business_school.*
-import org.greenrobot.eventbus.EventBus
-import java.util.HashMap
 
-class BusinessSchoolDetailActivity : BaseUIActivity(), BusinessSchoolDetailPresenter.IBusinessSchoolDetailView {
+class BusinessSchoolDetailActivity : BaseUIActivity() {
 
     companion object {
-        fun launch(activity: Activity, matterId: Int) {
+        fun launch(activity: Activity, title: String, matterId: Int) {
             val intent = Intent(activity, BusinessSchoolDetailActivity::class.java)
+            intent.putExtra("title", title)
             intent.putExtra("businessSchoolId", matterId)
             activity.startActivity(intent)
         }
     }
 
     private val mBusinessSchoolId: Int by lazy { intent.getIntExtra("businessSchoolId", 0) }
-    override fun getToolbarTitle(): String = "商学院详情"
+    override fun getToolbarTitle(): String = intent.getStringExtra("title")
 
     override fun getContentLayout(): Int = R.layout.activity_business_school
-
-    private var mPresenter: BusinessSchoolDetailPresenter? = null
-    override fun onViewAttach() {
-        super.onViewAttach()
-        mPresenter = BusinessSchoolDetailPresenter()
-        mPresenter?.attachView(this, this)
-    }
-
-    override fun onViewDetach() {
-        super.onViewDetach()
-        mPresenter?.detachView()
-        mPresenter = null
-    }
 
     override fun initView(bundle: Bundle?) {
         initToolbar()
     }
 
+    private val tabs = arrayListOf("目录", "问答", "笔记")
     override fun loadData() {
-        showProgress()
-        mPresenter?.loadBusinessSchoolDetail(mBusinessSchoolId)
+        view_pager.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
+            override fun getItem(position: Int): Fragment {
+                return when (position) {
+                    0 -> {
+                        BusinessSchoolDirectoryFragment.newInstance(mBusinessSchoolId)
+                    }
+                    1 -> {
+                        BusinessSchoolTalkFragment.newInstance(mBusinessSchoolId)
+                    }
+                    else -> {
+                        BusinessSchoolNoteFragment.newInstance(mBusinessSchoolId)
+                    }
+                }
+            }
+
+            override fun getCount(): Int = tabs.size
+
+            override fun getPageTitle(position: Int) = tabs[position]
+        }
+        tab_layout.setupWithViewPager(view_pager)
 
     }
 
     override fun initListener() {
     }
 
-    override fun loadBusinessDetailSuccess(info: BusinessDetailBean) {
-        banner.setIndicatorGravity(BannerConfig.RIGHT)
-                .setImages(info.banner)
-                .setImageLoader(GlideImageLoader())
-                .setOnBannerListener {
-//                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
-                }
-                .start()
-
-
-        tv_matter_title.text = info.title
-        tv_time.text = info.ctime
-//        tv_content.text = info.content
-        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
-
-
-        iv_praise.isSelected = info.is_praise == "1"
-        iv_collect.isSelected = info.is_collect == "1"
-
-
-        ll_praise.setOnClickListener {
-            //点赞
-            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
-                return@setOnClickListener
+    fun setHeaderInfo(info: BusinessDirectoryBean) {
+        when (info.uploadtype) {
+            0 -> {//图片
+                iv_img.visibility = View.VISIBLE
+                video_player.visibility = View.GONE
+                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, iv_img)
             }
-            mPresenter?.praise(mBusinessSchoolId)
-        }
-
-        ll_collect.setOnClickListener {
-            //收藏
-            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
-                return@setOnClickListener
+            1, 2 -> {//视频
+                iv_img.visibility = View.GONE
+                video_player.visibility = View.VISIBLE
+                video_player.setUp(HttpUrl.VIDEO_URL + info.url, "", Jzvd.SCREEN_WINDOW_NORMAL)
+                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, video_player.thumbImageView)
             }
-            mPresenter?.collect(mBusinessSchoolId)
         }
-        ll_share.setOnClickListener {
-            //分享
-            val dialog = ShareDialog(mActivity)
-            dialog.setShareDialogOnClickListener(getShareDialogClick(info))
-            dialog.show()
+    }
+
+    override fun onBackPressed() {
+        if (Jzvd.backPress()) {
+            return
         }
-
-        showContent()
+        super.onBackPressed()
     }
 
-    private fun getShareDialogClick(info: BusinessDetailBean): ShareDialog.ShareDialogOnclickListener {
-        var pic = HttpUrl.IMAGE_URL + info.img
-        return ShareDialogClick()
-                .setShareTitle(info.title)
-                .setShareContent(info.brief)
-                .setShareLogoUrl(pic)
-                .setCallback(object : ShareDialogClick.MainPlatformActionListener {
-                    override fun onComplete(platform: Platform?, i: Int, hashMap: HashMap<String, Any>?) {
-                        toastShow(true, "分享成功")
-                    }
-
-                    override fun onError(platform: Platform?, i: Int, throwable: Throwable?) {
-                        toastShow("分享失败")
-                    }
-
-                    override fun onCancel(platform: Platform?, i: Int) {
-                        toastShow("取消分享")
-                    }
-
-                })
-                .setShareUrl(HttpUrl.HTML_REG)
-    }
-
-    override fun loadBusinessDetailFail(errMsg: String) {
-        showError(errMsg)
-    }
-
-    override fun praiseSuccess() {
-        iv_praise.isSelected = !iv_praise.isSelected
-    }
-
-    override fun praiseFail(errMsg: String) {
-        toastShow(errMsg)
-    }
-
-    override fun collectSuccess() {
-        EventBus.getDefault().post(UpdateBusinessSchoolEvent())
-        iv_collect.isSelected = !iv_collect.isSelected
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos()
     }
 
 

@@ -29,9 +29,7 @@ class BusinessSchoolAdapter(val context: Context, private val list: List<Busines
         ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
         holder.itemView.tv_title.text = info.title
         holder.itemView.tv_desc.text = info.brief
-        holder.itemView.tv_zan.text = info.praise.toString()
-        holder.itemView.tv_collect.text = info.collect.toString()
-        holder.itemView.tv_time.text = info.ctime
+        holder.itemView.tv_study_num.text = "${info.studynum}人学习"
 
 
         holder.itemView.setOnClickListener {

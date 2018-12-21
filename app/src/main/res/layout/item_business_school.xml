@@ -59,33 +59,10 @@
 
 
         <TextView
-            android:id="@+id/tv_zan"
+            android:id="@+id/tv_study_num"
             style="@style/SmallTextStyle"
-            android:drawableLeft="@drawable/selector_zan_small"
-            android:drawablePadding="5dp"
-            android:text="100"
+            android:text="2018人学习"
             android:textColor="@color/LightGrey"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/tv_collect" />
-
-        <TextView
-            android:id="@+id/tv_collect"
-            style="@style/SmallTextStyle"
-            android:drawableLeft="@drawable/selector_collect_small"
-            android:drawablePadding="5dp"
-            android:text="100"
-            android:textColor="@color/LightGrey"
-            app:layout_constraintLeft_toRightOf="@id/tv_zan"
-            app:layout_constraintRight_toLeftOf="@id/tv_time" />
-
-
-        <TextView
-            android:id="@+id/tv_time"
-            style="@style/SmallTextStyle"
-            android:text="2018-08-08"
-            android:textColor="@color/LightGrey"
-            app:layout_constraintLeft_toRightOf="@id/tv_collect"
             app:layout_constraintRight_toRightOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

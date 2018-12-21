@@ -14,7 +14,7 @@ class BusinessSchoolDetailPresenter : BasePresenter<BusinessSchoolDetailPresente
     }
 
     fun loadBusinessSchoolDetail(matterId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().businessSchoolDetail(GlobalParam.getUserId(), matterId),
+        mModel?.getNormalRequestData(ApiManager.getService().businessSchoolDirectoryDetail(GlobalParam.getUserId(), matterId),
                 object : Response<BaseResult<BusinessDetailBean>>() {
                     override fun _onNext(result: BaseResult<BusinessDetailBean>) {
                         if (result.code == 200) {
@@ -34,41 +34,38 @@ class BusinessSchoolDetailPresenter : BasePresenter<BusinessSchoolDetailPresente
 
     }
 
-    fun praise(businessId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), businessId, 1),
-                object : Response<BaseResult<BusinessDetailBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<BusinessDetailBean>) {
-                        if (result.code == 200) {
-                            mView?.praiseSuccess()
-                        } else {
-                            mView?.praiseFail(result.msg)
-                        }
-                    }
-                })
-
-    }
-
-    fun collect(businessId: Int) {
-        mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), businessId, 0),
-                object : Response<BaseResult<BusinessDetailBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<BusinessDetailBean>) {
-                        if (result.code == 200) {
-                            mView?.collectSuccess()
-                        } else {
-                            mView?.praiseFail(result.msg)
-                        }
-                    }
-                })
-
-    }
+//    fun praise(businessId: Int) {
+//        mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), businessId, 1),
+//                object : Response<BaseResult<BusinessDetailBean>>(mContext, true) {
+//                    override fun _onNext(result: BaseResult<BusinessDetailBean>) {
+//                        if (result.code == 200) {
+//                            mView?.praiseSuccess()
+//                        } else {
+//                            mView?.praiseFail(result.msg)
+//                        }
+//                    }
+//                })
+//
+//    }
+//
+//    fun collect(businessId: Int) {
+//        mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), businessId, 0),
+//                object : Response<BaseResult<BusinessDetailBean>>(mContext, true) {
+//                    override fun _onNext(result: BaseResult<BusinessDetailBean>) {
+//                        if (result.code == 200) {
+//                            mView?.collectSuccess()
+//                        } else {
+//                            mView?.praiseFail(result.msg)
+//                        }
+//                    }
+//                })
+//
+//    }
 
 
     interface IBusinessSchoolDetailView {
         fun loadBusinessDetailSuccess(info: BusinessDetailBean)
         fun loadBusinessDetailFail(errMsg: String)
-        fun praiseSuccess()
-        fun praiseFail(errMsg: String)
-        fun collectSuccess()
     }
 
 

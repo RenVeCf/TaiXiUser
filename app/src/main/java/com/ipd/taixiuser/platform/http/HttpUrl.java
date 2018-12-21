@@ -5,6 +5,7 @@ package com.ipd.taixiuser.platform.http;
  */
 public interface HttpUrl {
     String SERVER_URL = "http://121.199.8.244:8555/api/";
+    String VIDEO_URL = "http://121.199.8.244:8555/";
     String IMAGE_URL = "http://121.199.8.244:8555/";
 
 
@@ -32,8 +33,17 @@ public interface HttpUrl {
     String MATTER_DETAIL = "material/materialinfo";
 
     //businessSchool
-    String BUSINESS_LIST = "business/list";
-    String BUSINESS_DETAIL = "business/info";
+    String BUSINESS_CATEGORY = "business/list";
+    String BUSINESS_TABS = "business/second";
+    String BUSINESS_LIST = "business/info";
+    String BUSINESS_DIRECTORY = "business/primary/info";
+    String BUSINESS_TALK = "comment/list";
+    String BUSINESS_NOTE = "notes/list";
+    String BUSINESS_TALK_REPLY = "comment/reply";
+    String BUSINESS_NOTE_ADD = "notes/add";
+    String BUSINESS_NOTE_EDIT = "notes/update";
+    String BUSINESS_NOTE_DELETE = "notes/del";
+    String BUSINESS_DIRECTORY_DETAIL = "business/primary/info";
     String BUSINESS_PRAISE_OR_COLLECT = "business/collectpraise";
 
 
