@@ -1,7 +1,5 @@
 package com.ipd.taixiuser.bean;
 
-import java.util.List;
-
 public class WalletBean {
 
     /**
@@ -10,6 +8,6 @@ public class WalletBean {
      */
 
     public String balance;
-    public List<ConsumeBean> consumption;
+    public ListResult<ConsumeBean> consumption;
 
 }

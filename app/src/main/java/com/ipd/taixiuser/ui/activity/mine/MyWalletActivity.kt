@@ -37,14 +37,19 @@ class MyWalletActivity : BaseUIActivity() {
 
     override fun loadData() {
         showProgress()
-        ApiManager.getService().myWallet(GlobalParam.getUserIdOrJump())
+        ApiManager.getService().myWallet(GlobalParam.getUserIdOrJump(), 1)
                 .compose(RxScheduler.applyScheduler())
                 .subscribe(object : Response<BaseResult<WalletBean>>() {
                     override fun _onNext(result: BaseResult<WalletBean>) {
                         if (result.code == 200) {
                             tv_balance.text = result.data.balance
-                            consume_recycler_view.adapter = ConsumeAdapter(mActivity, result.data.consumption) {
+                            consume_recycler_view.adapter = ConsumeAdapter(mActivity, result.data.consumption.data) {
 
+                            }
+
+                            rl_more_consume.setOnClickListener {
+                                //更多记录
+                                MoreConsumeActivity.launch(mActivity)
                             }
 
                             showContent()

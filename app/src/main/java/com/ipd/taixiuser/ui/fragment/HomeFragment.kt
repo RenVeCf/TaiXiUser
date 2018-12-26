@@ -83,32 +83,38 @@ class HomeFragment : BaseUIFragment() {
                                     HomeActionBean(R.mipmap.icon_question, 0, "常见问题", "")
                             )
                             mContentView.action_recycler_view.adapter = HomeActionAdapter(mActivity, list) {
-                                if (!AuthUtils.isLoginAndShowDialog(mActivity)){
+                                if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
                                     return@HomeActionAdapter
                                 }
                                 when (it.title) {
                                     "系统消息" -> {
+                                        list[0].unread = 0
                                         SystemMessageActivity.launch(mActivity)
                                     }
                                     "泰溪小秘书" -> {
                                         RongIM.getInstance().startCustomerServiceChat(mActivity, Constant.KEFU_ID, "在线客服", null)
                                     }
                                     "交易动态" -> {
+                                        list[2].unread = 0
                                         HomeActionActivity.launch(mActivity, it.title, 0)
                                     }
                                     "发货动态" -> {
+                                        list[3].unread = 0
                                         HomeActionActivity.launch(mActivity, it.title, 1)
                                     }
                                     "团队动态" -> {
+                                        list[4].unread = 0
                                         HomeActionActivity.launch(mActivity, it.title, 2)
                                     }
                                     "客户动态" -> {
+                                        list[5].unread = 0
                                         HomeActionActivity.launch(mActivity, it.title, 3)
                                     }
                                     "常见问题" -> {
                                         QuestionActivity.launch(mActivity)
                                     }
                                 }
+                                mContentView.action_recycler_view.adapter.notifyDataSetChanged()
                             }
 
 

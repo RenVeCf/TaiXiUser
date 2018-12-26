@@ -15,12 +15,20 @@
         android:text="客户姓名：徐梅"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+
     <TextView
         android:id="@+id/tv_transfer_time"
         style="@style/BaseTextStyle"
         android:text="2018-08-08"
         android:textColor="@color/LightGrey"
         app:layout_constraintRight_toRightOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_transfer_status"
+        style="@style/BaseTextStyle"
+        android:text="待接受"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_transfer_account" />
 
 
     <TextView
@@ -45,6 +53,41 @@
         android:text="接收人：张嘉译"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_transfer_account" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_operation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/base_padding"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tv_receive_name">
+
+        <TextView
+            android:id="@+id/tv_accept_receive"
+            style="@style/BaseTextStyle"
+            android:background="@drawable/shape_account_btn"
+            android:paddingLeft="20dp"
+            android:paddingTop="6dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="6dp"
+            android:text="接受转移"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_deny_receive"
+            style="@style/BaseTextStyle"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/shape_account_btn"
+            android:paddingLeft="20dp"
+            android:paddingTop="6dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="6dp"
+            android:text="拒绝转移"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>

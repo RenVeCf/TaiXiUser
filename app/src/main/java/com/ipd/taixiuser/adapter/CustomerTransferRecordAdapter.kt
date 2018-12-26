@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_customer_transfer_record.view.*
 /**
  * Created by jumpbox on 2017/8/31.
  */
-class CustomerTransferRecordAdapter(val context: Context, private val list: List<CustomerTransferRecordBean>?, private val itemClick: (info: CustomerTransferRecordBean) -> Unit) : RecyclerView.Adapter<CustomerTransferRecordAdapter.ViewHolder>() {
+class CustomerTransferRecordAdapter(val context: Context, private val list: List<CustomerTransferRecordBean>?, val actionType: Int, private val itemClick: (action: Int, info: CustomerTransferRecordBean) -> Unit) : RecyclerView.Adapter<CustomerTransferRecordAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int = list?.size ?: 0
 
@@ -25,15 +25,34 @@ class CustomerTransferRecordAdapter(val context: Context, private val list: List
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
+        holder.itemView.tv_transfer_status.text = "状态：${when (info.statue) {
+            0 -> "待接受"
+            1 -> "已接受"
+            2 -> "已拒绝"
+            else -> ""
+        }
+        }"
         holder.itemView.tv_transfer_name.text = "客户姓名：${info.customername}"
         holder.itemView.tv_transfer_time.text = info.ctime
         holder.itemView.tv_transfer_account.text = "客户账号：${info.phone}"
         holder.itemView.tv_operator.text = "转移人：${info.transfername}"
         holder.itemView.tv_receive_name.text = "接收人：${info.acceptname}"
 
+        if (actionType == 0 || info.statue != 0) {
+            holder.itemView.ll_operation.visibility = View.GONE
+        } else {
+            holder.itemView.ll_operation.visibility = View.VISIBLE
+            holder.itemView.tv_accept_receive.setOnClickListener {
+                itemClick.invoke(1, info)
+            }
+            holder.itemView.tv_deny_receive.setOnClickListener {
+                itemClick.invoke(2, info)
+            }
+        }
+
 
         holder.itemView.setOnClickListener {
-            itemClick.invoke(info)
+            itemClick.invoke(0, info)
         }
     }
 

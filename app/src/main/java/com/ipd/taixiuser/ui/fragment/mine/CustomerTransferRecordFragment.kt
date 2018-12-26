@@ -7,7 +7,10 @@ import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
+import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.ListFragment
+import com.ipd.taixiuser.utils.MessageDialog
 import rx.Observable
 
 class CustomerTransferRecordFragment : ListFragment<BaseResult<List<CustomerTransferRecordBean>>, CustomerTransferRecordBean>() {
@@ -48,8 +51,62 @@ class CustomerTransferRecordFragment : ListFragment<BaseResult<List<CustomerTran
     private var mAdapter: CustomerTransferRecordAdapter? = null
     override fun setOrNotifyAdapter() {
         if (mAdapter == null) {
-            mAdapter = CustomerTransferRecordAdapter(mActivity, data) {
+            mAdapter = CustomerTransferRecordAdapter(mActivity, data, mActionType) { action, info ->
                 //itemClick
+                when (action) {
+                    0 -> {
+                    }
+                    1 -> {
+                        //接受
+                        val builder = MessageDialog.Builder(mActivity)
+                        builder.setMessage("确定接受${info.transfername}转移到您的账户?")
+                                .setCommit("确定") {
+                                    it.dismiss()
+                                    ApiManager.getService().acceptCustomerTransfer(GlobalParam.getUserIdOrJump(), info.id)
+                                            .compose(RxScheduler.applyScheduler())
+                                            .subscribe(object : Response<BaseResult<CustomerTransferRecordBean>>(mActivity, true) {
+                                                override fun _onNext(result: BaseResult<CustomerTransferRecordBean>) {
+                                                    if (result.code == 200) {
+                                                        toastShow("操作成功")
+                                                        onRefresh(true)
+                                                    } else {
+                                                        toastShow(result.msg)
+                                                    }
+                                                }
+                                            })
+
+                                }
+                                .setCancel("取消") {
+                                    it.dismiss()
+
+                                }.show()
+                    }
+                    2 -> {
+                        //拒绝
+                        val builder = MessageDialog.Builder(mActivity)
+                        builder.setMessage("确定拒绝${info.transfername}转移到您的账户?")
+                                .setCommit("确定") {
+                                    it.dismiss()
+                                    ApiManager.getService().denyCustomerTransfer(GlobalParam.getUserIdOrJump(), info.id)
+                                            .compose(RxScheduler.applyScheduler())
+                                            .subscribe(object : Response<BaseResult<CustomerTransferRecordBean>>(mActivity, true) {
+                                                override fun _onNext(result: BaseResult<CustomerTransferRecordBean>) {
+                                                    if (result.code == 200) {
+                                                        toastShow("操作成功")
+                                                        onRefresh(true)
+                                                    } else {
+                                                        toastShow(result.msg)
+                                                    }
+                                                }
+                                            })
+
+                                }
+                                .setCancel("取消") {
+                                    it.dismiss()
+
+                                }.show()
+                    }
+                }
 
             }
             recycler_view.layoutManager = LinearLayoutManager(mActivity)

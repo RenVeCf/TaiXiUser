@@ -511,7 +511,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.MY_WALLET)
-    Observable<BaseResult<WalletBean>> myWallet(@Field("user_id") String user_id);
+    Observable<BaseResult<WalletBean>> myWallet(@Field("user_id") String user_id,
+                                                @Field("page") int page);
 
     @FormUrlEncoded
     @POST(HttpUrl.APPLY_WITHDRAW)
@@ -525,6 +526,16 @@ public interface ApiService {
     @POST(HttpUrl.CUSTOMER_TRANSFER_RECORD)
     Observable<BaseResult<List<CustomerTransferRecordBean>>> customerTransferRecord(@Field("user_id") String user_id,
                                                                                     @Field("statue") int statue);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.ACCEPT_CUSTOMER_TRANSFER)
+    Observable<BaseResult<CustomerTransferRecordBean>> acceptCustomerTransfer(@Field("user_id") String user_id,
+                                                                              @Field("transfer_id") int transfer_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.DENY_CUSTOMER_TRANSFER)
+    Observable<BaseResult<CustomerTransferRecordBean>> denyCustomerTransfer(@Field("user_id") String user_id,
+                                                                            @Field("transfer_id") int transfer_id);
 
 
     @GET(HttpUrl.MINE_HTML)

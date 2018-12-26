@@ -115,6 +115,7 @@
         <activity android:name=".ui.activity.mine.MyCollectActivity" />
         <activity android:name=".ui.activity.mine.CustomerTransferRecordActivity" />
         <activity android:name=".ui.activity.mine.SettingActivity" />
+        <activity android:name=".ui.activity.mine.MoreConsumeActivity" />
 
 
         <!-- crop -->

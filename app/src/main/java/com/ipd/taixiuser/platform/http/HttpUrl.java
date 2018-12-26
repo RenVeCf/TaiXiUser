@@ -101,6 +101,8 @@ public interface HttpUrl {
     String APPLY_WITHDRAW = "my/apply/bankshow";
     String BANK_LIST = "my/bank/card";
     String CUSTOMER_TRANSFER_RECORD = "my/customer/transfer";
+    String ACCEPT_CUSTOMER_TRANSFER = "my/customer/accept/transfer";
+    String DENY_CUSTOMER_TRANSFER = "my/customer/refuse/transfer";
     String NEW_BANK = "my/add/bank/card";
     String CONFIRM_WITHDRAW = "my/confirm";
     String WITHDRAW_PROGRESS = "my/bankshowlog";
