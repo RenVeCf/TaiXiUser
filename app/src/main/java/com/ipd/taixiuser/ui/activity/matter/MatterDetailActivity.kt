@@ -18,6 +18,7 @@ import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
 import com.ipd.taixiuser.event.UpdateCollectListEvent
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.global.AuthUtils
+import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.presenter.MatterDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
@@ -187,7 +188,7 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
                     }
 
                 })
-                .setShareUrl(HttpUrl.HTML_REG)
+                .setShareUrl(HttpUrl.HTML_REG+GlobalParam.getInvitationCode())
     }
 
 

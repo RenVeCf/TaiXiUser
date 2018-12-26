@@ -294,6 +294,7 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
     private fun loginSuccess(loginResult: LoginBean) {
         JPushInterface.setAlias(GlobalApplication.mContext, loginResult.user_id, "TXSW${loginResult.user_id}")
         GlobalParam.saveUserId(loginResult.user_id.toString())
+        GlobalParam.saveInvitationCode(loginResult.invitationcode)
     }
 
 

@@ -14,5 +14,6 @@ public class LoginBean {
     public String phone;
     public String avatar;
     public String rongcloud_token;
+    public String invitationcode;
 
 }

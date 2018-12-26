@@ -9,7 +9,7 @@ public interface HttpUrl {
     String IMAGE_URL = "http://121.199.8.244:8555/";
 
 
-    String HTML_REG = SERVER_URL + "reg/index";
+    String HTML_REG = SERVER_URL + "reg/index?invitation=";
 
     //account
     String SMS_CODE = "mobileCode";

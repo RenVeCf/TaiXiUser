@@ -9,6 +9,7 @@ import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import com.ipd.taixiuser.ui.activity.businessschool.BusinessDirectoryDetailActivity
 import com.ipd.taixiuser.ui.activity.businessschool.BusinessSchoolDetailActivity
+import com.ipd.taixiuser.ui.activity.web.WebActivity
 import rx.Observable
 
 class BusinessSchoolDirectoryFragment : ListFragment<BaseResult<List<BusinessDirectoryBean>>, BusinessDirectoryBean>() {
@@ -56,6 +57,7 @@ class BusinessSchoolDirectoryFragment : ListFragment<BaseResult<List<BusinessDir
                     }
                     1 -> {
                         BusinessDirectoryDetailActivity.launch(mActivity,info)
+//                        WebActivity.launch(mActivity,WebActivity.URL,info.h5url,info.title)
                     }
                 }
 

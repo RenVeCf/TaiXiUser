@@ -18,7 +18,6 @@ import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
 import com.ipd.taixiuser.bean.EarningParentBean;
 import com.ipd.taixiuser.bean.ExplainHtmlBean;
 import com.ipd.taixiuser.bean.ExpressFeeBean;
-import com.ipd.taixiuser.bean.ExpressInfoBean;
 import com.ipd.taixiuser.bean.FactoryShipBean;
 import com.ipd.taixiuser.bean.ForgetPwdBean;
 import com.ipd.taixiuser.bean.HomeBean;
@@ -275,7 +274,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.EARNINGS_LIST)
-    Observable<BaseResult<EarningParentBean>> earningsList(@Field("user_id") String user_id);
+    Observable<BaseResult<EarningParentBean>> earningsList(@Field("user_id") String user_id,
+                                                           @Field("page") int page);
 
 
     @FormUrlEncoded

@@ -28,6 +28,14 @@ public class GlobalParam {
         return SharedPreferencesUtil.getStringData(GlobalApplication.Companion.getMContext(), "userToken", "");
     }
 
+    public static void saveInvitationCode(String invitationCode) {
+        SharedPreferencesUtil.saveStringData(GlobalApplication.Companion.getMContext(), "invitationCode", invitationCode);
+    }
+
+    public static String getInvitationCode() {
+        return SharedPreferencesUtil.getStringData(GlobalApplication.Companion.getMContext(), "invitationCode", "");
+    }
+
     public static void saveUserId(String userId) {
         SharedPreferencesUtil.saveStringData(GlobalApplication.Companion.getMContext(), "userId", userId);
     }

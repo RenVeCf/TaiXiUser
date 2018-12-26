@@ -5,18 +5,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import cn.jzvd.Jzvd
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.BusinessDirectoryBean
-import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.widget.ShareDialog
 import com.ipd.taixiuser.widget.ShareDialogClick
-import kotlinx.android.synthetic.main.activity_business_directory_detail.*
-import java.text.SimpleDateFormat
+import kotlinx.android.synthetic.main.activity_matter.*
 import java.util.*
 
 class BusinessDirectoryDetailActivity : BaseUIActivity() {
@@ -52,31 +51,42 @@ class BusinessDirectoryDetailActivity : BaseUIActivity() {
     }
 
     private fun setContent(info: BusinessDirectoryBean) {
-        when (info.uploadtype) {
-            0 -> {//图片
-                banner.visibility = View.VISIBLE
-                video_player.visibility = View.GONE
-                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, banner)
+//        when (info.uploadtype) {
+//            0 -> {//图片
+//                banner.visibility = View.VISIBLE
+//                video_player.visibility = View.GONE
+//                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, banner)
+//
+//            }
+//            1, 2 -> {//视频
+//                banner.visibility = View.GONE
+//                video_player.visibility = View.VISIBLE
+//                video_player.setUp(HttpUrl.VIDEO_URL + info.url, "", Jzvd.SCREEN_WINDOW_NORMAL)
+//                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, video_player.thumbImageView)
+//                video_player.startButton.performClick()
+//            }
+//        }
+//        tv_matter_title.text = info.title
+//        try {
+//            val sdf = SimpleDateFormat("yyyy-MM-dd")
+//            val time = sdf.format(info.ctime.toLong() * 1000)
+//            tv_time.text = time
+//        } catch (e: Exception) {
+//            tv_time.text = info.ctime
+//        }
+//
+//        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
 
-            }
-            1, 2 -> {//视频
-                banner.visibility = View.GONE
-                video_player.visibility = View.VISIBLE
-                video_player.setUp(HttpUrl.VIDEO_URL + info.url, "", Jzvd.SCREEN_WINDOW_NORMAL)
-                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, video_player.thumbImageView)
-                video_player.startButton.performClick()
+
+        web_view.settings.javaScriptEnabled = true
+
+        web_view.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return true
             }
         }
-        tv_matter_title.text = info.title
-        try {
-            val sdf = SimpleDateFormat("yyyy-MM-dd")
-            val time = sdf.format(info.ctime.toLong() * 1000)
-            tv_time.text = time
-        } catch (e: Exception) {
-            tv_time.text = info.ctime
-        }
-
-        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
+        web_view.loadUrl(info.h5url)
 
     }
 
@@ -120,21 +130,21 @@ class BusinessDirectoryDetailActivity : BaseUIActivity() {
                     }
 
                 })
-                .setShareUrl(HttpUrl.HTML_REG)
+                .setShareUrl(HttpUrl.HTML_REG + GlobalParam.getInvitationCode())
     }
 
 
-    override fun onBackPressed() {
-        if (Jzvd.backPress()) {
-            return
-        }
-        super.onBackPressed()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Jzvd.releaseAllVideos()
-    }
+//    override fun onBackPressed() {
+//        if (Jzvd.backPress()) {
+//            return
+//        }
+//        super.onBackPressed()
+//    }
+//
+//    override fun onPause() {
+//        super.onPause()
+//        Jzvd.releaseAllVideos()
+//    }
 
 
 }
