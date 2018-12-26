@@ -3,9 +3,13 @@ package com.ipd.taixiuser.ui.activity.matter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import cn.jzvd.Jzvd
 import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
@@ -82,36 +86,46 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
     override fun loadMatterDetailSuccess(info: MatterDetailBean) {
         mInfo = info
         showContent()
-        iv_praise.isSelected = info.is_praise == "1"
-        iv_collect.isSelected = info.is_collect == "1"
-
-        when (info.uploadtype) {
-            0 -> {//图片
-                banner.visibility = View.VISIBLE
-                video_player.visibility = View.GONE
-                banner.setIndicatorGravity(BannerConfig.RIGHT)
-                        .setImages(info.banner)
-                        .setImageLoader(GlideImageLoader())
-                        .setOnBannerListener {
-                            //                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
-                        }
-                        .start()
-
-            }
-//            1 -> {//音频
+//        iv_praise.isSelected = info.is_praise == "1"
+//        iv_collect.isSelected = info.is_collect == "1"
+//
+//        when (info.uploadtype) {
+//            0 -> {//图片
+//                banner.visibility = View.VISIBLE
+//                video_player.visibility = View.GONE
+//                banner.setIndicatorGravity(BannerConfig.RIGHT)
+//                        .setImages(info.banner)
+//                        .setImageLoader(GlideImageLoader())
+//                        .setOnBannerListener {
+//                            //                    WebActivity.launch(mActivity, WebActivity.URL, info.banner[it].url)
+//                        }
+//                        .start()
 //
 //            }
-            1, 2 -> {//视频
-                banner.visibility = View.GONE
-                video_player.visibility = View.VISIBLE
-                video_player.setUp(HttpUrl.VIDEO_URL + info.url, "", Jzvd.SCREEN_WINDOW_NORMAL)
-                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, video_player.thumbImageView)
-                video_player.startButton.performClick()
+////            1 -> {//音频
+////
+////            }
+//            1, 2 -> {//视频
+//                banner.visibility = View.GONE
+//                video_player.visibility = View.VISIBLE
+//                video_player.setUp(HttpUrl.VIDEO_URL + info.url, "", Jzvd.SCREEN_WINDOW_NORMAL)
+//                ImageLoader.loadNoPlaceHolderImg(mActivity, info.img, video_player.thumbImageView)
+//                video_player.startButton.performClick()
+//            }
+//        }
+//        tv_matter_title.text = info.title
+//        tv_time.text = info.ctime
+//        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
+
+        web_view.settings.javaScriptEnabled = true
+
+        web_view.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                view.loadUrl(url)
+                return true
             }
         }
-        tv_matter_title.text = info.title
-        tv_time.text = info.ctime
-        web_view.loadData(info.content, "text/html; charset=UTF-8", null)
+        web_view.loadUrl(info.url)
     }
 
     override fun loadMatterDetailFail(errMsg: String) {
