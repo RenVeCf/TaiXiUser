@@ -40,7 +40,12 @@ class MatterIndexFragment : BaseUIFragment() {
                         if (result.code == 200) {
                             mContentView.view_pager.adapter = object : FragmentPagerAdapter(childFragmentManager) {
                                 override fun getItem(position: Int): Fragment {
-                                    return MatterFragment.newInstance(result.data.type[position].id)
+                                    val info = result.data.type[position]
+                                    return if (info.is_h5 == 0) {
+                                        MatterFragment.newInstance(result.data.type[position].id)
+                                    } else {
+                                        MatterForwardFragment.newInstance(result.data.type[position].id)
+                                    }
                                 }
 
                                 override fun getCount(): Int = result.data.type.size

@@ -103,4 +103,19 @@ object StringUtils {
         }
         return arrayListOf(fixPicStr)
     }
+
+    fun splitImagesV2(picStr: String): List<String> {
+        if (TextUtils.isEmpty(picStr)) {
+            return arrayListOf()
+        }
+        var fixPicStr = picStr
+        if (fixPicStr.last() == ',') {
+            fixPicStr = fixPicStr.substring(0, picStr.length - 1)
+        }
+
+        if (fixPicStr.contains(",")) {
+            return fixPicStr.split(",")
+        }
+        return arrayListOf(fixPicStr)
+    }
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.ConsumeBean
+import kotlinx.android.synthetic.main.item_consume.view.*
 
 /**
  * Created by jumpbox on 2017/8/31.
@@ -24,7 +25,9 @@ class ConsumeAdapter(val context: Context, private val list: List<ConsumeBean>?,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-
+        holder.itemView.tv_consume_name.text = info.title
+        holder.itemView.tv_consume_time.text = info.ctime
+        holder.itemView.tv_consume_price.text = info.expense
 
         holder.itemView.setOnClickListener {
             itemClick.invoke(info)

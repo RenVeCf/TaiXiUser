@@ -13,10 +13,12 @@ public class MatterBean {
 
     public int id;
     public String img;
+    public String images;
     public String title;
     public String content;
     public String brief;
     public String ctime;
+    public String forwardnum;
     public int is_del;
 
 }

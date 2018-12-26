@@ -7,13 +7,13 @@ import android.text.TextUtils
 import android.view.View
 import com.ipd.jumpbox.jumpboxlibrary.utils.CommonUtils
 import com.ipd.taixiuser.R
-import com.ipd.taixiuser.bean.ExpressFeeBean
-import com.ipd.taixiuser.bean.OfTheBankBean
-import com.ipd.taixiuser.bean.ProductDetailBean
-import com.ipd.taixiuser.bean.WechatBean
+import com.ipd.taixiuser.bean.*
 import com.ipd.taixiuser.event.PayResultEvent
 import com.ipd.taixiuser.imageload.ImageLoader
 import com.ipd.taixiuser.platform.global.GlobalParam
+import com.ipd.taixiuser.platform.http.ApiManager
+import com.ipd.taixiuser.platform.http.Response
+import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.presenter.StorePayPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.ui.activity.web.WebActivity
@@ -67,7 +67,17 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
 
     override fun initListener() {
         ll_permission.setOnClickListener {
-            WebActivity.launch(mActivity, WebActivity.URL, "http://www.baidu.com", "总代权限")
+            ApiManager.getService().explainHtml("4")
+                    .compose(RxScheduler.applyScheduler())
+                    .subscribe(object : Response<BaseResult<ExplainHtmlBean>>(mActivity, true) {
+                        override fun _onNext(result: BaseResult<ExplainHtmlBean>) {
+                            if (result.code == 200) {
+                                WebActivity.launch(mActivity, WebActivity.HTML, result.data.content, "总代权限")
+                            } else {
+                                toastShow(result.msg)
+                            }
+                        }
+                    })
         }
 
         ll_city.setOnClickListener {
@@ -175,7 +185,7 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
     }
 
     override fun ofThePublicPaySuccess(result: OfTheBankBean) {
-        OfThePublicSuccessActivity.launch(mActivity,result)
+        OfThePublicSuccessActivity.launch(mActivity, result)
         finish()
     }
 

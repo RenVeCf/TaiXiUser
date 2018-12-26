@@ -10,7 +10,10 @@ import cn.jzvd.Jzvd
 import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.MatterDetailBean
+import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
+import com.ipd.taixiuser.event.UpdateCollectListEvent
 import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.platform.global.AuthUtils
 import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.presenter.MatterDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
@@ -18,6 +21,7 @@ import com.ipd.taixiuser.utils.GlideImageLoader
 import com.ipd.taixiuser.widget.ShareDialog
 import com.ipd.taixiuser.widget.ShareDialogClick
 import com.youth.banner.BannerConfig
+import io.rong.eventbus.EventBus
 import kotlinx.android.synthetic.main.activity_matter.*
 import java.util.*
 
@@ -60,12 +64,27 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
     }
 
     override fun initListener() {
+        ll_praise.setOnClickListener {
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
+                return@setOnClickListener
+            }
+            mPresenter?.praise(mMatterId)
+        }
+        ll_collect.setOnClickListener {
+            if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
+                return@setOnClickListener
+            }
+            mPresenter?.collect(mMatterId)
+        }
     }
 
     private var mInfo: MatterDetailBean? = null
     override fun loadMatterDetailSuccess(info: MatterDetailBean) {
         mInfo = info
         showContent()
+        iv_praise.isSelected = info.is_praise == "1"
+        iv_collect.isSelected = info.is_collect == "1"
+
         when (info.uploadtype) {
             0 -> {//图片
                 banner.visibility = View.VISIBLE
@@ -97,6 +116,20 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
 
     override fun loadMatterDetailFail(errMsg: String) {
         showError(errMsg)
+    }
+
+
+    override fun praiseSuccess() {
+        iv_praise.isSelected = !iv_praise.isSelected
+    }
+
+    override fun praiseFail(errMsg: String) {
+        toastShow(errMsg)
+    }
+
+    override fun collectSuccess() {
+        EventBus.getDefault().post(UpdateCollectListEvent())
+        iv_collect.isSelected = !iv_collect.isSelected
     }
 
 

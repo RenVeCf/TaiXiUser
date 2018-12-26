@@ -25,6 +25,8 @@ public class MatterDetailBean {
     public int type_id;
     public String url;
     public String images;
+    public String is_collect;
+    public String is_praise;
     public int uploadtype;
     public int update_time;
     public int forwardnum;

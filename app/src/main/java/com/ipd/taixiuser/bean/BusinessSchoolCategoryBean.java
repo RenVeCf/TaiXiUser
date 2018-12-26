@@ -12,6 +12,7 @@ public class BusinessSchoolCategoryBean {
 
     public int id;
     public String name;
+    public String img;
     public int pid;
     public int ctime;
     public int update_time;

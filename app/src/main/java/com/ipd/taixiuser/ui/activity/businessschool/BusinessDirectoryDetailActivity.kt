@@ -16,6 +16,7 @@ import com.ipd.taixiuser.ui.BaseUIActivity
 import com.ipd.taixiuser.widget.ShareDialog
 import com.ipd.taixiuser.widget.ShareDialogClick
 import kotlinx.android.synthetic.main.activity_business_directory_detail.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 class BusinessDirectoryDetailActivity : BaseUIActivity() {
@@ -67,7 +68,14 @@ class BusinessDirectoryDetailActivity : BaseUIActivity() {
             }
         }
         tv_matter_title.text = info.title
-        tv_time.text = info.ctime
+        try {
+            val sdf = SimpleDateFormat("yyyy-MM-dd")
+            val time = sdf.format(info.ctime.toLong() * 1000)
+            tv_time.text = time
+        } catch (e: Exception) {
+            tv_time.text = info.ctime
+        }
+
         web_view.loadData(info.content, "text/html; charset=UTF-8", null)
 
     }

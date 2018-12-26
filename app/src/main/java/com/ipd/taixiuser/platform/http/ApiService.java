@@ -12,7 +12,7 @@ import com.ipd.taixiuser.bean.BusinessSchoolBean;
 import com.ipd.taixiuser.bean.BusinessSchoolCategoryBean;
 import com.ipd.taixiuser.bean.BusinessSchoolTabBean;
 import com.ipd.taixiuser.bean.BusinessTalkBean;
-import com.ipd.taixiuser.bean.CollectBusinessSchoolBean;
+import com.ipd.taixiuser.bean.CollectMatterBean;
 import com.ipd.taixiuser.bean.CustomerBean;
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
 import com.ipd.taixiuser.bean.EarningParentBean;
@@ -161,7 +161,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.MATTER_DETAIL)
-    Observable<BaseResult<MatterDetailBean>> matterDetail(@Field("material_id") int material_id);
+    Observable<BaseResult<MatterDetailBean>> matterDetail(@Field("user_id") String user_id,
+                                                          @Field("material_id") int material_id);
 
     /**
      * businessSchool
@@ -227,9 +228,9 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_PRAISE_OR_COLLECT)
-    Observable<BaseResult<BusinessDetailBean>> businessPraiseOrCollect(@Field("user_id") String user_id,
-                                                                       @Field("business_id") int business_id,
-                                                                       @Field("type") int type);
+    Observable<BaseResult<MatterDetailBean>> businessPraiseOrCollect(@Field("user_id") String user_id,
+                                                                     @Field("material_id") int material_id,
+                                                                     @Field("type") int type);
 
 
     /**
@@ -506,7 +507,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.COLLECT_LIST)
-    Observable<BaseResult<List<CollectBusinessSchoolBean>>> collectList(@Field("user_id") String user_id);
+    Observable<BaseResult<List<CollectMatterBean>>> collectList(@Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.MY_WALLET)
