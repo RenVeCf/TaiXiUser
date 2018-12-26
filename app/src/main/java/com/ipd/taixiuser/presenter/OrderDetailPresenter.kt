@@ -74,10 +74,10 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
 
     fun expressInfo(orderId: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().expressInfo(GlobalParam.getUserIdOrJump(), orderId),
-                object : Response<BaseResult<ExpressInfoBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<ExpressInfoBean>) {
+                object : Response<BaseResult<String>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 200) {
-                            mView?.lookExpressSuccess()
+                            mView?.lookExpressSuccess(result.data)
                         } else {
                             mView?.lookExpressFail(result.msg)
                         }
@@ -93,7 +93,7 @@ class OrderDetailPresenter : BasePresenter<OrderDetailPresenter.IOrderDetailView
         fun cancelFail(errMsg: String)
         fun deleteSuccess()
         fun deleteFail(errMsg: String)
-        fun lookExpressSuccess()
+        fun lookExpressSuccess(url:String)
         fun lookExpressFail(errMsg: String)
         fun confirmReceiveSuccess()
         fun confirmReceiveFail(errMsg: String)

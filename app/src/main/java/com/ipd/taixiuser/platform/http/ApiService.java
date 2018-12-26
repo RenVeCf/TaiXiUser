@@ -256,6 +256,14 @@ public interface ApiService {
                                                      @Field("address") String address,
                                                      @Field("pos_id") String pos_id);
 
+    @FormUrlEncoded
+    @POST(HttpUrl.EDIT_CUSTOMER)
+    Observable<BaseResult<CustomerBean>> editCustomer(@Field("proxy") String proxy,
+                                                      @Field("remark") String remark,
+                                                      @Field("area") String area,
+                                                      @Field("address") String address,
+                                                      @Field("user_id") int user_id);
+
 
     @FormUrlEncoded
     @POST(HttpUrl.STORE_LIST)
@@ -277,7 +285,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.STOCK_RECORD_LIST)
-    Observable<BaseResult<StockRecordParentBean>> stockRecordList(@Field("user_id") String user_id);
+    Observable<BaseResult<StockRecordParentBean>> stockRecordList(@Field("user_id") String user_id,
+                                                                  @Field("page") int page);
 
     @FormUrlEncoded
     @POST(HttpUrl.MINE_TEAM)
@@ -422,8 +431,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.EXPRESS_INFO)
-    Observable<BaseResult<ExpressInfoBean>> expressInfo(@Field("user_id") String user_id,
-                                                        @Field("order_id") int order_id);
+    Observable<BaseResult<String>> expressInfo(@Field("user_id") String user_id,
+                                               @Field("order_id") int order_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.SALE_AFTER)

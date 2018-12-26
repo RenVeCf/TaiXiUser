@@ -13,6 +13,7 @@ import com.ipd.taixiuser.bean.UpdateOrderEvent
 import com.ipd.taixiuser.event.UpdateOrderDetailEvent
 import com.ipd.taixiuser.presenter.OrderDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
+import com.ipd.taixiuser.ui.activity.web.WebActivity
 import com.ipd.taixiuser.utils.OrderUtils
 import com.ipd.taixiuser.utils.StringUtils
 import kotlinx.android.synthetic.main.activity_order_detail.*
@@ -139,8 +140,8 @@ class OrderDetailActivity : BaseUIActivity(), OrderUtils.OrderDetailBtnClickList
         toastShow(errMsg)
     }
 
-    override fun lookExpressSuccess() {
-
+    override fun lookExpressSuccess(url: String) {
+        WebActivity.launch(mActivity, WebActivity.URL, url,"物流查询")
     }
 
     override fun lookExpressFail(errMsg: String) {

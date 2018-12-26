@@ -35,7 +35,7 @@ public class OrderDetailBean {
     public int fox;
     @SerializedName("case")
     public int caseX;
-    public int ctime;
+    public String ctime;
     public String freight;
     public String ordercode;
     public String expence;

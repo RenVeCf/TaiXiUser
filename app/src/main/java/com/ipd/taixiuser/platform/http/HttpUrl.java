@@ -50,6 +50,7 @@ public interface HttpUrl {
     //manage
     String MINE_CUSTOMER = "manage/mycustomer";
     String NEW_CUSTOMER = "manage/mycustomer/add";
+    String EDIT_CUSTOMER = "manage/mycustomer/update";
     String CUSTOMER_INFO = "manage/mycustomer/info";
     String TEAM_STRUCT = "manage/myteam/structure";
     String MINE_TEAM_LIST = "manage/myteam/info";

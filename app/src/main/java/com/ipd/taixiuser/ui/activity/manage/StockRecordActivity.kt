@@ -34,8 +34,8 @@ class StockRecordActivity : BaseUIActivity() {
     }
 
     fun setStockInfo(result: BaseResult<StockRecordParentBean>) {
-        tv_cur_stock.text = result.data.num + "箱"
-        tv_total_stock.text = result.data.num1 + "箱"
+        tv_cur_stock.text = result.data.num
+        tv_total_stock.text = result.data.num1
     }
 
 

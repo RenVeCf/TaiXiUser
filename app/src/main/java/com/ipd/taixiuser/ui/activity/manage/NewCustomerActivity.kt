@@ -7,6 +7,7 @@ import android.view.inputmethod.InputMethodManager
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener
 import com.ipd.taixiuser.R
+import com.ipd.taixiuser.bean.CustomerBean
 import com.ipd.taixiuser.event.UpdateCustomerEvent
 import com.ipd.taixiuser.presenter.CustomerPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
@@ -19,13 +20,27 @@ import org.greenrobot.eventbus.EventBus
 class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperationView {
 
     companion object {
-        fun launch(activity: Activity) {
+        fun launch(activity: Activity, customerInfo: CustomerBean? = null) {
             val intent = Intent(activity, NewCustomerActivity::class.java)
+            if (customerInfo != null) {
+                val bundle = Bundle()
+                bundle.putSerializable("info", customerInfo)
+                intent.putExtras(bundle)
+            }
             activity.startActivity(intent)
         }
     }
 
-    override fun getToolbarTitle(): String = "添加客户"
+    private val mCustomerInfo: CustomerBean? by lazy {
+        val serializable = intent.extras?.getSerializable("info")
+        if (serializable != null) {
+            serializable as CustomerBean
+        } else {
+            null
+        }
+    }
+
+    override fun getToolbarTitle(): String = if (mCustomerInfo == null) "添加客户" else "修改客户"
 
     override fun getContentLayout(): Int = R.layout.activity_new_customer
 
@@ -48,6 +63,19 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
     }
 
     override fun loadData() {
+        if (mCustomerInfo != null) {
+            et_customer_name.setText(mCustomerInfo!!.username)
+            et_customer_phone.setText(mCustomerInfo!!.phone)
+            tv_city.text = mCustomerInfo!!.area
+            tv_customer_weixin.setText(mCustomerInfo!!.weixin)
+            tv_level.text = StringUtils.getLevelById(mCustomerInfo!!.proxy.toString())
+            et_detail_address.setText(mCustomerInfo!!.address)
+            tv_customer_remark.setText(mCustomerInfo!!.remark)
+
+            et_customer_name.isEnabled = false
+            et_customer_phone.isEnabled = false
+            tv_customer_weixin.isEnabled = false
+        }
     }
 
     override fun initListener() {
@@ -79,7 +107,8 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
             val customerLevel = tv_level.text.toString().trim()
             val customerAddress = et_detail_address.text.toString().trim()
             val customerRemark = tv_customer_remark.text.toString().trim()
-            mPresenter?.addCustomer(customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity, customerAddress)
+            mPresenter?.addCustomer(mCustomerInfo?.id
+                    ?: -1, customerPhone, customerName, customerWeixin, customerLevel, customerRemark, customerCity, customerAddress)
         }
 
     }
