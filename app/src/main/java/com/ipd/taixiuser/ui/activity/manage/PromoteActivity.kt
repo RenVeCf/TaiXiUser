@@ -12,6 +12,7 @@ import com.ipd.taixiuser.platform.http.Response
 import com.ipd.taixiuser.platform.http.RxScheduler
 import com.ipd.taixiuser.ui.BaseUIActivity
 import kotlinx.android.synthetic.main.activity_promote.*
+import kotlinx.android.synthetic.main.activity_promote.view.*
 
 
 class PromoteActivity : BaseUIActivity() {
@@ -39,6 +40,7 @@ class PromoteActivity : BaseUIActivity() {
                 .subscribe(object :Response<BaseResult<UserInfoBean>>(){
                     override fun _onNext(result: BaseResult<UserInfoBean>) {
                         if (result.code == 200){
+                            promote_layout.tv_next_level_hint.text = result.data.describe
                             promote_layout.setCurLevel(result.data.proxy.toInt())
 
                             showContent()

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.ipd.taixiuser.widget.PromoteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:id="@+id/promote_layout"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:focusableInTouchMode="true"
-    android:orientation="vertical"
     android:layerType="software"
+    android:orientation="vertical"
     android:padding="@dimen/base_padding">
 
 
@@ -57,6 +57,18 @@
             android:text="分红股东" />
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_next_level_hint"
+        style="@style/SmallTextStyle"
+        android:text="距离下一级别还差11个分公司"
+        android:textColor="@color/LightGrey"
+        app:layout_constraintBottom_toTopOf="@id/ll_company"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_area_ceo" />
+
 
     <LinearLayout
         android:id="@+id/ll_company"
@@ -129,6 +141,7 @@
             android:text="VIP" />
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/ll_gift_box"
         style="@style/PromoteLableMarginStyle"
