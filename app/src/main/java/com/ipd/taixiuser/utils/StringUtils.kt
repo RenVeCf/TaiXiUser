@@ -49,6 +49,10 @@ object StringUtils {
         return SimpleDateFormat("yyyy-MM-dd").format(second * 1000)
     }
 
+    fun getDateTimeBySecond(second: Long): String {
+        return SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(second * 1000)
+    }
+
     /**
      * 最多2位小数   120.0  120.01 120.12
      * 如果上千(>= 1000)并且是整数就显示整数部分 3224 3224.2

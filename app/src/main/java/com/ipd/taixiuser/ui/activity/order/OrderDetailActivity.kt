@@ -73,8 +73,8 @@ class OrderDetailActivity : BaseUIActivity(), OrderUtils.OrderDetailBtnClickList
         tv_total_price.text = "￥ ${info.expence}"
         tv_order_no.text = "订单编号：${info.ordercode}"
         tv_trade_no.text = "交易号：${info.ordercode}"
-        tv_order_create_time.text = "创建时间：${info.ctime}"
-        tv_order_deal_time.text = "成交时间：${info.ctime}"
+        tv_order_create_time.text = "创建时间：${StringUtils.getDateTimeBySecond(info.ctime)}"
+        tv_order_deal_time.text = "成交时间：${StringUtils.getDateTimeBySecond(info.ctime)}"
 
 
         if (info.statue == OrderUtils.AFTER_SALE) {

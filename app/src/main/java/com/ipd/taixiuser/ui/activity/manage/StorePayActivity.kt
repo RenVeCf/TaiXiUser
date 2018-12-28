@@ -207,13 +207,13 @@ class StorePayActivity : BaseUIActivity(), StorePayPresenter.IStorePayView {
     }
 
     override fun paySuccess(orderNo: String) {
-        if (mInfo?.statue == 1) {
-            PayResultActivity.launch(mActivity, PayResultActivity.STORE, orderNo)
-            finish()
-        } else {
+//        if (mInfo?.statue == 1) {
+//            PayResultActivity.launch(mActivity, PayResultActivity.STORE, orderNo)
+//            finish()
+//        } else {
             toastShow(true, "支付成功")
             finish()
-        }
+//        }
     }
 
     override fun payFail(errMsg: String) {

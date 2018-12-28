@@ -2,10 +2,11 @@ package com.ipd.taixiuser.ui.fragment.mine
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import com.ipd.jumpbox.jumpboxlibrary.utils.LogUtils
 import com.ipd.taixiuser.adapter.CollectMatterAdapter
 import com.ipd.taixiuser.bean.BaseResult
 import com.ipd.taixiuser.bean.CollectMatterBean
-import com.ipd.taixiuser.event.UpdateCollectListEvent
+import com.ipd.taixiuser.event.UpdateCollectEvent
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
@@ -64,7 +65,8 @@ class CollectFragment : ListFragment<BaseResult<List<CollectMatterBean>>, Collec
     }
 
     @Subscribe
-    fun onMainEvent(event: UpdateCollectListEvent) {
+    fun onMainEvent(event: UpdateCollectEvent) {
+        LogUtils.e("tag", "onrefresh....")
         onRefresh(true)
     }
 

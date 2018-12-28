@@ -37,17 +37,19 @@ class QuestionFragment : ListFragment<BaseResult<List<QuestionBean>>, QuestionBe
         if (mAdapter == null) {
             mAdapter = QuestionAdapter(mActivity, data, {
                 //itemClick
-                ApiManager.getService().questionDetail(it.id)
-                        .compose(RxScheduler.applyScheduler())
-                        .subscribe(object : Response<BaseResult<QuestionBean>>(mActivity, true) {
-                            override fun _onNext(result: BaseResult<QuestionBean>) {
-                                if (result.code == 200) {
-                                    WebActivity.launch(mActivity, WebActivity.HTML, result.data.content, it.title)
-                                } else {
-                                    toastShow(result.msg)
-                                }
-                            }
-                        })
+//                ApiManager.getService().questionDetail(it.id)
+//                        .compose(RxScheduler.applyScheduler())
+//                        .subscribe(object : Response<BaseResult<QuestionBean>>(mActivity, true) {
+//                            override fun _onNext(result: BaseResult<QuestionBean>) {
+//                                if (result.code == 200) {
+//                                    WebActivity.launch(mActivity, WebActivity.URL, result.data.url, it.title)
+//                                } else {
+//                                    toastShow(result.msg)
+//                                }
+//                            }
+//                        })
+                WebActivity.launch(mActivity, WebActivity.URL, it.url, it.title)
+
 
 
             })

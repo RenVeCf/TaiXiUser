@@ -3,29 +3,22 @@ package com.ipd.taixiuser.ui.activity.matter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import cn.jzvd.Jzvd
 import cn.sharesdk.framework.Platform
 import com.ipd.taixiuser.R
 import com.ipd.taixiuser.bean.MatterDetailBean
-import com.ipd.taixiuser.event.UpdateBusinessSchoolEvent
-import com.ipd.taixiuser.event.UpdateCollectListEvent
-import com.ipd.taixiuser.imageload.ImageLoader
+import com.ipd.taixiuser.event.UpdateCollectEvent
 import com.ipd.taixiuser.platform.global.AuthUtils
 import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.HttpUrl
 import com.ipd.taixiuser.presenter.MatterDetailPresenter
 import com.ipd.taixiuser.ui.BaseUIActivity
-import com.ipd.taixiuser.utils.GlideImageLoader
 import com.ipd.taixiuser.widget.ShareDialog
 import com.ipd.taixiuser.widget.ShareDialogClick
-import com.youth.banner.BannerConfig
 import io.rong.eventbus.EventBus
 import kotlinx.android.synthetic.main.activity_matter.*
 import java.util.*
@@ -87,9 +80,9 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
     override fun loadMatterDetailSuccess(info: MatterDetailBean) {
         mInfo = info
         showContent()
-//        iv_praise.isSelected = info.is_praise == "1"
-//        iv_collect.isSelected = info.is_collect == "1"
-//
+        iv_praise.isSelected = info.is_praise == "1"
+        iv_collect.isSelected = info.is_collect == "1"
+
 //        when (info.uploadtype) {
 //            0 -> {//图片
 //                banner.visibility = View.VISIBLE
@@ -143,7 +136,7 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
     }
 
     override fun collectSuccess() {
-        EventBus.getDefault().post(UpdateCollectListEvent())
+        EventBus.getDefault().post(UpdateCollectEvent())
         iv_collect.isSelected = !iv_collect.isSelected
     }
 
@@ -188,7 +181,7 @@ class MatterDetailActivity : BaseUIActivity(), MatterDetailPresenter.MatterDetai
                     }
 
                 })
-                .setShareUrl(HttpUrl.HTML_REG+GlobalParam.getInvitationCode())
+                .setShareUrl(HttpUrl.HTML_REG + GlobalParam.getInvitationCode())
     }
 
 
