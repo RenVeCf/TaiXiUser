@@ -45,24 +45,22 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
                 object : Response<BaseResult<LoginBean>>(mContext, true) {
                     override fun _onNext(result: BaseResult<LoginBean>) {
                         if (result.code == 200) {
-                            loginSuccess(result.data)
-                            view.loginSuccess()
-//                            //融云
-//                            RongIM.connect(result.data.rongcloud_token, object : RongIMClient.ConnectCallback() {
-//                                override fun onSuccess(p0: String?) {
-//                                    loginSuccess(result.data)
-//                                    view.loginSuccess()
-//                                }
-//
-//                                override fun onError(errCode: RongIMClient.ErrorCode?) {
-//                                    view.loginFail("登录失败")
-//                                }
-//
-//                                override fun onTokenIncorrect() {
-//                                    view.loginFail("Token错误")
-//                                }
-//
-//                            })
+                            //融云
+                            RongIM.connect(result.data.rongcloud_token, object : RongIMClient.ConnectCallback() {
+                                override fun onSuccess(p0: String?) {
+                                    loginSuccess(result.data)
+                                    view.loginSuccess()
+                                }
+
+                                override fun onError(errCode: RongIMClient.ErrorCode?) {
+                                    view.loginFail("登录失败")
+                                }
+
+                                override fun onTokenIncorrect() {
+                                    view.loginFail("Token错误")
+                                }
+
+                            })
 
 
                         } else {

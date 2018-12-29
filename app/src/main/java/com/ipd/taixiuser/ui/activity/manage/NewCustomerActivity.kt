@@ -75,6 +75,11 @@ class NewCustomerActivity : BaseUIActivity(), CustomerPresenter.ICustomerOperati
             et_customer_name.isEnabled = false
             et_customer_phone.isEnabled = false
             tv_customer_weixin.isEnabled = false
+
+            if (mCustomerInfo!!.proxy > 3){
+                ll_level.isEnabled = false
+            }
+
         }
     }
 

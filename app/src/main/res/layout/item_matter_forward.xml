@@ -27,8 +27,6 @@
         style="@style/SmallTextStyle"
         android:layout_width="0dp"
         android:layout_marginTop="@dimen/small_padding"
-        android:ellipsize="end"
-        android:maxLines="2"
         android:text="我们每一盒青汁上，都有彩色的二维码标签，都有彩色的二维码标签都有彩色的二维码标签"
         android:textColor="@color/LightGrey"
         app:layout_constraintLeft_toLeftOf="@id/tv_title"
@@ -53,6 +51,7 @@
         app:layout_constraintTop_toBottomOf="@id/img_recycler_view">
 
         <TextView
+            android:id="@+id/tv_share"
             style="@style/BaseTextStyle"
             android:background="@drawable/shape_forward_btn"
             android:paddingLeft="25dp"

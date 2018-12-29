@@ -37,7 +37,7 @@ class MainActivity : BaseActivity() {
     override fun initListener() {
         tabs.forEachIndexed { index, layout ->
             layout.setOnClickListener {
-                if (it == ll_manage || it == ll_mine) {
+                if (it == ll_manage || it == ll_mine || it == ll_business_school) {
                     //登录
                     if (!AuthUtils.isLoginAndShowDialog(mActivity)) {
                         return@setOnClickListener

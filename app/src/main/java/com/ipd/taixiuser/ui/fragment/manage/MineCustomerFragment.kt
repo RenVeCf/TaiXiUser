@@ -11,6 +11,7 @@ import com.ipd.taixiuser.platform.global.GlobalParam
 import com.ipd.taixiuser.platform.http.ApiManager
 import com.ipd.taixiuser.ui.ListFragment
 import com.ipd.taixiuser.ui.activity.manage.CustomerInfoActivity
+import com.ipd.taixiuser.ui.activity.manage.InviteCustomerActivity
 import com.ipd.taixiuser.ui.activity.manage.MineCustomerActivity
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -65,7 +66,11 @@ class MineCustomerFragment : ListFragment<BaseResult<List<CustomerBean>>, Custom
                 //itemClick
                 when (mType) {
                     MineCustomerActivity.NORMAL -> {
-                        CustomerInfoActivity.launch(mActivity, it.id)
+                        if (it.is_activation == 0) {
+                            InviteCustomerActivity.launch(mActivity, it.id)
+                        } else {
+                            CustomerInfoActivity.launch(mActivity, it.id)
+                        }
                     }
                     MineCustomerActivity.CHOOSE -> {
                         EventBus.getDefault().post(ChooseCustomerEvent(it))

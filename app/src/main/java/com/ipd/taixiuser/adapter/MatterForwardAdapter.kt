@@ -1,5 +1,6 @@
 package com.ipd.taixiuser.adapter
 
+import android.content.ClipboardManager
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -42,8 +43,12 @@ class MatterForwardAdapter(val context: Context, private val list: List<MatterBe
         }
 
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.tv_share.setOnClickListener {
             LoadingUtils.show(context)
+            val cm = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            // 将文本内容放到系统剪贴板里。
+            cm.text = info.brief
+
             PictureUtils.savePhotos(context, splitImagesV2) { code, files ->
                 LoadingUtils.dismiss()
                 if (code == 0) {

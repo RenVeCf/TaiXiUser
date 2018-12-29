@@ -49,12 +49,20 @@
                 app:layout_constraintTop_toTopOf="@id/iv_headline" />
 
 
-            <TextView
-                android:id="@+id/tv_headline_text"
-                style="@style/BaseTextStyle"
+            <!--<TextView-->
+                <!--android:id="@+id/tv_headline_text"-->
+                <!--style="@style/BaseTextStyle"-->
+                <!--android:layout_marginLeft="@dimen/small_padding"-->
+                <!--android:text="泰溪科技app1.0上线啦"-->
+                <!--app:layout_constraintLeft_toRightOf="@id/view_line" />-->
+
+
+            <com.ipd.taixiuser.widget.NoticeView
                 android:layout_marginLeft="@dimen/small_padding"
-                android:text="泰溪科技app1.0上线啦"
-                app:layout_constraintLeft_toRightOf="@id/view_line" />
+                android:id="@+id/notice_view"
+                android:layout_width="0dp"
+                app:layout_constraintLeft_toRightOf="@id/view_line"
+                android:layout_height="wrap_content"/>
 
         </android.support.constraint.ConstraintLayout>
 

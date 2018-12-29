@@ -78,6 +78,7 @@
         <!-- manage -->
         <activity android:name=".ui.activity.manage.MineCustomerActivity" />
         <activity android:name=".ui.activity.manage.NewCustomerActivity" />
+        <activity android:name=".ui.activity.manage.InviteCustomerActivity" />
         <activity android:name=".ui.activity.manage.CustomerInfoActivity" />
         <activity android:name=".ui.activity.manage.RetailActivity" />
         <activity android:name=".ui.activity.manage.ShipOrderActivity" />

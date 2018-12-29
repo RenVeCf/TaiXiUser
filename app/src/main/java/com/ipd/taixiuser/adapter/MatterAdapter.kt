@@ -26,7 +26,7 @@ class MatterAdapter(val context: Context, private val list: List<MatterBean>?, p
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val info = list!![position]
 
-        ImageLoader.loadImgWithPlaceHolder(context, info.img, R.mipmap.matter_img, holder.itemView.iv_product)
+        ImageLoader.loadNoPlaceHolderImg(context, info.img, holder.itemView.iv_product)
         holder.itemView.tv_title.text = info.title
         holder.itemView.tv_desc.text = info.brief
         holder.itemView.tv_time.text = info.ctime

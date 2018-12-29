@@ -30,7 +30,7 @@ class HomeFragment : BaseUIFragment() {
 
     override fun initTitle() {
         super.initTitle()
-        mHeaderView.tv_title.text = "泰溪科技"
+        mHeaderView.tv_title.text = "泰溪生物"
     }
 
     override fun getContentLayout(): Int = R.layout.fragment_home
@@ -51,11 +51,15 @@ class HomeFragment : BaseUIFragment() {
                             val data = result.data
                             setBanner(result.data.banner)
                             if (data.headline?.size ?: 0 > 0) {
-                                mContentView.tv_headline_text.text = data.headline[0].title
-                                mContentView.cl_headline.setOnClickListener {
-                                    //头条
-                                    WebActivity.launch(mActivity, WebActivity.URL, data.headline[0].url, "泰溪头条")
+                                mContentView.notice_view.addNotice(data.headline)
+                                mContentView.notice_view.startFlipping()
+                                mContentView.notice_view.setOnNoticeClickListener { position, notice ->
+                                    WebActivity.launch(mActivity, WebActivity.URL, notice.url, "泰溪头条")
                                 }
+//                                mContentView.cl_headline.setOnClickListener {
+//                                    //头条
+//                                    WebActivity.launch(mActivity, WebActivity.URL, data.headline[0].url, "泰溪头条")
+//                                }
                             }
 
                             mContentView.cl_info.setOnClickListener {

@@ -12,6 +12,7 @@ import com.ipd.taixiuser.bean.BusinessSchoolBean;
 import com.ipd.taixiuser.bean.BusinessSchoolCategoryBean;
 import com.ipd.taixiuser.bean.BusinessSchoolTabBean;
 import com.ipd.taixiuser.bean.BusinessTalkBean;
+import com.ipd.taixiuser.bean.CertBean;
 import com.ipd.taixiuser.bean.CollectMatterBean;
 import com.ipd.taixiuser.bean.CustomerBean;
 import com.ipd.taixiuser.bean.CustomerTransferRecordBean;
@@ -166,8 +167,9 @@ public interface ApiService {
     /**
      * businessSchool
      */
+    @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_CATEGORY)
-    Observable<BaseResult<List<BusinessSchoolCategoryBean>>> businessSchoolCategory();
+    Observable<BaseResult<List<BusinessSchoolCategoryBean>>> businessSchoolCategory(@Field("user_id") String user_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_TABS)
@@ -177,6 +179,11 @@ public interface ApiService {
     @POST(HttpUrl.BUSINESS_LIST)
     Observable<BaseResult<ListResult<BusinessSchoolBean>>> businessSchoolList(@Field("page") int page,
                                                                               @Field("type_id") int type_id);
+
+    @FormUrlEncoded
+    @POST(HttpUrl.BUSINESS_MY_CERT)
+    Observable<BaseResult<CertBean>> businessMyCert(@Field("user_id") String user_id,
+                                                    @Field("type_id") int type_id);
 
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_DIRECTORY)

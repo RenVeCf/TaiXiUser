@@ -45,6 +45,7 @@ public interface HttpUrl {
     String BUSINESS_NOTE_DELETE = "notes/del";
     String BUSINESS_DIRECTORY_DETAIL = "business/primary/info";
     String BUSINESS_PRAISE_OR_COLLECT = "business/collectpraise";
+    String BUSINESS_MY_CERT = "business/second";
 
 
     //manage
