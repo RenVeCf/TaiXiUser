@@ -104,15 +104,14 @@
     </style>
 
     <style name="PromoteLableStyle" parent="TitleTextStyle">
-        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/shape_promote_light</item>
         <item name="android:paddingBottom">@dimen/small_padding</item>
         <item name="android:paddingTop">@dimen/small_padding</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
     <style name="PromoteLableMarginStyle">
-        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_marginTop">35dp</item>
     </style>
 
     <style name="ScreenViewStyle">

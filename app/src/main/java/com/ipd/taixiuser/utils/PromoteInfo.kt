@@ -1,8 +1,6 @@
 package com.ipd.taixiuser.utils
 
-import android.content.Context
-import android.view.ViewGroup
-import android.widget.TextView
+import android.view.View
 import com.ipd.taixiuser.R
 
 object PromoteInfo {
@@ -29,58 +27,110 @@ object PromoteInfo {
         }
     }
 
-    fun setStyleByLevel(context: Context, view: ViewGroup, level: Int) {
-        when (view.id) {
+    fun getIconByResId(view: View, status: Int): Int {
+        return when (view.id) {
             R.id.ll_shareholder -> {
-                val textView = view.getChildAt(1) as TextView
-                setStyleByLevel(context, textView, level, SHAREHOLDER)
+                when (status) {
+                    0 -> R.mipmap.vip8_dark
+                    else -> R.mipmap.vip8_light
+                }
             }
             R.id.ll_area_ceo -> {
-                val textView = view.getChildAt(1) as TextView
-                setStyleByLevel(context, textView, level, AREA_CEO)
+                when (status) {
+                    0 -> R.mipmap.vip7_dark
+                    else -> R.mipmap.vip7_light
+                }
             }
             R.id.ll_company -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, COMPANY)
+                when (status) {
+                    0 -> R.mipmap.vip6_dark
+                    else -> R.mipmap.vip6_light
+                }
             }
             R.id.ll_leader_proxy -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, LEADER_PROXY)
+                when (status) {
+                    0 -> R.mipmap.vip5_dark
+                    else -> R.mipmap.vip5_light
+                }
             }
             R.id.ll_proxy -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, PROXY)
+                when (status) {
+                    0 -> R.mipmap.vip4_dark
+                    else -> R.mipmap.vip4_light
+                }
             }
             R.id.ll_vip -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, VIP)
+                when (status) {
+                    0 -> R.mipmap.vip3_dark
+                    else -> R.mipmap.vip3_light
+                }
             }
             R.id.ll_gift_box -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, GIFT_BOX)
+                when (status) {
+                    0 -> R.mipmap.vip2_dark
+                    else -> R.mipmap.vip2_light
+                }
             }
             else -> {
-                val textView = view.getChildAt(0) as TextView
-                setStyleByLevel(context, textView, level, RETAIL)
+                when (status) {
+                    0 -> R.mipmap.vip1_dark
+                    else -> R.mipmap.vip1_light
+                }
             }
         }
     }
-
-    private fun setStyleByLevel(context: Context, textView: TextView, curLevel: Int, resLevel: Int) {
-        when {
-            curLevel > resLevel -> {
-                textView.setBackgroundResource(R.drawable.shape_promote_light)
-                textView.setTextColor(context.resources.getColor(R.color.colorPrimaryDark))
-            }
-            curLevel == resLevel -> {
-                textView.setBackgroundResource(R.drawable.shape_promote_current)
-                textView.setTextColor(context.resources.getColor(R.color.white))
-            }
-            else -> {
-                textView.setBackgroundResource(R.drawable.shape_promote_dark)
-                textView.setTextColor(context.resources.getColor(R.color.black))
-            }
-        }
-    }
+//    fun setStyleByLevel(context: Context, view: ViewGroup, level: Int) {
+//        when (view.id) {
+//            R.id.ll_shareholder -> {
+//                val textView = view.getChildAt(1) as TextView
+//                setStyleByLevel(context, textView, level, SHAREHOLDER)
+//            }
+//            R.id.ll_area_ceo -> {
+//                val textView = view.getChildAt(1) as TextView
+//                setStyleByLevel(context, textView, level, AREA_CEO)
+//            }
+//            R.id.ll_company -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, COMPANY)
+//            }
+//            R.id.ll_leader_proxy -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, LEADER_PROXY)
+//            }
+//            R.id.ll_proxy -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, PROXY)
+//            }
+//            R.id.ll_vip -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, VIP)
+//            }
+//            R.id.ll_gift_box -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, GIFT_BOX)
+//            }
+//            else -> {
+//                val textView = view.getChildAt(0) as TextView
+//                setStyleByLevel(context, textView, level, RETAIL)
+//            }
+//        }
+//    }
+//
+//    private fun setStyleByLevel(context: Context, textView: TextView, curLevel: Int, resLevel: Int) {
+//        when {
+//            curLevel > resLevel -> {
+//                textView.setBackgroundResource(R.drawable.shape_promote_light)
+//                textView.setTextColor(context.resources.getColor(R.color.colorPrimaryDark))
+//            }
+//            curLevel == resLevel -> {
+//                textView.setBackgroundResource(R.drawable.shape_promote_current)
+//                textView.setTextColor(context.resources.getColor(R.color.white))
+//            }
+//            else -> {
+//                textView.setBackgroundResource(R.drawable.shape_promote_dark)
+//                textView.setTextColor(context.resources.getColor(R.color.black))
+//            }
+//        }
+//    }
 
 }

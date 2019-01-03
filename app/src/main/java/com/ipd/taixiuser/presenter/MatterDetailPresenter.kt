@@ -37,8 +37,8 @@ class MatterDetailPresenter : BasePresenter<MatterDetailPresenter.MatterDetailVi
 
     fun praise(matterId: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), matterId, 1),
-                object : Response<BaseResult<MatterDetailBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<MatterDetailBean>) {
+                object : Response<BaseResult<String>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 200) {
                             mView?.praiseSuccess()
                         } else {
@@ -51,8 +51,8 @@ class MatterDetailPresenter : BasePresenter<MatterDetailPresenter.MatterDetailVi
 
     fun collect(matterId: Int) {
         mModel?.getNormalRequestData(ApiManager.getService().businessPraiseOrCollect(GlobalParam.getUserIdOrJump(), matterId, 0),
-                object : Response<BaseResult<MatterDetailBean>>(mContext, true) {
-                    override fun _onNext(result: BaseResult<MatterDetailBean>) {
+                object : Response<BaseResult<String>>(mContext, true) {
+                    override fun _onNext(result: BaseResult<String>) {
                         if (result.code == 200) {
                             mView?.collectSuccess()
                         } else {

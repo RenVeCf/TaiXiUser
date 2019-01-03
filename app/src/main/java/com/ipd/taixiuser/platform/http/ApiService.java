@@ -234,7 +234,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpUrl.BUSINESS_PRAISE_OR_COLLECT)
-    Observable<BaseResult<MatterDetailBean>> businessPraiseOrCollect(@Field("user_id") String user_id,
+    Observable<BaseResult<String>> businessPraiseOrCollect(@Field("user_id") String user_id,
                                                                      @Field("material_id") int material_id,
                                                                      @Field("type") int type);
 
