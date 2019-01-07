@@ -60,6 +60,7 @@ class JoinProxyActivity : BaseUIActivity(), UserInfoPresenter.IUserInfoView {
         tv_proxy_name.text = userInfo.username
         tv_proxy_no.text = "(${userInfo.proxyname}${userInfo.nickname})"
         ImageLoader.loadNoPlaceHolderImg(mActivity, userInfo.qrcodes, iv_code)
+        tv_invite_code.text ="邀请码:${userInfo.Invitationcode}"
 
         tv_save.setOnClickListener {
             tv_save.isEnabled = false

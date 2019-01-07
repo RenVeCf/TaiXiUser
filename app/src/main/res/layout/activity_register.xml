@@ -59,7 +59,7 @@
         android:id="@+id/et_invite_code"
         style="@style/AccountEditTextStyle"
         android:layout_marginTop="@dimen/base_padding"
-        android:hint="邀请码(选填)"
+        android:hint="邀请码"
         android:maxLength="16"
         app:layout_constraintTop_toBottomOf="@id/et_password" />
 

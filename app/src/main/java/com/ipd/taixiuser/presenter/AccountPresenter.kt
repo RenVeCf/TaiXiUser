@@ -220,6 +220,9 @@ class AccountPresenter<V> : BasePresenter<V, BasicModel>() {
         } else if (code.length < Constant.SMS_CODE_LENGHT) {
             view.registerFail("请输入正确的验证码")
             return
+        } else if (TextUtils.isEmpty(inviteCode)) {
+            view.registerFail("请输入邀请码")
+            return
         }
 
         mModel?.getNormalRequestData(ApiManager.getService().register(phone, password, code, inviteCode),
