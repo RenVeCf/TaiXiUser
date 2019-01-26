@@ -4,9 +4,10 @@ package com.ipd.taixiuser.platform.http;
  * Created by jumpbox on 16/5/2.
  */
 public interface HttpUrl {
-    String SERVER_URL = "http://121.199.8.244:8555/api/";
-    String VIDEO_URL = "http://121.199.8.244:8555/";
-    String IMAGE_URL = "http://121.199.8.244:8555/";
+    String BASE_URL = "http://www.txswshop.com/";
+    String SERVER_URL = BASE_URL+"api/";
+    String VIDEO_URL = BASE_URL;
+    String IMAGE_URL = BASE_URL;
 
 
     String HTML_REG = SERVER_URL + "reg/index?invitation=";

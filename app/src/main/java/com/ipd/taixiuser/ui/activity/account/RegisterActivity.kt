@@ -72,6 +72,11 @@ class RegisterActivity : BaseUIActivity(), AccountPresenter.IRegisterView, TextW
             mPresenter?.getSmsCode(phone, "1")
         }
 
+        tv_user_agent.setOnClickListener {
+            //用户注册协议
+
+        }
+
         btn_register.setOnClickListener {
             if (!cb_user_agent.isChecked) {
                 toastShow("请先同意用户注册协议");return@setOnClickListener
