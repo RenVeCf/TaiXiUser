@@ -62,11 +62,11 @@ class MineTeamActivity : BaseUIActivity() {
 
         val list = listOf(
                 TeamGroupBean(R.mipmap.icon_retail, "零售", data[0].num, data[0].proxy),
-                TeamGroupBean(R.mipmap.icon_gift_box, "礼盒装", data[1].num, data[1].proxy),
-                TeamGroupBean(R.mipmap.icon_vip, "VIP", data[2].num, data[2].proxy),
-                TeamGroupBean(R.mipmap.icon_proxy, "代理", data[3].num, data[3].proxy),
-                TeamGroupBean(R.mipmap.icon_max_proxy, "总代理", data[4].num, data[4].proxy),
-                TeamGroupBean(R.mipmap.icon_company, "分公司", data[5].num, data[5].proxy),
+                TeamGroupBean(R.mipmap.icon_gift_box, "VIP", data[1].num, data[1].proxy),
+                TeamGroupBean(R.mipmap.icon_vip, "代理", data[2].num, data[2].proxy),
+                TeamGroupBean(R.mipmap.icon_proxy, "区代", data[3].num, data[3].proxy),
+                TeamGroupBean(R.mipmap.icon_max_proxy, "总代", data[4].num, data[4].proxy),
+                TeamGroupBean(R.mipmap.icon_company, "市场总监", data[5].num, data[5].proxy),
                 TeamGroupBean(R.mipmap.icon_area_ceo, "大区总裁", data[6].num, data[6].proxy),
                 TeamGroupBean(R.mipmap.icon_shareholder, "分红股东", data[7].num, data[7].proxy)
         )

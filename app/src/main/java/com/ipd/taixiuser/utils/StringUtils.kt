@@ -16,19 +16,19 @@ object StringUtils {
     )
     val addCustomerLevels = arrayListOf(
             "零售",
-            "礼盒装",
             "VIP",
-            "代理"
+            "代理",
+            "区代"
     )
 
     fun getLevelIdByLevel(str: String): String {
         return when (str) {
             "零售" -> "0"
-            "礼盒装" -> "1"
-            "VIP" -> "2"
-            "代理" -> "3"
-            "总代理" -> "4"
-            "分公司" -> "5"
+            "VIP" -> "1"
+            "代理" -> "2"
+            "区代" -> "3"
+            "总代" -> "4"
+            "市场总监" -> "5"
             else -> ""
         }
     }
@@ -36,11 +36,11 @@ object StringUtils {
     fun getLevelById(id: String): String {
         return when (id) {
             "0" -> "零售"
-            "1" -> "礼盒装"
-            "2" -> "VIP"
-            "3" -> "代理"
-            "4" -> "总代理"
-            "5" -> "分公司"
+            "1" -> "VIP"
+            "2" -> "代理"
+            "3" -> "区代"
+            "4" -> "总代"
+            "5" -> "市场总监"
             else -> ""
         }
     }

@@ -115,7 +115,7 @@
             android:id="@+id/iv_company"
             style="@style/PromoteLableStyle"
             android:background="@mipmap/promote_company"
-            android:text="分公司" />
+            android:text="市场总监" />
 
     </LinearLayout>
 
@@ -134,7 +134,7 @@
         <ImageView
             style="@style/PromoteLableStyle"
             android:background="@mipmap/promote_lead_proxy"
-            android:text="总代理" />
+            android:text="总代" />
 
     </LinearLayout>
 
@@ -152,8 +152,8 @@
 
         <ImageView
             style="@style/PromoteLableStyle"
-            android:background="@mipmap/promote_proxy"
-            android:text="代理" />
+            android:background="@mipmap/proxy_area_proxy"
+            android:text="区代" />
 
     </LinearLayout>
 
@@ -171,8 +171,8 @@
 
         <ImageView
             style="@style/PromoteLableStyle"
-            android:background="@mipmap/promote_vip"
-            android:text="VIP" />
+            android:background="@mipmap/promote_proxy"
+            android:text="代理" />
 
     </LinearLayout>
 
@@ -190,8 +190,8 @@
 
         <ImageView
             style="@style/PromoteLableStyle"
-            android:background="@mipmap/promote_gift_box"
-            android:text="礼盒装" />
+            android:background="@mipmap/promote_vip"
+            android:text="VIP" />
 
     </LinearLayout>
 
